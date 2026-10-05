@@ -1,6 +1,0 @@
-node_modules/
-out/stills/
-out/src/
-public/audio/*.wav
-tools/piper/*.onnx
-tools/piper/*.onnx.json
