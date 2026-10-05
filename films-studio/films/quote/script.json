@@ -1,0 +1,101 @@
+{
+  "id": "quote",
+  "title": "Drawing-to-Quote Engine",
+  "note": "say = what the narrator reads and what the captions show. tts = pronunciation hint for the scratch voice only.",
+  "scenes": [
+    {
+      "id": "problem",
+      "leadIn": 3.2,
+      "lines": [
+        {
+          "id": "p2",
+          "say": "One line on this plan reads 12,170.",
+          "tts": "One line on this plan reads twelve thousand, one hundred and seventy.",
+          "pauseAfter": 0.3
+        },
+        {
+          "id": "p3",
+          "say": "It's the diagonal, not the wall.",
+          "pauseAfter": 0.45
+        },
+        {
+          "id": "p4",
+          "say": "Misread it, and that plot's £157 short.",
+          "tts": "Misread it, and that plot's a hundred and fifty-seven pounds short.",
+          "pauseAfter": 0.9
+        }
+      ]
+    },
+    {
+      "id": "build",
+      "leadIn": 0.2,
+      "lines": [
+        {
+          "id": "b1",
+          "say": "So we built Drawing-to-Quote Engine.",
+          "pauseAfter": 0.6
+        },
+        {
+          "id": "b2",
+          "say": "Drop in the whole pack. It finds the three pages that matter,",
+          "pauseAfter": 0.2
+        },
+        {
+          "id": "b3",
+          "say": "and proposes every measurement, right beside the line it came from.",
+          "pauseAfter": 0.4
+        },
+        {
+          "id": "b4",
+          "say": "So when it reads 12.17, the estimator sees the diagonal, and puts 13.",
+          "tts": "So when it reads twelve point one seven, the estimator sees the diagonal, and puts thirteen.",
+          "pauseAfter": 0.5
+        },
+        {
+          "id": "b5",
+          "say": "Everything follows. The perimeter. The lifts. The price.",
+          "pauseAfter": 0.6
+        },
+        {
+          "id": "b6",
+          "say": "If the drawing doesn't say, it leaves the field empty, and won't price until someone fills it.",
+          "pauseAfter": 0.5
+        },
+        {
+          "id": "b7",
+          "say": "The rate band stays the estimator's call.",
+          "pauseAfter": 0.5
+        },
+        {
+          "id": "b8",
+          "say": "Then every line goes into the estimating system, with the page it came from.",
+          "pauseAfter": 0.9
+        }
+      ]
+    },
+    {
+      "id": "result",
+      "leadIn": 0.6,
+      "lines": [
+        {
+          "id": "r1",
+          "say": "Across a forty-plot phase, that's £6,294 that no longer gets given away.",
+          "tts": "Across a forty-plot phase, that's six thousand, two hundred and ninety-four pounds that no longer gets given away.",
+          "pauseAfter": 2.6
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "leadIn": 0.2,
+      "tail": 3.2,
+      "lines": [
+        {
+          "id": "c1",
+          "say": "The drawings arrive. The quote follows.",
+          "pauseAfter": 0
+        }
+      ]
+    }
+  ]
+}

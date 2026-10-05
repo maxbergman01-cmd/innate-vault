@@ -1,0 +1,128 @@
+{
+ "id": "quote",
+ "fps": 30,
+ "voice": "scratch",
+ "scenes": [
+  {
+   "id": "problem",
+   "start": 0.0,
+   "end": 16.505,
+   "lines": [
+    {
+     "id": "p2",
+     "say": "One line on this plan reads 12,170.",
+     "start": 3.2,
+     "dur": 4.956,
+     "src": "vo/quote/p2.wav"
+    },
+    {
+     "id": "p3",
+     "say": "It's the diagonal, not the wall.",
+     "start": 8.456,
+     "dur": 2.115,
+     "src": "vo/quote/p3.wav"
+    },
+    {
+     "id": "p4",
+     "say": "Misread it, and that plot's \u00a3157 short.",
+     "start": 11.021,
+     "dur": 4.584,
+     "src": "vo/quote/p4.wav"
+    }
+   ]
+  },
+  {
+   "id": "build",
+   "start": 16.505,
+   "end": 57.962,
+   "lines": [
+    {
+     "id": "b1",
+     "say": "So we built Drawing-to-Quote Engine.",
+     "start": 16.705,
+     "dur": 2.295,
+     "src": "vo/quote/b1.wav"
+    },
+    {
+     "id": "b2",
+     "say": "Drop in the whole pack. It finds the three pages that matter,",
+     "start": 19.6,
+     "dur": 4.346,
+     "src": "vo/quote/b2.wav"
+    },
+    {
+     "id": "b3",
+     "say": "and proposes every measurement, right beside the line it came from.",
+     "start": 24.146,
+     "dur": 4.32,
+     "src": "vo/quote/b3.wav"
+    },
+    {
+     "id": "b4",
+     "say": "So when it reads 12.17, the estimator sees the diagonal, and puts 13.",
+     "start": 28.866,
+     "dur": 6.577,
+     "src": "vo/quote/b4.wav"
+    },
+    {
+     "id": "b5",
+     "say": "Everything follows. The perimeter. The lifts. The price.",
+     "start": 35.943,
+     "dur": 5.062,
+     "src": "vo/quote/b5.wav"
+    },
+    {
+     "id": "b6",
+     "say": "If the drawing doesn't say, it leaves the field empty, and won't price until someone fills it.",
+     "start": 41.605,
+     "dur": 6.308,
+     "src": "vo/quote/b6.wav"
+    },
+    {
+     "id": "b7",
+     "say": "The rate band stays the estimator's call.",
+     "start": 48.413,
+     "dur": 2.968,
+     "src": "vo/quote/b7.wav"
+    },
+    {
+     "id": "b8",
+     "say": "Then every line goes into the estimating system, with the page it came from.",
+     "start": 51.88,
+     "dur": 5.182,
+     "src": "vo/quote/b8.wav"
+    }
+   ]
+  },
+  {
+   "id": "result",
+   "start": 57.962,
+   "end": 68.711,
+   "lines": [
+    {
+     "id": "r1",
+     "say": "Across a forty-plot phase, that's \u00a36,294 that no longer gets given away.",
+     "start": 58.562,
+     "dur": 7.549,
+     "src": "vo/quote/r1.wav"
+    }
+   ]
+  },
+  {
+   "id": "close",
+   "start": 68.711,
+   "end": 75.172,
+   "lines": [
+    {
+     "id": "c1",
+     "say": "The drawings arrive. The quote follows.",
+     "start": 68.911,
+     "dur": 3.061,
+     "src": "vo/quote/c1.wav"
+    }
+   ]
+  }
+ ],
+ "duration": 75.172,
+ "frames": 2255
+}
