@@ -1,0 +1,10 @@
+{
+  "turns": 14,
+  "ext": "wav",
+  "generatedAt": "kokoro-local",
+  "model": "kokoro-v1.0 (local)",
+  "voices": {
+    "agent": "bm_george",
+    "contact": "bf_emma"
+  }
+}

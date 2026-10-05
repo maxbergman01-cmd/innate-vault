@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operational and AI Opportunity Audit | Performance Apparel</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Space Grotesk (Tech/Modern) & Inter (Clean/Standard) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bone: '#F3F4F6', 
+                        charcoal: '#111827', 
+                        warmGrey: '#4B5563', 
+                        mint: '#10B981', 
+                        mintHover: '#059669',
+                        risk: '#EF4444', 
+                        amber: '#F59E0B',
+                        yellow: '#FBBF24', 
+                        purple: '#8B5CF6',
+                        blue: '#3B82F6',
+                        green: '#10B981', 
+                        neutral: '#9CA3AF', 
+                        slate: '#334155',
+                        darkBlue: '#1E3A8A',
+                        neon: '#C4F72C'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'subtle': '0 4px 20px rgba(0, 0, 0, 0.05)',
+                        'card': '0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06)',
+                        'floating': '0 20px 50px -12px rgba(0, 0, 0, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F9FAFB;
+            color: #111827;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+        }
+        
+        h1, h2, h3, h4, h5, h6, .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .font-sans {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .engine-tab, .nav-link, button, .theme-dropdown-content, .problem-details, .org-card-text, td, th, p, span, div {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .view-section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+        .view-section.active {
+            display: block;
+        }
+
+        .engine-content {
+            display: none;
+            animation: slideIn 0.3s ease-out;
+        }
+        .engine-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Dropdown Transitions */
+        .theme-dropdown-content, .dd-accordion-content {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        .theme-dropdown-content.open, .dd-accordion-content.open {
+            opacity: 1;
+        }
+        
+        /* Table Row Dropdown Specifics */
+        .table-row-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+        .table-row-content.active {
+            display: table-row;
+        }
+
+        .org-scroll::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .org-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        .org-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+
+        .tree {
+            display: flex; /* Changed from inline-table to flex for centering */
+            justify-content: center;
+            margin: 0 auto;
+            padding: 10px;
+            min-width: max-content;
+        }
+
+        .tree ul {
+            padding-top: 20px; 
+            position: relative;
+            transition: all 0.5s;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tree li {
+            text-align: center;
+            list-style-type: none;
+            position: relative;
+            padding: 20px 5px 0 5px;
+            transition: all 0.5s;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Ensures content inside li (card) is centered */
+        }
+
+        .tree li::before, .tree li::after {
+            content: '';
+            position: absolute; top: 0; right: 50%;
+            border-top: 1px solid #ccc;
+            width: 50%; height: 20px;
+        }
+        .tree li::after {
+            right: auto; left: 50%;
+            border-left: 1px solid #ccc;
+        }
+        .tree li:only-child::after, .tree li:only-child::before {
+            display: none;
+        }
+        .tree li:only-child { padding-top: 0; }
+        .tree li:first-child::before, .tree li:last-child::after {
+            border: 0 none;
+        }
+        .tree li:last-child::before{
+            border-right: 1px solid #ccc;
+            border-radius: 0 5px 0 0;
+        }
+        .tree li:first-child::after{
+            border-radius: 5px 0 0 0;
+        }
+        .tree ul ul::before {
+            content: '';
+            position: absolute; top: 0; left: 50%;
+            border-left: 1px solid #ccc;
+            width: 0; height: 20px;
+        }
+
+        .tree-node {
+            display: flex; 
+            flex-direction: column;
+            justify-content: center;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: #333;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            width: 140px; 
+            min-height: 55px; 
+            position: relative;
+            z-index: 10;
+            cursor: default;
+            margin: 0 auto; /* Critical for centering inside flex column li */
+        }
+        
+        .tree-node.interactive {
+            cursor: pointer;
+        }
+        .tree-node.interactive:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+            border-color: #10B981;
+        }
+        
+        .tree-node.interviewed-mint { border-left: 3px solid #10B981; }
+        .tree-node.interviewed-purple { border-left: 3px solid #8B5CF6; }
+        .tree-node.interviewed-blue { border-left: 3px solid #3B82F6; }
+        .tree-node.interviewed-amber { border-left: 3px solid #F59E0B; }
+        
+        .gantt-grid {
+            display: grid;
+            grid-template-columns: 180px repeat(8, 1fr); 
+            gap: 2px;
+            font-size: 10px;
+        }
+        .gantt-cell-label {
+            grid-column: 1 / 2;
+            font-weight: 600;
+            color: #111827;
+            display: flex;
+            align-items: center;
+            padding-right: 12px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .gantt-header {
+            text-align: center;
+            font-weight: bold;
+            color: #9CA3AF;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #E5E7EB;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .gantt-bar {
+            height: 28px;
+            border-radius: 6px;
+            margin-top: 4px;
+            position: relative;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            color: white;
+            font-weight: 600;
+            font-size: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .gantt-bar:hover {
+            opacity: 0.9;
+            transform: scale(1.01);
+        }
+        .arrow-icon {
+            transition: transform 0.2s;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-sans font-light bg-gray-50/50">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white/90 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50 px-6 py-3 flex justify-between items-center shadow-sm overflow-x-auto">
+        <div class="flex items-center gap-4 cursor-pointer group flex-shrink-0 mr-6" onclick="switchView('home')">
+            <!-- Sanitized Logo -->
+            <div class="h-10 w-10 bg-charcoal text-white flex items-center justify-center font-display font-bold text-xl rounded-lg shadow-lg">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div class="flex flex-col border-l border-gray-300 pl-3">
+                <span class="font-bold text-base leading-none tracking-tight text-charcoal font-display">Client Audit</span>
+                <div class="flex gap-1 mt-1">
+                    <span class="text-[9px] text-white font-bold uppercase tracking-widest bg-gray-400 px-2 py-0.5 rounded w-fit font-sans shadow-sm cursor-default">Sanitized</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="flex items-center gap-2 md:gap-6 md:justify-center font-sans overflow-x-auto no-scrollbar flex-grow mask-fade px-2">
+            <button onclick="switchView('home')" class="nav-link px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-lg transition-all bg-charcoal text-white border border-charcoal whitespace-nowrap shadow-md flex-shrink-0 hover:bg-gray-800" data-target="home">Overview</button>
+            
+            <div class="flex items-center bg-white rounded-lg border border-gray-200 p-1 shadow-sm gap-1 flex-shrink-0">
+                <div class="px-3 py-1 border-r border-gray-100 hidden lg:block cursor-default bg-gray-50/50 rounded-l-md">
+                    <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap">Problem</span>
+                </div>
+                <button onclick="switchView('themes')" class="nav-link px-3 py-1.5 text-xs font-medium rounded-md text-warmGrey hover:text-charcoal hover:bg-gray-100 transition-all whitespace-nowrap" data-target="themes">Themes</button>
+                <button onclick="switchView('engines')" class="nav-link px-3 py-1.5 text-xs font-medium rounded-md text-warmGrey hover:text-charcoal hover:bg-gray-100 transition-all whitespace-nowrap" data-target="engines">Engines</button>
+                <button onclick="switchView('problems')" class="nav-link px-3 py-1.5 text-xs font-medium rounded-md text-warmGrey hover:text-charcoal hover:bg-gray-100 transition-all whitespace-nowrap" data-target="problems">Priorities</button>
+                <button onclick="switchView('org')" class="nav-link px-3 py-1.5 text-xs font-medium rounded-md text-warmGrey hover:text-charcoal hover:bg-gray-100 transition-all whitespace-nowrap" data-target="org">Org</button>
+            </div>
+
+            <div class="flex items-center bg-white rounded-lg border border-gray-200 p-1 shadow-sm gap-1 flex-shrink-0">
+                <div class="px-3 py-1 border-r border-gray-100 hidden lg:block cursor-default bg-gray-50/50 rounded-l-md">
+                    <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap">Solution</span>
+                </div>
+                <button onclick="switchView('exec_summary')" class="nav-link px-3 py-1.5 text-xs font-medium rounded-md text-warmGrey hover:text-charcoal hover:bg-gray-100 transition-all whitespace-nowrap" data-target="exec_summary">Strategy</button>
+                <button onclick="switchView('deepdive_overview')" class="nav-link px-3 py-1.5 text-xs font-medium rounded-md text-warmGrey hover:text-charcoal hover:bg-gray-100 transition-all whitespace-nowrap" data-target="deepdive_overview">Deep Dives</button>
+                <button onclick="switchView('roadmap')" class="nav-link px-3 py-1.5 text-xs font-medium rounded-md text-warmGrey hover:text-charcoal hover:bg-gray-100 transition-all whitespace-nowrap" data-target="roadmap">Roadmap</button>
+            </div>
+        </div>
+
+        <button onclick="window.print()" class="hidden lg:block bg-mint hover:bg-mintHover text-white font-bold py-2 px-5 rounded-lg shadow-md transition-all transform hover:-translate-y-0.5 text-xs tracking-wide font-sans whitespace-nowrap ml-6">
+            Export PDF
+        </button>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow w-full max-w-full mx-auto p-0">
+
+        <!-- VIEW 1: HOME -->
+        <section id="home" class="view-section active p-6 md:p-10 max-w-7xl mx-auto">
+            <div class="max-w-6xl mx-auto">
+                <div class="relative flex flex-col items-center text-center gap-8 mb-16 bg-white rounded-3xl p-16 shadow-floating border border-gray-100 overflow-hidden">
+                    <div class="absolute top-0 right-0 w-96 h-96 bg-mint/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+                    
+                    <div class="relative z-10 max-w-4xl mx-auto">
+                        <div class="inline-flex items-center gap-2 py-2 px-4 rounded-full bg-charcoal text-white text-[10px] font-bold uppercase tracking-widest mb-8 font-display border border-gray-700 shadow-lg">
+                            <span class="w-2 h-2 rounded-full bg-neon"></span> 4-Week Strategic Diagnostic
+                        </div>
+                        <h1 class="text-6xl md:text-7xl font-display font-medium text-charcoal mb-8 leading-tight">
+                            Operational & AI <br>
+                            <span class="text-charcoal">Opportunity Audit</span>
+                        </h1>
+                        <p class="text-xl text-warmGrey mb-10 leading-relaxed max-w-2xl mx-auto font-light font-sans">
+                            A rigorous analysis of the operating model for <strong class="text-charcoal">High-Performance Apparel</strong>. Identifying critical friction points in PLM, scalability gaps, and high-value automation opportunities.
+                        </p>
+                        <div class="flex justify-center gap-6 font-sans">
+                            <button onclick="switchView('themes')" class="px-8 py-4 bg-charcoal text-white rounded-xl font-bold hover:bg-black transition-all shadow-lg hover:shadow-xl flex items-center gap-3 group text-sm tracking-wide border border-charcoal">
+                                1. Explore Friction Points
+                                <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform text-mint"></i>
+                            </button>
+                            <button onclick="switchView('exec_summary')" class="px-8 py-4 bg-white border border-gray-200 text-charcoal rounded-xl font-bold hover:bg-gray-50 transition-all text-sm tracking-wide shadow-sm hover:shadow-md">
+                                2. View The Solution
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Grid: Problem Identification -->
+                <div class="mb-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="bg-risk p-1.5 rounded text-white flex items-center justify-center w-6 h-6 text-xs font-bold shadow-sm">1</div>
+                        <div>
+                            <h3 class="text-sm font-bold text-charcoal uppercase tracking-widest font-display">Problem Identification</h3>
+                            <p class="text-xs text-warmGrey">The current state analysis.</p>
+                        </div>
+                        <div class="h-px bg-gray-200 flex-grow ml-4"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div onclick="switchView('themes')" class="bg-white p-6 rounded-2xl shadow-subtle hover:shadow-floating cursor-pointer transition-all border border-gray-100 hover:border-mint group h-full relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><i class="fa-solid fa-magnifying-glass text-4xl text-mint"></i></div>
+                            <h3 class="text-lg font-bold font-display mb-2 text-charcoal group-hover:text-mintHover transition-colors">1. Key Themes</h3>
+                            <p class="text-xs text-warmGrey leading-relaxed">9 deep-dive findings on operational drag.</p>
+                        </div>
+                        <div onclick="switchView('engines')" class="bg-white p-6 rounded-2xl shadow-subtle hover:shadow-floating cursor-pointer transition-all border border-gray-100 hover:border-mint group h-full relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><i class="fa-solid fa-gears text-4xl text-mint"></i></div>
+                            <h3 class="text-lg font-bold font-display mb-2 text-charcoal group-hover:text-mintHover transition-colors">2. Process Engines</h3>
+                            <p class="text-xs text-warmGrey leading-relaxed">Detailed maps of Design, Sourcing, and Tech.</p>
+                        </div>
+                        <div onclick="switchView('problems')" class="bg-white p-6 rounded-2xl shadow-subtle hover:shadow-floating cursor-pointer transition-all border border-gray-100 hover:border-mint group h-full relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><i class="fa-solid fa-list-check text-4xl text-mint"></i></div>
+                            <h3 class="text-lg font-bold font-display mb-2 text-charcoal group-hover:text-mintHover transition-colors">3. Prioritisation</h3>
+                            <p class="text-xs text-warmGrey leading-relaxed">Impact Matrix: High Value vs High Effort.</p>
+                        </div>
+                        <div onclick="switchView('org')" class="bg-white p-6 rounded-2xl shadow-subtle hover:shadow-floating cursor-pointer transition-all border border-gray-100 hover:border-mint group h-full relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><i class="fa-solid fa-users text-4xl text-mint"></i></div>
+                            <h3 class="text-lg font-bold font-display mb-2 text-charcoal group-hover:text-mintHover transition-colors">4. Organisation</h3>
+                            <p class="text-xs text-warmGrey leading-relaxed">Stakeholder interviews & insights.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Grid: Solution Design -->
+                <div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="bg-mint p-1.5 rounded text-white flex items-center justify-center w-6 h-6 text-xs font-bold shadow-sm">2</div>
+                        <div>
+                            <h3 class="text-sm font-bold text-charcoal uppercase tracking-widest font-display">Solution Design</h3>
+                            <p class="text-xs text-warmGrey">The path to scalability.</p>
+                        </div>
+                        <div class="h-px bg-gray-200 flex-grow ml-4"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div onclick="switchView('exec_summary')" class="bg-white p-6 rounded-2xl shadow-subtle hover:shadow-floating cursor-pointer transition-all border border-gray-100 hover:border-mint group h-full relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><i class="fa-solid fa-chess text-4xl text-mint"></i></div>
+                            <h3 class="text-lg font-bold font-display mb-2 text-charcoal group-hover:text-mintHover transition-colors">5. Strategy</h3>
+                            <p class="text-xs text-warmGrey leading-relaxed">The pivot to a 'Predictive Operating Model'.</p>
+                        </div>
+                        <div onclick="switchView('deepdive_overview')" class="bg-white p-6 rounded-2xl shadow-subtle hover:shadow-floating cursor-pointer transition-all border border-gray-100 hover:border-mint group h-full relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><i class="fa-solid fa-laptop-code text-4xl text-mint"></i></div>
+                            <h3 class="text-lg font-bold font-display mb-2 text-charcoal group-hover:text-mintHover transition-colors">6. Design Deep Dives</h3>
+                            <p class="text-xs text-warmGrey leading-relaxed">Breakdown of the 3 key pillars.</p>
+                        </div>
+                        <div onclick="switchView('roadmap')" class="bg-white p-6 rounded-2xl shadow-subtle hover:shadow-floating cursor-pointer transition-all border border-gray-100 hover:border-mint group h-full relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><i class="fa-solid fa-timeline text-4xl text-mint"></i></div>
+                            <h3 class="text-lg font-bold font-display mb-2 text-charcoal group-hover:text-mintHover transition-colors">7. Roadmap</h3>
+                            <p class="text-xs text-warmGrey leading-relaxed">8-month implementation plan and investment phasing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 2: THEMES -->
+        <section id="themes" class="view-section p-6 md:p-10 max-w-7xl mx-auto">
+            <div class="mb-10 max-w-4xl">
+                <span class="text-mint font-bold uppercase tracking-wider text-xs mb-2 block font-display">Diagnostic Findings</span>
+                <h1 class="text-4xl font-display font-medium text-charcoal mb-3">9 Key Themes</h1>
+                <p class="text-lg text-warmGrey font-light">Identifying the core tension: The brand is built on <strong>High-Performance Innovation</strong>, but the back-office runs on <strong>Low-Performance Administration</strong>.</p>
+            </div>
+
+            <!-- Grid items start at top to prevent stretching -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start" id="themes-grid">
+                <!-- JS Injected -->
+            </div>
+        </section>
+
+        <!-- VIEW 3: ENGINES -->
+        <section id="engines" class="view-section p-6 md:p-10 max-w-7xl mx-auto">
+            <div class="mb-8">
+                <span class="text-mint font-bold uppercase tracking-wider text-xs mb-2 block font-display">Workflow Analysis</span>
+                <h1 class="text-4xl font-display font-medium text-charcoal mb-3">End-to-End Engines</h1>
+                <p class="text-lg text-warmGrey font-light">Detailed mapping of the critical path, identifying specific points of data friction.</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8 min-h-[600px]">
+                <!-- Sidebar Tabs -->
+                <aside class="lg:w-1/4">
+                    <div class="space-y-2 bg-white p-2 rounded-xl shadow-card border border-gray-100 sticky top-28 font-sans">
+                        <button onclick="showEngine('eng1', this)" class="engine-tab w-full text-left p-4 rounded-lg border-l-4 border-mint bg-bone font-bold text-charcoal transition-all tracking-wide text-xs uppercase">
+                            1. Market Intelligence
+                        </button>
+                        <button onclick="showEngine('eng2', this)" class="engine-tab w-full text-left p-4 rounded-lg border-l-4 border-transparent hover:bg-gray-50 text-warmGrey hover:text-charcoal transition-all tracking-wide font-medium text-xs uppercase">
+                            2. Product Creation
+                        </button>
+                        <button onclick="showEngine('eng3', this)" class="engine-tab w-full text-left p-4 rounded-lg border-l-4 border-transparent hover:bg-gray-50 text-warmGrey hover:text-charcoal transition-all tracking-wide font-medium text-xs uppercase">
+                            3. Sourcing & Costing
+                        </button>
+                        <button onclick="showEngine('eng4', this)" class="engine-tab w-full text-left p-4 rounded-lg border-l-4 border-transparent hover:bg-gray-50 text-warmGrey hover:text-charcoal transition-all tracking-wide font-medium text-xs uppercase">
+                            4. Compliance & Fit
+                        </button>
+                        <button onclick="showEngine('eng5', this)" class="engine-tab w-full text-left p-4 rounded-lg border-l-4 border-transparent hover:bg-gray-50 text-warmGrey hover:text-charcoal transition-all tracking-wide font-medium text-xs uppercase">
+                            5. Supply Chain
+                        </button>
+                    </div>
+                </aside>
+
+                <!-- Engine Content Area -->
+                <div class="lg:w-3/4 font-sans">
+                    <!-- Engine content populated by JS below -->
+                    <div id="engines-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 4: PROBLEMS -->
+        <section id="problems" class="view-section p-6 md:p-10 max-w-7xl mx-auto">
+            <div class="mb-12">
+                <span class="text-mint font-bold uppercase tracking-wider text-xs mb-2 block font-display">Investment Logic</span>
+                <h1 class="text-4xl font-display font-medium text-charcoal mb-3">Prioritisation Matrix</h1>
+                <p class="text-lg text-warmGrey font-light">Targeting areas with high manual drag and high commercial upside.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-card overflow-hidden border border-gray-100 font-sans">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-50 border-b border-gray-200 text-xs uppercase tracking-wider font-display">
+                                <th class="p-5 font-bold text-charcoal w-1/6 tracking-wide">Domain</th>
+                                <th class="p-5 font-bold text-charcoal w-1/4 tracking-wide">Friction Point</th>
+                                <th class="p-5 font-bold text-charcoal w-1/3 tracking-wide">Proposed Solution</th>
+                                <th class="p-5 font-bold text-charcoal w-1/6 text-center tracking-wide">Strategic Value</th>
+                            </tr>
+                        </thead>
+                        <tbody id="problems-table-body" class="divide-y divide-gray-100 text-xs">
+                            <!-- Injected via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 4.5: EXECUTIVE SUMMARY / STRATEGY -->
+        <section id="exec_summary" class="view-section p-6 md:p-10 max-w-7xl mx-auto">
+            <div class="mb-16 text-center max-w-4xl mx-auto">
+                <span class="text-mint font-bold uppercase tracking-wider text-xs mb-3 block font-display">Strategic Pivot</span>
+                <h1 class="text-5xl font-display font-bold text-charcoal mb-6 leading-tight">From Friction to <span class="text-mint">Velocity</span></h1>
+                <p class="text-xl text-warmGrey font-light leading-relaxed">
+                    The audit reveals a critical bottleneck: Innovation is outpacing Infrastructure. To secure a premium valuation, the Company must transition from a <strong>person-dependent</strong> model to a <strong>process-automated</strong> model.
+                </p>
+            </div>
+
+            <!-- The Pivot Visual -->
+            <div class="flex flex-col lg:flex-row gap-6 mb-16 items-center">
+                
+                <!-- Left: Friction -->
+                <div class="flex-1 bg-white p-8 rounded-3xl shadow-subtle border border-gray-100 relative h-full w-full">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-100 border border-gray-200 px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-warmGrey shadow-sm">Current State</div>
+                    <h3 class="text-2xl font-display font-bold text-charcoal text-center mb-6">The Efficiency Gap</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-risk/10 flex items-center justify-center text-risk flex-shrink-0"><i class="fa-solid fa-stopwatch"></i></div>
+                            <div>
+                                <h4 class="font-bold text-charcoal text-sm mb-1 font-display">Time Theft</h4>
+                                <p class="text-xs text-warmGrey leading-relaxed">Senior creatives spend 40% of their week on data entry and admin, not product.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-risk/10 flex items-center justify-center text-risk flex-shrink-0"><i class="fa-solid fa-layer-group"></i></div>
+                            <div>
+                                <h4 class="font-bold text-charcoal text-sm mb-1 font-display">Data Silos</h4>
+                                <p class="text-xs text-warmGrey leading-relaxed">Fabric, Costing, and Sales data live in isolated sheets. No predictive capability.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-risk/10 flex items-center justify-center text-risk flex-shrink-0"><i class="fa-solid fa-money-bill-wave"></i></div>
+                            <div>
+                                <h4 class="font-bold text-charcoal text-sm mb-1 font-display">Reactive Margins</h4>
+                                <p class="text-xs text-warmGrey leading-relaxed">Costs are finalized post-sample, leading to late cancellations and margin erosion.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Center Arrow -->
+                <div class="text-gray-300 text-2xl"><i class="fa-solid fa-arrow-right"></i></div>
+
+                <!-- Right: Velocity -->
+                <div class="flex-1 bg-charcoal p-8 rounded-3xl shadow-floating border border-gray-800 relative h-full w-full text-white">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-mint border border-mintHover px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-charcoal shadow-sm">Target State</div>
+                    <h3 class="text-2xl font-display font-bold text-white text-center mb-6">The AI-Enabled Operating Model</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-mint/20 flex items-center justify-center text-mint flex-shrink-0"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm mb-1 font-display">Generative Speed</h4>
+                                <p class="text-xs text-gray-400 leading-relaxed">AI-driven 3D prototyping and automated tech packs reduce time-to-market by 30%.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-mint/20 flex items-center justify-center text-mint flex-shrink-0"><i class="fa-solid fa-network-wired"></i></div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm mb-1 font-display">Digital Backbone</h4>
+                                <p class="text-xs text-gray-400 leading-relaxed">A single, unified data layer connects Demand, Design, and Supply Chain.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-mint/20 flex items-center justify-center text-mint flex-shrink-0"><i class="fa-solid fa-chart-line"></i></div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm mb-1 font-display">Predictive Profit</h4>
+                                <p class="text-xs text-gray-400 leading-relaxed">Algorithmic costing and inventory planning ensure margin protection.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Valuation Gap Visual -->
+            <div class="bg-white rounded-3xl p-8 lg:p-10 shadow-subtle border border-gray-100 mb-12">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="col-span-1">
+                        <h3 class="text-2xl font-display font-bold text-charcoal mb-4">The Valuation Gap</h3>
+                        <p class="text-sm text-warmGrey leading-relaxed mb-6">
+                            As infrastructure matures, Operational Risk (returns, fit issues) plummets, while Asset Value (scalability, collection output) compounds.
+                        </p>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="w-3 h-3 rounded-full bg-mint"></span>
+                            <span class="text-xs font-bold text-charcoal">Business Value / Scalability</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-risk"></span>
+                            <span class="text-xs font-bold text-charcoal">Operational Risk / Drag</span>
+                        </div>
+                    </div>
+                    <div class="col-span-2 relative h-64 flex items-end pb-6 pl-6 border-l border-b border-gray-200">
+                        <div class="absolute top-2 left-2 text-[10px] font-bold text-risk bg-white px-1 z-10">High Chaos</div>
+                        <div class="absolute top-2 right-2 text-[10px] font-bold text-mint bg-white px-1 z-10">Scalable Asset</div>
+                        <div class="absolute bottom-8 left-2 text-[10px] font-bold text-mint bg-white px-1 z-10">Constrained</div>
+                        <div class="absolute bottom-8 right-2 text-[10px] font-bold text-risk bg-white px-1 z-10">Low Drag</div>
+                        
+                        <div class="absolute top-0 bottom-0 left-1/2 border-l border-dashed border-gray-300"></div>
+                        <div class="absolute bottom-2 left-1/2 translate-x-2 text-[9px] text-gray-400 italic">Transformation Pivot</div>
+
+                        <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 800 300" preserveAspectRatio="none">
+                            <path d="M 0,20 C 250,20 400,280 800,280" stroke="#EF4444" stroke-width="3" fill="none" vector-effect="non-scaling-stroke" />
+                            <circle cx="5" cy="20" r="4" fill="#EF4444" />
+                            <circle cx="795" cy="280" r="4" fill="#EF4444" />
+
+                            <path d="M 0,280 C 250,280 400,20 800,20" stroke="#10B981" stroke-width="3" fill="none" vector-effect="non-scaling-stroke" />
+                            <circle cx="5" cy="280" r="4" fill="#10B981" />
+                            <circle cx="795" cy="20" r="4" fill="#10B981" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Solution Pillars -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white border border-gray-200 p-6 rounded-2xl text-center hover:border-charcoal transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-gray-100 mx-auto flex items-center justify-center text-charcoal font-bold text-lg mb-4">1</div>
+                    <h4 class="font-bold text-charcoal font-display uppercase tracking-wide text-sm mb-2">Digital Foundation</h4>
+                    <p class="text-xs text-warmGrey">The "Plumbing". Fixing the data structure and basic workflows.</p>
+                </div>
+                <div class="bg-white border border-gray-200 p-6 rounded-2xl text-center hover:border-charcoal transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-mint/10 mx-auto flex items-center justify-center text-mint font-bold text-lg mb-4">2</div>
+                    <h4 class="font-bold text-charcoal font-display uppercase tracking-wide text-sm mb-2">Generative Creation</h4>
+                    <p class="text-xs text-warmGrey">The "Magic". AI tools for design, 3D, and trend prediction.</p>
+                </div>
+                <div class="bg-white border border-gray-200 p-6 rounded-2xl text-center hover:border-charcoal transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-blue/10 mx-auto flex items-center justify-center text-blue font-bold text-lg mb-4">3</div>
+                    <h4 class="font-bold text-charcoal font-display uppercase tracking-wide text-sm mb-2">Predictive Trading</h4>
+                    <p class="text-xs text-warmGrey">The "Brain". Algorithms driving inventory and sales decisions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 5A: DEEP DIVE OVERVIEW -->
+        <section id="deepdive_overview" class="view-section p-6 md:p-10 max-w-7xl mx-auto">
+            <div class="mb-16">
+                <span class="text-mint font-bold uppercase tracking-wider text-xs mb-2 block font-display">Tactical Execution</span>
+                <h1 class="text-4xl font-display font-medium text-charcoal mb-3">8-Project Roadmap</h1>
+                <p class="text-lg text-warmGrey font-light mb-8">A parallel execution plan: the five high-impact projects in Phases 1-2, the three medium-impact projects in Phase 3.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                    <!-- PILLAR A -->
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-2 mb-2"><span class="w-2 h-2 rounded-full bg-charcoal"></span><h4 class="font-bold text-charcoal uppercase tracking-wider text-xs">PILLAR 1 — DIGITAL FOUNDATION</h4></div>
+                        
+                        <div class="bg-charcoal text-white p-6 rounded-xl shadow-lg cursor-pointer transform hover:-translate-y-1 transition-transform" onclick="switchView('deepdive_a1')">
+                            <span class="text-mint font-bold text-[10px] uppercase tracking-wide mb-2 block">High impact • Phase 1</span>
+                            <h3 class="text-lg font-bold mb-2 font-display">A1. Smart PLM Backbone</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-4">Establishing a 'Single Source of Truth' for tech packs, BOMs, and sizing.</p>
+                             <button onclick="toggleDropdown('dd_a1', event, this)" class="text-xs font-bold text-mint hover:text-white flex items-center gap-1 w-full justify-between border-t border-gray-700 pt-2 mt-2">View Analysis <span class="arrow-icon transform transition-transform">▼</span></button>
+                             <div id="dd_a1" class="dd-accordion-content text-xs text-gray-400 pt-2">
+                                 <p class="mb-1"><strong class="text-mint">Target:</strong> Outerwear & Active categories.</p>
+                                 <p class="mb-1"><strong class="text-mint">Action:</strong> Map workflow, configure AirTable schema, ingest legacy Excel data.</p>
+                                 <p><strong class="text-mint">Outcome:</strong> 100% visibility on fabric liability.</p>
+                             </div>
+                             <div class="mt-4"><button onclick="switchView('deepdive_a1'); event.stopPropagation();" class="text-xs text-mint font-bold border border-mint rounded px-3 py-1.5 hover:bg-mint hover:text-charcoal transition-colors w-full uppercase tracking-wide">Explore Deep Dive →</button></div>
+                        </div>
+
+                        <div class="bg-white border border-gray-200 p-6 rounded-xl shadow-sm cursor-pointer hover:border-mint transition-colors group">
+                            <span class="text-warmGrey font-bold text-[10px] uppercase tracking-wide mb-2 block">High impact • Phase 2</span>
+                            <h3 class="text-md font-bold text-charcoal mb-2 font-display group-hover:text-mintHover transition-colors">A2. Dynamic Timeline Engine</h3>
+                            <p class="text-xs text-warmGrey leading-relaxed mb-3">Dynamic timeline management with auto-alerts for slippage.</p>
+                            <button onclick="toggleDropdown('dd_a2', event, this)" class="text-xs font-bold text-charcoal hover:text-mint flex items-center gap-1 w-full justify-between border-t border-gray-100 pt-2 mt-2">View Analysis <span class="arrow-icon transform transition-transform">▼</span></button>
+                             <div id="dd_a2" class="dd-accordion-content text-xs text-warmGrey pt-2">
+                                 <p>Automation of date tracking and chasing.</p>
+                             </div>
+                        </div>
+
+                        <div class="bg-white border border-gray-200 p-6 rounded-xl shadow-sm cursor-pointer hover:border-mint transition-colors group">
+                            <span class="text-warmGrey font-bold text-[10px] uppercase tracking-wide mb-2 block">High impact • Phase 2</span>
+                            <h3 class="text-md font-bold text-charcoal mb-2 font-display group-hover:text-mintHover transition-colors">A3. Algorithmic Costing</h3>
+                            <p class="text-xs text-warmGrey leading-relaxed mb-3">Instant margin calculation based on live fabric yields.</p>
+                            <button onclick="toggleDropdown('dd_a3', event, this)" class="text-xs font-bold text-charcoal hover:text-mint flex items-center gap-1 w-full justify-between border-t border-gray-100 pt-2 mt-2">View Analysis <span class="arrow-icon transform transition-transform">▼</span></button>
+                             <div id="dd_a3" class="dd-accordion-content text-xs text-warmGrey pt-2">
+                                 <p>Real-time margin engineering tool.</p>
+                             </div>
+                        </div>
+                    </div>
+
+                     <!-- PILLAR B -->
+                     <div class="space-y-4">
+                        <div class="flex items-center gap-2 mb-2"><span class="w-2 h-2 rounded-full bg-mint"></span><h4 class="font-bold text-charcoal uppercase tracking-wider text-xs">PILLAR 2 — GENERATIVE CREATION</h4></div>
+                        
+                        <div class="bg-white border border-gray-200 p-6 rounded-xl shadow-sm cursor-pointer hover:border-mint transition-colors group">
+                            <span class="text-mint font-bold text-[10px] uppercase tracking-wide mb-2 block">High impact • Phase 1</span>
+                            <h3 class="text-md font-bold text-charcoal mb-2 font-display group-hover:text-mintHover transition-colors">B1. AI Demand Signal</h3>
+                            <p class="text-xs text-warmGrey leading-relaxed mb-3">Scraping social & search data to predict micro-trends before design begins.</p>
+                            <button onclick="toggleDropdown('dd_b1', event, this)" class="text-xs font-bold text-charcoal hover:text-mint flex items-center gap-1 w-full justify-between border-t border-gray-100 pt-2 mt-2">View Analysis <span class="arrow-icon transform transition-transform">▼</span></button>
+                             <div id="dd_b1" class="dd-accordion-content text-xs text-warmGrey pt-2">
+                                 <p>External data ingestion for better briefing.</p>
+                             </div>
+                        </div>
+
+                        <div class="bg-white border border-gray-200 p-6 rounded-xl shadow-sm hover:border-mint transition-colors group">
+                            <span class="text-warmGrey font-bold text-[10px] uppercase tracking-wide mb-2 block">High impact • Phase 2</span>
+                            <h3 class="text-md font-bold text-charcoal mb-2 font-display group-hover:text-mintHover transition-colors">B2. Generative Design Lab</h3>
+                            <p class="text-xs text-warmGrey leading-relaxed mb-3">AI-assisted sketching and 3D simulation to replace sample rounds.</p>
+                            <button onclick="toggleDropdown('dd_b2', event, this)" class="text-xs font-bold text-charcoal hover:text-mint flex items-center gap-1 w-full justify-between border-t border-gray-100 pt-2 mt-2">View Analysis <span class="arrow-icon transform transition-transform">▼</span></button>
+                             <div id="dd_b2" class="dd-accordion-content text-xs text-warmGrey pt-2">
+                                 <p>3D toolchain implementation.</p>
+                             </div>
+                        </div>
+
+                         <div class="bg-white border border-gray-200 p-6 rounded-xl shadow-sm hover:border-mint transition-colors group">
+                            <span class="text-warmGrey font-bold text-[10px] uppercase tracking-wide mb-2 block">Medium impact • Phase 3</span>
+                            <h3 class="text-md font-bold text-charcoal mb-2 font-display group-hover:text-mintHover transition-colors">B3. Smart Fabric Database</h3>
+                            <p class="text-xs text-warmGrey leading-relaxed mb-3">Searchable library of pre-approved materials with sustainability data.</p>
+                            <button onclick="toggleDropdown('dd_b3', event, this)" class="text-xs font-bold text-charcoal hover:text-mint flex items-center gap-1 w-full justify-between border-t border-gray-100 pt-2 mt-2">View Analysis <span class="arrow-icon transform transition-transform">▼</span></button>
+                             <div id="dd_b3" class="dd-accordion-content text-xs text-warmGrey pt-2">
+                                 <p>Digital materials library.</p>
+                             </div>
+                        </div>
+                    </div>
+
+                    <!-- PILLAR C -->
+                     <div class="space-y-4">
+                        <div class="flex items-center gap-2 mb-2"><span class="w-2 h-2 rounded-full bg-blue"></span><h4 class="font-bold text-charcoal uppercase tracking-wider text-xs">PILLAR 3 — PREDICTIVE TRADING</h4></div>
+                        
+                         <div class="bg-white border border-gray-200 p-6 rounded-xl shadow-sm hover:border-blue transition-colors group">
+                            <span class="text-warmGrey font-bold text-[10px] uppercase tracking-wide mb-2 block">Medium impact • Phase 3</span>
+                            <h3 class="text-md font-bold text-charcoal mb-2 font-display group-hover:text-blue transition-colors">C1. Predictive Inventory &amp; Sales</h3>
+                            <p class="text-xs text-warmGrey leading-relaxed mb-3">AI forecasting for stock levels and reorder suggestions.</p>
+                            <button onclick="toggleDropdown('dd_c1', event, this)" class="text-xs font-bold text-charcoal hover:text-blue flex items-center gap-1 w-full justify-between border-t border-gray-100 pt-2 mt-2">View Analysis <span class="arrow-icon transform transition-transform">▼</span></button>
+                             <div id="dd_c1" class="dd-accordion-content text-xs text-warmGrey pt-2">
+                                 <p>Demand planning algorithm integration.</p>
+                             </div>
+                        </div>
+
+                        <div class="bg-white border border-gray-200 p-6 rounded-xl shadow-sm hover:border-blue transition-colors group">
+                            <span class="text-warmGrey font-bold text-[10px] uppercase tracking-wide mb-2 block">Medium impact • Phase 3</span>
+                            <h3 class="text-md font-bold text-charcoal mb-2 font-display group-hover:text-blue transition-colors">C2. Automated Retailer Feeds</h3>
+                            <p class="text-xs text-warmGrey leading-relaxed mb-3">Formatting data for wholesale portals automatically to reduce admin.</p>
+                            <button onclick="toggleDropdown('dd_c2', event, this)" class="text-xs font-bold text-charcoal hover:text-blue flex items-center gap-1 w-full justify-between border-t border-gray-100 pt-2 mt-2">View Analysis <span class="arrow-icon transform transition-transform">▼</span></button>
+                             <div id="dd_c2" class="dd-accordion-content text-xs text-warmGrey pt-2">
+                                 <p>RPA for portal uploads.</p>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 5B: PROJECT A1 DEEP DIVE (Pilot) -->
+        <section id="deepdive_a1" class="view-section p-6 md:p-10 max-w-7xl mx-auto">
+            <div class="mb-8">
+                <button onclick="switchView('deepdive_overview')" class="text-xs font-bold text-warmGrey hover:text-charcoal mb-4 flex items-center gap-1 font-display uppercase tracking-wider">← Back to Roadmap</button>
+                <span class="text-mint font-bold uppercase tracking-wider text-xs mb-2 block font-display">Project A1 • Operational Foundation</span>
+                <h1 class="text-4xl font-display font-medium text-charcoal mb-3">Smart PLM Backbone (Pilot)</h1>
+                <p class="text-xl text-warmGrey font-light">Replacing fragmented Excel sheets with a cloud-native 'Single Source of Truth' for the Outerwear category.</p>
+            </div>
+
+            <!-- Problem vs Solution -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+                <div class="bg-white p-8 rounded-2xl shadow-subtle border border-gray-100 h-full">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-risk/10 flex items-center justify-center text-risk"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <h3 class="text-lg font-bold text-charcoal font-display">The Problem</h3>
+                    </div>
+                    <div class="text-warmGrey leading-relaxed font-sans text-sm space-y-4">
+                         <p>Product data currently lives in "dark silos"—individual desktops, email chains, and WhatsApp messages. There is no single source of truth for Tech Packs, BOMs, or measurement specs.</p>
+                         <ul class="list-disc pl-4 space-y-2">
+                             <li><strong>Version Control:</strong> Factory often works off outdated specs (v2 vs v5).</li>
+                             <li><strong>Redundant Entry:</strong> Data is re-typed 4x per style across different trackers.</li>
+                             <li><strong>Blind Spots:</strong> No aggregate visibility on fabric liability or component usage.</li>
+                         </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-charcoal p-8 rounded-2xl shadow-subtle border border-gray-800 h-full text-white">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-mint/20 flex items-center justify-center text-mint"><i class="fa-solid fa-check"></i></div>
+                        <h3 class="text-lg font-bold text-white font-display">High-Level Solution</h3>
+                    </div>
+                    <div class="text-gray-400 leading-relaxed font-sans text-sm space-y-4">
+                         <p>A lightweight, cloud-native PLM (Product Lifecycle Management) backbone built on AirTable/Softr, acting as the master database for the <strong>Outerwear</strong> category.</p>
+                         <ul class="list-disc pl-4 space-y-2 text-gray-300">
+                             <li><strong>One Master Record:</strong> Updates flow instantly to all PDF outputs.</li>
+                             <li><strong>Automated Tech Packs:</strong> "One-click" generation of factory-ready PDFs.</li>
+                             <li><strong>Supplier Portal:</strong> Factories log in to see live specs (no more email attachments).</li>
+                         </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Implementation -->
+            <div class="mb-10">
+                <h3 class="text-2xl font-bold text-charcoal mb-6 font-display">Implementation Plan (12 Weeks)</h3>
+                <div class="space-y-3">
+                    <div class="border border-gray-200 rounded-xl bg-white overflow-hidden shadow-sm">
+                        <button onclick="toggleDropdown('imp_step1', event, this)" class="w-full flex justify-between items-center p-5 bg-white hover:bg-gray-50 transition-colors text-left group">
+                            <div class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-charcoal text-white flex items-center justify-center font-bold text-sm">1</div>
+                                <div>
+                                    <h4 class="font-bold text-charcoal text-sm font-display">Phase 1: Discovery & Schema Design (Weeks 1-4)</h4>
+                                    <p class="text-xs text-warmGrey">Mapping the data DNA.</p>
+                                </div>
+                            </div>
+                            <span class="arrow-icon transform transition-transform text-gray-400">▼</span>
+                        </button>
+                        <div id="imp_step1" class="dd-accordion-content bg-gray-50 border-t border-gray-100">
+                            <div class="p-5 text-xs text-warmGrey space-y-2 pl-16">
+                                <p>• <strong>Data Audit:</strong> Review all current Excel templates (Tech Pack, BOM, Critical Path) to map every data field (approx 45 fields).</p>
+                                <p>• <strong>Schema Build:</strong> Define relational structure: Style -> Colorway -> SKU -> Component -> Supplier.</p>
+                                <p>• <strong>Standardisation:</strong> Cleanse drop-down lists for Colors, Fabrics, Trims, and Size Ranges to ensure data integrity.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-xl bg-white overflow-hidden shadow-sm">
+                        <button onclick="toggleDropdown('imp_step2', event, this)" class="w-full flex justify-between items-center p-5 bg-white hover:bg-gray-50 transition-colors text-left group">
+                            <div class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-charcoal text-white flex items-center justify-center font-bold text-sm">2</div>
+                                <div>
+                                    <h4 class="font-bold text-charcoal text-sm font-display">Phase 2: Build & Ingestion (Weeks 5-8)</h4>
+                                    <p class="text-xs text-warmGrey">Migrating legacy data and building automation.</p>
+                                </div>
+                            </div>
+                            <span class="arrow-icon transform transition-transform text-gray-400">▼</span>
+                        </button>
+                        <div id="imp_step2" class="dd-accordion-content bg-gray-50 border-t border-gray-100">
+                            <div class="p-5 text-xs text-warmGrey space-y-2 pl-16">
+                                <p>• <strong>Ingestion:</strong> Import last 2 seasons of Outerwear data (150 styles) to populate the component library.</p>
+                                <p>• <strong>PDF Engine:</strong> Configure "Page Designer" block to replicate the exact factory PDF layout (pixel perfect).</p>
+                                <p>• <strong>Automation Logic:</strong> Set up triggers (e.g., When status = "Approved", email PDF to Factory Contact).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-xl bg-white overflow-hidden shadow-sm">
+                        <button onclick="toggleDropdown('imp_step3', event, this)" class="w-full flex justify-between items-center p-5 bg-white hover:bg-gray-50 transition-colors text-left group">
+                            <div class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-charcoal text-white flex items-center justify-center font-bold text-sm">3</div>
+                                <div>
+                                    <h4 class="font-bold text-charcoal text-sm font-display">Phase 3: UAT & Go-Live (Weeks 9-12)</h4>
+                                    <p class="text-xs text-warmGrey">Testing and switch-over.</p>
+                                </div>
+                            </div>
+                            <span class="arrow-icon transform transition-transform text-gray-400">▼</span>
+                        </button>
+                        <div id="imp_step3" class="dd-accordion-content bg-gray-50 border-t border-gray-100">
+                            <div class="p-5 text-xs text-warmGrey space-y-2 pl-16">
+                                <p>• <strong>Parallel Run:</strong> Execute 2 live styles in both Excel and New System to validate outputs.</p>
+                                <p>• <strong>Training:</strong> Interactive workshops for 4 key users (Designer, Garment Tech, PD, Merch).</p>
+                                <p>• <strong>Go-Live:</strong> Lock Excel folders for new Outerwear styles. Support hotline open.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Gantt & Resourcing -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+                <div class="col-span-2 bg-white p-6 rounded-2xl border border-gray-200">
+                    <h4 class="font-bold text-charcoal text-xs uppercase tracking-wider mb-4 font-display">Project Timeline (Interactive)</h4>
+                    <div class="grid grid-cols-12 gap-1 text-[9px] text-center text-gray-400 mb-2 font-display">
+                        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-12 gap-1">
+                            <div class="col-span-4 bg-charcoal text-white text-[9px] font-bold rounded h-6 flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity" onclick="toggleDropdown('gantt_d1', event, this)">Discovery</div>
+                        </div>
+                        <div id="gantt_d1" class="hidden text-[10px] text-warmGrey bg-gray-50 p-2 rounded mb-1">
+                            • Stakeholder interviews<br>• Data mapping
+                        </div>
+
+                        <div class="grid grid-cols-12 gap-1">
+                            <div class="col-span-4"></div>
+                            <div class="col-span-4 bg-mint text-white text-[9px] font-bold rounded h-6 flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity" onclick="toggleDropdown('gantt_d2', event, this)">Build</div>
+                        </div>
+                        <div id="gantt_d2" class="hidden text-[10px] text-warmGrey bg-gray-50 p-2 rounded mb-1">
+                            • Schema config<br>• Automation scripts
+                        </div>
+
+                        <div class="grid grid-cols-12 gap-1">
+                            <div class="col-span-8"></div>
+                            <div class="col-span-4 bg-blue text-white text-[9px] font-bold rounded h-6 flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity" onclick="toggleDropdown('gantt_d3', event, this)">Deploy</div>
+                        </div>
+                        <div id="gantt_d3" class="hidden text-[10px] text-warmGrey bg-gray-50 p-2 rounded mb-1">
+                            • User training<br>• Go-live support
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-bone p-6 rounded-2xl border border-gray-200">
+                    <h4 class="font-bold text-charcoal text-xs uppercase tracking-wider mb-4 font-display">Required Resourcing</h4>
+                    <div class="space-y-3 text-xs">
+                        <div class="flex justify-between border-b border-gray-300 pb-1">
+                            <span class="text-charcoal font-bold">Project Lead</span>
+                            <span class="text-warmGrey">2 days/week (Internal)</span>
+                        </div>
+                        <div class="flex justify-between border-b border-gray-300 pb-1">
+                            <span class="text-charcoal font-bold">Solution Architect</span>
+                            <span class="text-warmGrey">Full Time (Partner)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-charcoal font-bold">Outerwear Lead</span>
+                            <span class="text-warmGrey">4 hrs/week (SME)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Impact & Investment -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Financials Table -->
+                <div class="bg-white p-8 rounded-2xl shadow-subtle border border-gray-100">
+                    <h3 class="text-lg font-bold text-charcoal mb-6 font-display">Financial Impact Analysis (Year 1)</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs text-left border-collapse">
+                            <thead>
+                                <tr class="text-warmGrey border-b border-gray-200">
+                                    <th class="pb-2 font-bold uppercase tracking-wider w-2/3">Benefit Driver</th>
+                                    <th class="pb-2 font-bold uppercase tracking-wider text-right text-charcoal w-1/3">Calculated from stated assumptions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-warmGrey font-sans">
+                                <!-- Row 1 -->
+                                <tr class="border-b border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors" onclick="toggleTableRow('fin_row1', this)">
+                                    <td class="py-3 font-medium text-charcoal flex items-center gap-2">
+                                        <i class="fa-solid fa-chevron-right text-[8px] text-gray-400 transition-transform duration-200 dd-arrow-icon"></i>
+                                        Admin Efficiency
+                                    </td>
+                                    <td class="py-3 text-right font-medium text-charcoal">£53,040</td>
+                                </tr>
+                                <tr id="fin_row1" class="table-row-content bg-gray-50">
+                                    <td colspan="2" class="p-4 text-xs text-gray-600 border-b border-gray-100 leading-relaxed">
+                                        <div class="font-bold text-charcoal mb-1">Assumption Model:</div>
+                                        • <span class="font-medium">Headcount:</span> 4 Senior Designers @ £65k/yr fully loaded.<br>
+                                        • <span class="font-medium">Current State:</span> Time study reveals 22% of weekly hours spent on data entry/admin.<br>
+                                        • <span class="font-medium">Future State:</span> Automation reduces this to 5%.<br>
+                                        • <span class="font-medium">Calculation:</span> 0.17 × 4 × £65,000 × 1.2 (overhead) = £53,040. PM efficiency gains are not quantified and are excluded.
+                                    </td>
+                                </tr>
+
+                                <!-- Row 2 -->
+                                <tr class="border-b border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors" onclick="toggleTableRow('fin_row2', this)">
+                                    <td class="py-3 font-medium text-charcoal flex items-center gap-2">
+                                        <i class="fa-solid fa-chevron-right text-[8px] text-gray-400 transition-transform duration-200 dd-arrow-icon"></i>
+                                        Error Reduction
+                                    </td>
+                                    <td class="py-3 text-right font-medium text-charcoal">£23,400</td>
+                                </tr>
+                                <tr id="fin_row2" class="table-row-content bg-gray-50">
+                                    <td colspan="2" class="p-4 text-xs text-gray-600 border-b border-gray-100 leading-relaxed">
+                                        <div class="font-bold text-charcoal mb-1">Assumption Model:</div>
+                                        • <span class="font-medium">Sample Cost:</span> Avg Landing Cost per Sample (Air + Duty): £450.<br>
+                                        • <span class="font-medium">Rejection Rate:</span> Current: 28% due to spec errors. Target: 15%.<br>
+                                        • <span class="font-medium">Volume:</span> 400 new styles/yr.<br>
+                                        • <span class="font-medium">Calculation:</span> 400 × (0.28 − 0.15) × £450 = £23,400. Reduced courier fees are not quantified and are excluded.
+                                    </td>
+                                </tr>
+
+                                <!-- Row 3 -->
+                                <tr class="border-b border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors" onclick="toggleTableRow('fin_row3', this)">
+                                    <td class="py-3 font-medium text-charcoal flex items-center gap-2">
+                                        <i class="fa-solid fa-chevron-right text-[8px] text-gray-400 transition-transform duration-200 dd-arrow-icon"></i>
+                                        Freight Avoidance
+                                    </td>
+                                    <td class="py-3 text-right font-medium text-charcoal">£12,500</td>
+                                </tr>
+                                <tr id="fin_row3" class="table-row-content bg-gray-50">
+                                    <td colspan="2" class="p-4 text-xs text-gray-600 border-b border-gray-100 leading-relaxed">
+                                        <div class="font-bold text-charcoal mb-1">Assumption Model:</div>
+                                        • <span class="font-medium">Air Ratio:</span> Current: 18% of volume shipped by Air. Target: 8%.<br>
+                                        • <span class="font-medium">Cost Delta:</span> Avg Air Premium vs Sea: £2.50/unit.<br>
+                                        • <span class="font-medium">Volume:</span> 50,000 units impacted in Outerwear category.<br>
+                                        • <span class="font-medium">Calculation:</span> 50,000 × (0.18 − 0.08) × £2.50 = £12,500 gross savings.
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="pt-4 font-bold text-charcoal text-sm">Total Year 1 Savings (quantified drivers)</td>
+                                    <td class="pt-4 text-right font-bold text-mint text-sm">£88,940</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Investment Card -->
+                <div class="flex flex-col gap-6">
+                    <div class="bg-charcoal p-6 rounded-2xl border border-gray-800 text-white">
+                        <div class="mb-4">
+                            <span class="text-[10px] uppercase tracking-widest text-gray-400 block mb-1">One-Off Investment</span>
+                            <span class="text-xl font-bold text-white font-display">To be scoped</span>
+                            <p class="text-[11px] text-gray-400 mt-1">Return on investment is shown once the investment is scoped.</p>
+                        </div>
+                        <div class="border-t border-gray-700 pt-4">
+                            <span class="text-[10px] uppercase tracking-widest text-gray-400 block mb-2">Cost Breakdown</span>
+                            <div class="space-y-1 text-xs text-gray-300">
+                                <div class="flex justify-between"><span>Tech Setup & Licenses</span> <span>25%</span></div>
+                                <div class="flex justify-between"><span>Data Migration Labour</span> <span>35%</span></div>
+                                <div class="flex justify-between"><span>Training & Change Mgmt</span> <span>20%</span></div>
+                                <div class="flex justify-between"><span>Project Management</span> <span>20%</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-bone p-6 rounded-2xl border border-gray-100 flex-grow">
+                        <h4 class="font-bold text-charcoal text-xs uppercase tracking-wider mb-4 font-display">Qualitative Benefits</h4>
+                        <ul class="space-y-3 text-xs text-warmGrey font-sans">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mint mt-0.5"></i> Single Source of Truth: No more "vfinal_v2.xlsx" confusion.</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mint mt-0.5"></i> Employee Retention: Removing low-value data entry work.</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mint mt-0.5"></i> Factory Relationships: Fewer disputes over wrong versions.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 6: EXEC SUMMARY ROADMAP -->
+        <section id="roadmap" class="view-section p-6 md:p-10 max-w-7xl mx-auto">
+            <div class="mb-10 flex justify-between items-end">
+                <div>
+                    <span class="text-mint font-bold uppercase tracking-wider text-xs mb-2 block font-display">Execution Plan</span>
+                    <h1 class="text-4xl font-display font-medium text-charcoal mb-3">8-Month Roadmap</h1>
+                    <p class="text-lg text-warmGrey font-light max-w-3xl">
+                        Aggressive execution to deploy the core infrastructure before the AW26/SS27 Buying Cycle.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 1. Phased Delivery (Parallel Streams) -->
+            <div class="bg-white p-8 rounded-2xl shadow-subtle border border-gray-100 mb-8">
+                
+                <div class="gantt-grid mb-2">
+                    <div class="gantt-cell-label text-xs uppercase text-gray-400">Timeline</div>
+                    <div class="gantt-header">Month 1</div><div class="gantt-header">Month 2</div><div class="gantt-header">Month 3</div><div class="gantt-header">Month 4</div><div class="gantt-header">Month 5</div><div class="gantt-header">Month 6</div><div class="gantt-header">Month 7</div><div class="gantt-header">Month 8</div>
+
+                    <!-- Pillar A -->
+                    <div class="gantt-cell-label text-xs font-bold text-charcoal py-3 uppercase tracking-wide">1. Digital Foundation</div>
+                    <div class="gantt-bar bg-charcoal text-white col-span-3 text-center text-[9px] flex justify-center" style="grid-column: 2 / span 3;">A1: Smart PLM Pilot</div>
+                    <div class="gantt-bar bg-gray-500 text-white col-span-4 text-center text-[9px] flex justify-center" style="grid-column: 5 / span 3;">A2: Timeline Engine</div>
+                    <div class="gantt-bar bg-gray-400 text-white col-span-2 text-center text-[9px] flex justify-center" style="grid-column: 5 / span 3;">A3: Costing</div>
+
+                    <!-- Pillar B -->
+                    <div class="gantt-cell-label text-xs font-bold text-charcoal py-3 uppercase tracking-wide">2. Generative Creation</div>
+                    <!-- Moved B1 to start at Month 1 -->
+                    <div class="gantt-bar bg-mint text-charcoal col-span-2 text-center text-[9px] flex justify-center font-bold" style="grid-column: 2 / span 2;">B1: AI Demand</div> 
+                    <div class="gantt-bar bg-mint/80 text-charcoal col-span-3 text-center text-[9px] flex justify-center" style="grid-column: 8 / span 2;">B3: Fabric DB</div>
+                    <div class="gantt-bar bg-mint/60 text-charcoal col-span-3 text-center text-[9px] flex justify-center" style="grid-column: 5 / span 3;">B2: Gen Design Lab</div>
+
+                    <!-- Pillar C -->
+                    <div class="gantt-cell-label text-xs font-bold text-charcoal py-3 uppercase tracking-wide">3. Predictive Trading</div>
+                    <div class="col-span-5"></div>
+                    <div class="gantt-bar bg-blue text-white col-span-3 text-center text-[9px] flex justify-center" style="grid-column: 8 / span 2;">C1: Predictive Inventory</div>
+                    <div class="gantt-bar bg-blue/70 text-white col-span-2 text-center text-[9px] flex justify-center" style="grid-column: 8 / span 2;">C2: Retailer Feeds</div>
+                </div>
+            </div>
+
+            <!-- Bottom Section: Costs & Teams -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- 2. Investment by Phase -->
+                <div class="bg-white p-8 rounded-2xl shadow-subtle border border-gray-100">
+                    <h3 class="text-lg font-bold text-charcoal mb-6 font-display">2. Investment by Phase</h3>
+                    
+                    <div class="space-y-3">
+                        <!-- Phase 1 -->
+                        <div class="border border-gray-200 rounded-xl bg-white overflow-hidden shadow-sm">
+                            <button onclick="toggleDropdown('phase1_inv', event, this)" class="w-full flex justify-between items-center p-4 bg-bone/50 hover:bg-bone transition-colors text-left group">
+                                <span class="font-bold text-charcoal text-sm font-display">Phase 1: Foundation (Months 1-3)</span>
+                                <span class="arrow-icon transform transition-transform text-gray-400 text-xs">▼</span>
+                            </button>
+                            <div id="phase1_inv" class="dd-accordion-content bg-white border-t border-gray-100">
+                                <div class="p-4 space-y-2">
+                                    <div class="flex justify-between text-xs"><span class="text-warmGrey">A1. Smart PLM Backbone</span><span class="font-medium text-gray-400">To be scoped</span></div>
+                                    <div class="flex justify-between text-xs"><span class="text-warmGrey">B1. AI Demand Signal</span><span class="font-medium text-gray-400">To be scoped</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phase 2 -->
+                        <div class="border border-gray-200 rounded-xl bg-white overflow-hidden shadow-sm">
+                            <button onclick="toggleDropdown('phase2_inv', event, this)" class="w-full flex justify-between items-center p-4 bg-bone/50 hover:bg-bone transition-colors text-left group">
+                                <span class="font-bold text-charcoal text-sm font-display">Phase 2: Scale (Months 4-6)</span>
+                                <span class="arrow-icon transform transition-transform text-gray-400 text-xs">▼</span>
+                            </button>
+                            <div id="phase2_inv" class="dd-accordion-content bg-white border-t border-gray-100">
+                                <div class="p-4 space-y-2">
+                                    <div class="flex justify-between text-xs"><span class="text-warmGrey">A2. Dynamic Timeline Engine</span><span class="font-medium text-gray-400">To be scoped</span></div>
+                                    <div class="flex justify-between text-xs"><span class="text-warmGrey">A3. Algorithmic Costing Engine</span><span class="font-medium text-gray-400">To be scoped</span></div>
+                                    <div class="flex justify-between text-xs"><span class="text-warmGrey">B2. Generative Design Lab</span><span class="font-medium text-gray-400">To be scoped</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phase 3 -->
+                        <div class="border border-gray-200 rounded-xl bg-white overflow-hidden shadow-sm">
+                            <button onclick="toggleDropdown('phase3_inv', event, this)" class="w-full flex justify-between items-center p-4 bg-bone/50 hover:bg-bone transition-colors text-left group">
+                                <span class="font-bold text-charcoal text-sm font-display">Phase 3: Optimize (Months 7-8)</span>
+                                <span class="arrow-icon transform transition-transform text-gray-400 text-xs">▼</span>
+                            </button>
+                            <div id="phase3_inv" class="dd-accordion-content bg-white border-t border-gray-100">
+                                <div class="p-4 space-y-2">
+                                    <div class="flex justify-between text-xs"><span class="text-warmGrey">B3. Smart Fabric Database</span><span class="font-medium text-gray-400">To be scoped</span></div>
+                                    <div class="flex justify-between text-xs"><span class="text-warmGrey">C1. Predictive Inventory &amp; Sales</span><span class="font-medium text-gray-400">To be scoped</span></div>
+                                    <div class="flex justify-between text-xs"><span class="text-warmGrey">C2. Automated Retailer Feeds</span><span class="font-medium text-gray-400">To be scoped</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Team Resourcing -->
+                <div class="bg-charcoal text-white p-8 rounded-2xl shadow-subtle border border-gray-800">
+                    <h3 class="text-lg font-bold text-white mb-6 font-display">3. Team Resourcing</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Group A -->
+                        <div class="flex gap-4 p-4 bg-gray-800/50 rounded-xl border border-gray-700">
+                            <div class="w-8 h-8 rounded-full bg-white text-charcoal flex items-center justify-center font-bold text-xs flex-shrink-0 mt-1">A</div>
+                            <div class="flex-1">
+                                <strong class="text-sm block text-mint mb-2">Digital Foundation</strong>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-xs text-gray-300">
+                                    <div class="space-y-1">
+                                        <div class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Internal</div>
+                                        <div>Head of Tech</div>
+                                        <div>Delivery Lead</div>
+                                    </div>
+                                    <div class="space-y-1 border-l border-gray-700 pl-4">
+                                        <div class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Partner</div>
+                                        <div>Solution Architect</div>
+                                        <div>Migration Engineer</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Group B -->
+                        <div class="flex gap-4 p-4 bg-gray-800/50 rounded-xl border border-gray-700">
+                            <div class="w-8 h-8 rounded-full bg-mint text-charcoal flex items-center justify-center font-bold text-xs flex-shrink-0 mt-1">B</div>
+                            <div class="flex-1">
+                                <strong class="text-sm block text-mint mb-2">Generative Creation</strong>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-xs text-gray-300">
+                                    <div class="space-y-1">
+                                        <div class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Internal</div>
+                                        <div>Head of Design</div>
+                                        <div>Senior Designer</div>
+                                    </div>
+                                    <div class="space-y-1 border-l border-gray-700 pl-4">
+                                        <div class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Partner</div>
+                                        <div>AI Tooling Lead</div>
+                                        <div>3D Specialist</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Group C -->
+                        <div class="flex gap-4 p-4 bg-gray-800/50 rounded-xl border border-gray-700">
+                            <div class="w-8 h-8 rounded-full bg-blue text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-1">C</div>
+                            <div class="flex-1">
+                                <strong class="text-sm block text-mint mb-2">Predictive Trading</strong>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-xs text-gray-300">
+                                    <div class="space-y-1">
+                                        <div class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Internal</div>
+                                        <div>Head of Merch</div>
+                                        <div>Head of Sales</div>
+                                    </div>
+                                    <div class="space-y-1 border-l border-gray-700 pl-4">
+                                        <div class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Partner</div>
+                                        <div>Data Scientist</div>
+                                        <div>Integration Dev</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VIEW 7: ORG (Existing) -->
+        <section id="org" class="view-section p-0 bg-white">
+            <div class="bg-bone px-10 py-8 border-b border-gray-200">
+                <span class="text-mint font-bold uppercase tracking-wider text-xs mb-2 block font-display">The Team</span>
+                <h1 class="text-4xl font-display font-medium text-charcoal mb-2">Stakeholder Map</h1>
+                <p class="text-lg text-warmGrey font-light">Interactive view of the 16 interviewed stakeholders.</p>
+            </div>
+
+            <!-- Scrollable Container for Large Tree -->
+            <div class="overflow-auto w-full h-[calc(100vh-250px)] bg-white org-scroll font-sans">
+                <div class="tree py-10 px-20 min-w-max">
+                    <ul id="org-tree-root">
+                        <!-- Generated by JS -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <p class="text-center text-[11px] text-gray-400 font-sans py-6">Example deliverable with sanitised, illustrative data.</p>
+
+    <!-- MODAL (unchanged) -->
+    <div id="stakeholder-modal" class="fixed inset-0 z-50 hidden font-sans">
+        <div class="absolute inset-0 bg-charcoal/40 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+        <div class="absolute right-0 top-0 h-full w-full md:w-[600px] bg-white shadow-2xl modal-panel flex flex-col transition-transform duration-300 transform translate-x-full">
+            <div class="p-8 border-b border-gray-100 flex justify-between items-start bg-bone">
+                <div>
+                    <h2 id="modal-name" class="text-3xl font-display font-bold text-charcoal">Name</h2>
+                    <p id="modal-role" class="text-lg text-warmGrey mt-1 font-light">Role</p>
+                </div>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-charcoal p-2 rounded-full hover:bg-gray-100 transition-colors">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="flex-grow overflow-y-auto p-8 space-y-8">
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <h3 class="font-bold text-charcoal mb-3 uppercase text-xs tracking-wider font-display">Highlights</h3>
+                    <div id="modal-highlights" class="text-warmGrey leading-relaxed font-sans text-sm"></div>
+                </div>
+                 <div class="bg-bone p-6 rounded-2xl border border-gray-100 relative overflow-hidden">
+                    <svg class="absolute top-4 left-4 w-8 h-8 text-mint opacity-20" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 13.1216 16 12.017 16H9.01697C7.9124 16 7.01697 16.8954 7.01697 18V21H2.01697V7.00002H14.017V21ZM12.017 14H9.01697C9.01697 12.8954 9.9124 12 11.017 12H13.017C14.1216 12 15.017 12.8954 15.017 14V21H22.017V4.00002H2.01697V6.00002H16.017V21H14.017V18C14.017 16.8954 13.1216 16 12.017 16Z"></path></svg>
+                    <h3 class="font-bold text-charcoal mb-3 uppercase text-xs tracking-wider font-display pl-6">Quotes</h3>
+                    <div id="modal-quotes" class="text-charcoal font-medium italic relative z-10 pl-6 border-l-2 border-mint leading-relaxed font-sans text-sm space-y-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- FUNCTION DEFINITIONS ---
+        function renderEngine(id) {
+            const container = document.getElementById('engines-container');
+            const data = enginesContent[id];
+            const colorMap = { 'yellow': 'bg-yellow text-charcoal', 'risk': 'bg-risk text-white', 'green': 'bg-green text-white', 'neutral': 'bg-gray-100 text-gray-500 border border-gray-200' };
+            
+            let html = `
+                <div class="bg-white p-8 rounded-2xl shadow-subtle border border-gray-100">
+                    <h2 class="text-3xl font-bold text-charcoal mb-2 font-display">${data.title}</h2>
+                    <p class="text-warmGrey mb-8 font-light font-sans">${data.desc}</p>
+                    <div class="space-y-10">
+            `;
+            data.sections.forEach(sec => {
+                html += `<div><h3 class="text-sm font-bold text-charcoal uppercase tracking-wider border-b border-gray-200 pb-2 mb-4 font-display">${sec.title}</h3><div class="grid grid-cols-1 md:grid-cols-3 gap-4">`;
+                sec.cards.forEach(card => {
+                    let tagsHtml = '';
+                    if (card.tags && card.tags.length > 0) {
+                        tagsHtml = `<div class="flex flex-wrap gap-2 mb-3 font-sans">${card.tags.map(t => `<span class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wide ${colorMap[t.c]}">${t.l}</span>`).join('')}</div>`;
+                    } else {
+                        tagsHtml = `<div class="h-6 mb-3"></div>`; // Spacer
+                    }
+                    html += `<div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col">${tagsHtml}<h4 class="font-medium text-charcoal mb-2 font-display">${card.title}</h4><p class="text-xs text-warmGrey leading-relaxed font-sans">${card.text}</p></div>`;
+                });
+                html += `</div></div>`;
+            });
+            html += `</div></div>`;
+            container.innerHTML = html;
+        }
+
+        function renderTree(node) {
+            let li = document.createElement('li');
+            let cardClass = "tree-node";
+            let onClick = "";
+            
+            if (node.type === 'interviewed') {
+                cardClass += ` interactive interviewed-${node.color || 'mint'}`;
+                onClick = `onclick="openModal('${node.id}')"`;
+            } else if (node.type === 'pending') {
+                 cardClass += ` border-dashed border-gray-300 text-gray-400`;
+            }
+            
+            let html = `
+                <div class="${cardClass}" ${onClick}>
+                    <div class="font-bold text-charcoal font-display leading-tight">${node.name}</div>
+                    <div class="text-[9px] text-warmGrey font-sans mt-1 leading-tight">${node.role}</div>
+                </div>
+            `;
+            
+            li.innerHTML = html;
+
+            if (node.children && node.children.length > 0) {
+                let ul = document.createElement('ul');
+                if(node.type === 'group') {
+                    ul.className = "compact-group";
+                    li.className = "compact-group-container"; 
+                }
+                node.children.forEach(child => {
+                     ul.appendChild(renderTree(child));
+                });
+                li.appendChild(ul);
+            }
+            return li;
+        }
+
+        function toggleNode(btn, e) {
+            e.stopPropagation();
+            let ul = btn.parentElement.nextElementSibling;
+            if (ul) {
+                ul.style.display = ul.style.display === 'none' ? 'flex' : 'none';
+                btn.innerText = ul.style.display === 'none' ? '+' : '-';
+            }
+        }
+        
+        function toggleDropdown(id, event, btn) {
+            event.stopPropagation(); 
+            const content = document.getElementById(id);
+            if(!content) return;
+            
+            content.classList.toggle('open');
+            
+            const arrow = btn.querySelector('.arrow-icon');
+            if(arrow) {
+                arrow.style.transform = content.classList.contains('open') ? "rotate(180deg)" : "rotate(0deg)";
+            }
+            
+            content.style.maxHeight = content.classList.contains('open') ? content.scrollHeight + "px" : null;
+            content.classList.contains('open') ? content.style.opacity = 1 : content.style.opacity = 0;
+        }
+
+        // Specific toggle for table rows which don't support max-height transitions well
+        function toggleTableRow(id, btn) {
+            const content = document.getElementById(id);
+            if(!content) return;
+            
+            content.classList.toggle('active');
+            const arrow = btn.querySelector('.dd-arrow-icon');
+            if(arrow) {
+                arrow.style.transform = content.classList.contains('active') ? "rotate(90deg)" : "rotate(0deg)";
+            }
+        }
+
+        function cyclePriority(btn) {
+            const states = ['High', 'Medium', 'Low'];
+            let current = btn.innerText;
+            // Handle if innerText has newlines or extra spaces
+            current = current.trim(); 
+            
+            let nextIndex = (states.indexOf(current) + 1) % states.length;
+            // If current not found (e.g. initial load issue), default to 0
+            if (states.indexOf(current) === -1) nextIndex = 0;
+            
+            let next = states[nextIndex];
+            btn.innerText = next;
+            
+            const priorityClasses = { 
+                'High': 'bg-mint text-white border-mint shadow-sm', 
+                'Medium': 'bg-white text-mintHover border-mint', 
+                'Low': 'bg-white text-gray-400 border-gray-200'
+            };
+            
+            // Re-apply base classes + dynamic class
+            btn.className = `px-3 py-1 rounded-md text-[10px] font-bold border select-none uppercase tracking-wider cursor-pointer hover:opacity-90 transition-all ${priorityClasses[next]}`;
+        }
+
+        function showEngine(id, btn) {
+            renderEngine(id);
+            document.querySelectorAll('.engine-tab').forEach(b => {
+                b.classList.remove('bg-bone', 'text-charcoal', 'border-mint', 'font-bold');
+                b.classList.add('border-transparent', 'text-warmGrey', 'hover:bg-gray-50', 'font-medium');
+            });
+            btn.classList.remove('border-transparent', 'text-warmGrey', 'hover:bg-gray-50', 'font-medium');
+            btn.classList.add('bg-bone', 'text-charcoal', 'border-mint', 'font-bold');
+        }
+
+        function switchView(viewId) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            const target = document.getElementById(viewId);
+            if(target) target.classList.add('active');
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if(link.dataset.target === viewId) {
+                    link.classList.remove('text-warmGrey', 'border-transparent', 'hover:bg-gray-100', 'bg-white', 'text-charcoal', 'border-gray-200', 'hover:text-charcoal'); 
+                    link.classList.add('bg-charcoal', 'text-white', 'border-charcoal', 'shadow-md', 'hover:bg-gray-800'); 
+                } else {
+                    link.classList.add('text-warmGrey', 'border-transparent', 'hover:bg-gray-100', 'hover:text-charcoal');
+                    link.classList.remove('bg-charcoal', 'text-white', 'border-charcoal', 'shadow-md', 'bg-white', 'border-gray-200', 'hover:bg-gray-800');
+                }
+            });
+            window.scrollTo(0, 0);
+        }
+
+        function openModal(id) {
+            const data = stakeholders[id];
+            if(data) {
+                document.getElementById('modal-name').innerText = data.name;
+                document.getElementById('modal-role').innerText = data.role;
+                
+                // Highlights
+                const highlightsContainer = document.getElementById('modal-highlights');
+                let hlHtml = '<ul class="list-disc pl-4 space-y-2">';
+                data.highlights.forEach(h => hlHtml += `<li>${h}</li>`);
+                hlHtml += '</ul>';
+                highlightsContainer.innerHTML = hlHtml;
+
+                // Quotes
+                const quotesContainer = document.getElementById('modal-quotes');
+                let qHtml = '<ul class="list-disc pl-4 space-y-2">';
+                data.quotes.forEach(q => qHtml += `<li class="italic">"${q.replace(/"/g, '')}"</li>`);
+                qHtml += '</ul>';
+                quotesContainer.innerHTML = qHtml;
+
+                const modal = document.getElementById('stakeholder-modal');
+                modal.classList.remove('hidden');
+                setTimeout(() => modal.querySelector('.modal-panel').style.transform = 'translateX(0)', 10);
+            }
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('stakeholder-modal');
+            modal.querySelector('.modal-panel').style.transform = 'translateX(100%)';
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        // --- DATA ---
+        // (Org chart and stakeholders data maintained from previous version - omitted for brevity in diff but present in full file)
+        const orgChartData = {
+            name: "Managing Director", role: "Strategy & Governance", type: "interviewed", id: "neil",
+            children: [
+                {
+                    name: "Head of Operations", role: "Supply Chain", type: "interviewed", id: "andrew", color: "amber",
+                    children: [] 
+                },
+                {
+                    name: "Head of Design", role: "Creative Dir", type: "interviewed", id: "faye", color: "purple",
+                    children: [
+                        { name: "Senior Designer", role: "Outerwear", type: "interviewed", id: "fleur", color: "purple" }
+                    ]
+                },
+                {
+                    name: "Head of Sales", role: "Wholesale", type: "interviewed", id: "james", color: "blue",
+                    children: [
+                        { name: "Account Manager", role: "Key Accounts", type: "interviewed", id: "anyes", color: "blue" },
+                        { name: "Product Manager", role: "Line Planning", type: "interviewed", id: "serap", color: "blue" },
+                        { name: "Product Developer", role: "PD (Active)", type: "interviewed", id: "sian", color: "blue" }
+                    ]
+                },
+                {
+                    name: "Head of Garment Tech", role: "Fit & QC", type: "interviewed", id: "janine", color: "purple",
+                    children: [
+                        { name: "Garment Tech", role: "Grading/Specs", type: "interviewed", id: "tracey", color: "purple" }
+                    ]
+                },
+                {
+                    name: "Head of Merch", role: "Planning", type: "interviewed", id: "nick", color: "blue",
+                    children: [
+                         { name: "Production Mgr", role: "Factory Liaison", type: "interviewed", id: "jenny", color: "amber" },
+                         { name: "Buyer", role: "Fabrics/Trims", type: "pending", id: "jade" } 
+                    ]
+                },
+                {
+                    name: "Head of Product", role: "Development", type: "interviewed", id: "sarah", color: "mint",
+                    children: [
+                        { name: "Delivery Lead", role: "Critical Path", type: "interviewed", id: "duncan", color: "mint" },
+                        { name: "Sample Room Mgr", role: "Prototyping", type: "interviewed", id: "fungai", color: "mint" },
+                        { name: "Technical Mgr", role: "Tech Packs", type: "interviewed", id: "michelle", color: "mint" }
+                    ]
+                }
+            ]
+        };
+
+        const stakeholders = {
+            'james': { 
+                name: 'Head of Sales', role: 'Wholesale Lead', 
+                highlights: [
+                    "Sees the business as commercially strong but operationally “chaotic” – too many one-off Excel sheets, email chains and duplicated effort across teams.",
+                    "Believes there is a big opportunity to turn their “insights → execution” flywheel into a proper operating system (standard ways of capturing trends, concepts, briefs, CPs).",
+                    "Very alive to the commercial upside: thinks systemising how they work with major retailers would unlock more new business and make the organisation feel less reactive."
+                ],
+                quotes: [
+                    "“I’d say actually it’s pretty chaotic a lot of the time.”",
+                    "“Honestly, it’s a freaking nightmare… why aren’t we just working collaboratively on the same Excel sheets?”",
+                    "“We’re relying on heroic effort rather than good systems – that’s not sustainable.”",
+                    "“The core business is strong; it’s our operating model that hasn’t caught up.”"
+                ]
+            },
+            'neil': { 
+                name: 'Managing Director', role: 'Strategy & Governance', 
+                highlights: [
+                    "Focused on macro-risk: over-reliance on key accounts and on a single “giant” factory are top of mind.",
+                    "Worried that a lot of critical know-how is not “systemised or trainable” – lives in a few peoples heads, which creates succession and resilience risk.",
+                    "Wants a clearer, living risk register and more structured follow-through on actions."
+                ],
+                quotes: [
+                    "“Our general macro risks are over-reliance on key accounts… firstly over-reliance on one factory.”",
+                    "“There’s a lot that isn’t really systemized or… trainable, and that’s a risk in itself.”",
+                    "“We need to be sure this is a repeatable business, not something that only works because certain people are here.”",
+                    "“I’d like a proper, working risk register – not just something that appears for a board pack.”"
+                ]
+            },
+            'nick': { 
+                name: 'Head of Merchandising', role: 'Planning / Buying', 
+                highlights: [
+                    "Owns a very detailed, manual costing process: building up every component (fabric, lining, zippers, buttons, labels) and comparing margin vs history.",
+                    "Repeats this large costing exercise several times a year; sees huge potential time-savings if the process could be semi-automated.",
+                    "Conscious of margin leakage and the need to compare new deals to historical benchmarks quickly."
+                ],
+                quotes: [
+                    "“That would save me probably 75% of that time, and it’s something that I do three or four times a year.”",
+                    "“We need all the details – what the main fabric is, lining, is it waterproof – before we can even start costing.”",
+                    "“This spreadsheet has clearly grown over decades – it’s not the most efficient way of doing it.”",
+                    "“So much of the inspiration work is screenshots, folders, spreadsheets – nothing that feels like a proper system.”"
+                ]
+            },
+            'janine': { 
+                name: 'Head of Garment Tech', role: 'Fit & Quality', 
+                highlights: [
+                    "Holds responsibility for fit, grading and safety testing – quality and fit consistency are her number one concern.",
+                    "Describes the testing, reporting and data-entry loop as the most time-consuming part of the process, heavily reliant on manual copy-and-paste.",
+                    "Worried about error-risk in key documents (specs, test reports, trackers) because they are complex but maintained manually."
+                ],
+                quotes: [
+                    "“For me it’s the quality of the fit and the safety for my team and the product – and it’s the most time-consuming.”",
+                    "On errors: “The issues come from copying and pasting… it’s really time-consuming.”",
+                    "“If someone forgets to change something on the tracker, you can carry on merrily with the wrong thing.”",
+                    "“The tracker is absolutely crucial, but it’s also the biggest risk because it’s so manual.”"
+                ]
+            },
+            'andrew': { 
+                name: 'Head of Operations', role: 'Supply Chain', 
+                highlights: [
+                    "Owns compliance, ethical audits and packaging-regulatory setup across customers and territories.",
+                    "Points out that each customer has different requirements/systems, so the same underlying product has to be re-built multiple times in different formats.",
+                    "Bottleneck is “people and time”; sees clear value in having a single source of truth for product data that auto-feeds multiple outputs."
+                ],
+                quotes: [
+                    "“It’s people and time, which is why I’m doing all this… if you could set it up once and feed it everywhere, you don’t have to worry about that.”",
+                    "“You’re building the same thing again and again when ideally we’d treat those as the same item within the system.”",
+                    "“Every retailer has their own way of doing it – the product is the same but we rebuild it three or four times.”",
+                    "“In an ideal world there’d be one master record and everything else would be an output from that.”"
+                ]
+            },
+            'duncan': { 
+                name: 'Delivery Lead', role: 'Critical Path', 
+                highlights: [
+                    "Manages big ranges and project-manages across functions; critical path discipline is central but currently lives in large, complex Excel files and email.",
+                    "Feels there is a “massive email culture”; project managers spend a lot of time nudging people and chasing dates manually.",
+                    "Briefing factories and updating documentation is seen as mundane, repetitive and time-heavy – but also business-critical."
+                ],
+                quotes: [
+                    "“Briefing those out to the factories takes quite a long time – it becomes quite mundane.”",
+                    "“We’re so set in our ways on this massive email culture… it takes a lot of resource out from the project managers.”",
+                    "“A lot of my time is just chasing people and checking they’ve done what they said.”",
+                    "“It’s not that the process is wrong – it’s that it’s all happening in a thousand emails and spreadsheets.”"
+                ]
+            },
+            'sarah': { 
+                name: 'Head of Product', role: 'Development', 
+                highlights: [
+                    "Oversees product development on Activewear; emphasises how interdependent small changes are (fabric weight, fit, trim, price).",
+                    "Biggest pain is the feedback and change-management loop: feedback arrives via multiple channels (text, email, conversation), and any change needs to be propagated to lots of stakeholders.",
+                    "Very aware that one mis-communicated change can create quality, cost or timing issues downstream."
+                ],
+                quotes: [
+                    "“We have quite a lot of issues around feedback… sometimes it’s through a text, sometimes email, sometimes a conversation.”",
+                    "“On activewear, if you change one thing, everyone has to know about it.”",
+                    "“There’s a real risk that something gets missed if that feedback doesn’t reach the right person.”",
+                    "“It’s not just the one change – it’s all the knock-ons that come with it.”"
+                ]
+            },
+            'faye': { 
+                name: 'Head of Design', role: 'Creative Lead', 
+                highlights: [
+                    "Leads the front-end design team; wants more time for true creative work and less on “nuts and bolts”.",
+                    "Capturing market and trend intelligence is extremely manual: store visits, screenshots, spreadsheets, photos – then pulling it into reports.",
+                    "Feels design time is squeezed because they spend so much time on admin, reporting and data-back-up for decision-making."
+                ],
+                quotes: [
+                    "“All the time is spent doing all the nuts and bolts of it.”",
+                    "“It should be the other way around… we haven’t had time to think it through properly.”",
+                    "“You spend ages pulling things into a deck and then there’s very little time left for the actual creative thinking.”",
+                    "“So much of the inspiration work is screenshots, folders, spreadsheets – nothing that feels like a proper system.”"
+                ]
+            },
+            'fleur': { 
+                name: 'Senior Designer', role: 'Outerwear', 
+                highlights: [
+                    "Works closely with different retailers; each briefs in different formats (emails, PowerPoints, sketches, photos), which makes it hard to have a standard way of working.",
+                    "A lot of time is spent hunting for suitable imagery and assets (Shutterstock, other sites) and then editing them to match the concept.",
+                    "Sees opportunity in harmonising briefing formats and better shared tools for assets and trend references."
+                ],
+                quotes: [
+                    "On brief formats: “It comes in just a load of different ways… emails or sometimes even handwritten sketches.”",
+                    "On image work: “We’d then have to go on a hunt… and then we have to like edit and edit.”",
+                    "“Sometimes you’re recreating something we’ve basically done before, but you don’t have it all in one place.”",
+                    "“There isn’t really one shared library – it’s lots of bits saved in different folders.”"
+                ]
+            },
+            'sian': { 
+                name: 'Product Developer', role: 'PD', 
+                highlights: [
+                    "Front-end of the critical path: takes concepts from design and customers into live development.",
+                    "Says the most manual part is repeatedly filling in specs and then having to update them every time the customer changes something.",
+                    "Flags human-error risk: lots of manual checking of emails, WhatsApps and trackers; things do get missed when people are busy."
+                ],
+                quotes: [
+                    "“Most manual part is I have to fill in the spec, and every time something changes I have to update it again.”",
+                    "“I think it’s more time and sometimes things do get missed – and some of that’s human error.”",
+                    "“You’re constantly cross-checking emails, WhatsApps, trackers – it’s easy for one detail to slip.”",
+                    "“It’s not that any one bit is hard, it’s that it’s so repetitive and easy to make a mistake.”"
+                ]
+            },
+            'serap': { 
+                name: 'Product Manager', role: 'Line Planning', 
+                highlights: [
+                    "Manages orders from confirmation through to delivery, including sealing, artwork and packaging detail.",
+                    "Describes significant duplication: entering the same information into multiple documents for factories, artwork and internal trackers.",
+                    "Very concerned about error-checking in artwork and specs; wants a better way to ensure nothing gets missed without re-checking everything manually."
+                ],
+                quotes: [
+                    "“No, she can do it. It’s just time-consuming and I think she tries to steer away sometimes.”",
+                    "“I think it’s the duplication… not having to spend a long time, that would really help.”",
+                    "“You’re typing the same thing into different documents when really it should just pull through.”",
+                    "“I spend a lot of time just checking and re-checking to make sure nothing has been missed.”"
+                ]
+            },
+            'michelle': { 
+                name: 'Technical Manager', role: 'Tech Packs', 
+                highlights: [
+                    "Owns detailed tech packs and spec sheets that then go to the factory.",
+                    "Populating all the icons, wash care and component details is the most time-consuming part and is done manually.",
+                    "Also spends time chasing factories, managing CP and weekly trackers with customers – a lot of repetitive checking of Excel files."
+                ],
+                quotes: [
+                    "On the tech pack: “That’s our time-consuming part.”",
+                    "“A lot of the time [is] taken up with factories and the critical path… making sure they’ve done the task on time.”",
+                    "“It’s very copy-and-paste heavy – if you miss something, it doesn’t get picked up until much later.”",
+                    "“The trackers are huge Excel sheets; you’re constantly scrolling and checking.”"
+                ]
+            },
+            'tracey': { 
+                name: 'Garment Tech', role: 'Grading/Specs', 
+                highlights: [
+                    "Manages size grading, fit comments and spec creation for ranges.",
+                    "Biggest bugbear is repeating the same information multiple times across documents and systems.",
+                    "The spec creation is done entirely manually and described as dull but critical; wants better auto-population from existing data."
+                ],
+                quotes: [
+                    "“So repeating information four times.”",
+                    "“The spec creation… the Word document I just showed you, I do that manually. It’s very dull.”",
+                    "“You’re taking the same details from one place and putting them into three or four different places.”",
+                    "“It’s not very exciting work; it’s just necessary and very manual.”"
+                ]
+            },
+            'fungai': { 
+                name: 'Sample Room Mgr', role: 'Prototyping', 
+                highlights: [
+                    "Works across concepting and sample room; notes that there is no clear, standardised process map for the sampling parts of projects.",
+                    "Flags lack of clarity on responsibilities and timing – people often don’t know when they need to do what.",
+                    "Project tracker in Google Sheets is very manual; lots of adding/deleting rows and cross-checking to know which projects are active."
+                ],
+                quotes: [
+                    "“Currently it’s clarity in terms of the process… you have to dig to get what you need.”",
+                    "“We compile our [tracker] very manually… you still need to manually go in and check it.”",
+                    "“Sometimes you’re not sure who owns which bit or when it’s your turn to do something.”",
+                    "“There isn’t really a clear map of the sample process that everyone can see.”"
+                ]
+            },
+            'anyes': { 
+                name: 'Account Manager', role: 'Key Accounts', 
+                highlights: [
+                    "Built her own manual critical-path / status tracker to get visibility on where things are, because existing visibility was poor.",
+                    "That tracker (and related costing sheets) are completely manual – colour-coding, history, margin tracking – and very time-consuming.",
+                    "Finds herself drowning in multiple PDFs and versions; keeps a lot of history “just in case”, which clogs up files."
+                ],
+                quotes: [
+                    "“Yeah. And it’s all manual… something that should be an easy thing that is currently not.”",
+                    "“The easiest way for me… it’s just time-consuming, I suppose.”",
+                    "“I probably keep too much history because I’m scared to delete something I might need.”",
+                    "“There are a lot of different PDFs and versions flying around.”"
+                ]
+            },
+            'jenny': { 
+                name: 'Production Mgr', role: 'Factory Liaison', 
+                highlights: [
+                    "Long-tenured; handles production plans, PO tracking, product setup in Syspro and ensuring prices and shipments reconcile for invoicing.",
+                    "Copies information multiple times: POs into Excel, then into Syspro, then checking again at invoicing; does this for 80–150 products per season.",
+                    "Feels the workload is huge and easy to lose track of where a product is in the flow; if she forgets to update a price, it only surfaces at invoice stage."
+                ],
+                quotes: [
+                    "“It’s… just so much work.”",
+                    "“I’d have to do it for every single product, every single season.”",
+                    "“You’re taking it from the PO to Excel to Syspro and then checking it all again at the end.”",
+                    "“If I forget to update something, it only shows up when we invoice.”"
+                ]
+            }
+        };
+
+        const themesData = [
+            { id: 1, title: "1. Speed vs. Stability Trade-off", desc: "The pace of seasonal drops is accelerating (Fast Fashion speed), but the underlying operational backbone operates on manual, 'Couture-speed' timelines. This mismatch forces teams to prioritize speed over strategy.", evidence: ["Daily chasing of the Critical Path just to maintain status quo.", "Expedited air freight is used as a default buffer for process delays.", "Buying decisions are rushed, often based on incomplete data sets."], why: ["Direct margin erosion from air freight and rush fees.", "Strategic drift: Teams are too busy firefighting to innovate.", "Missed trend windows result in lower full-price sell-through."], opp: "Automate the administrative core to decouple operational speed from human effort." },
+             { id: 2, title: "2. Fragmented Source of Truth", desc: "Product data (BOMs, Tech Packs, Measurements) lives in static, disconnected Excel sheets. There is no single 'Golden Record', leading to version control conflicts between Head Office and Factories.", evidence: ["Factory and HO teams frequently working off different file versions.", "Senior staff spend hours verifying which BOM is the 'master'.", "No aggregate visibility of raw material liability across styles."], why: ["Production errors: Wrong trims or fabrics used in bulk.", "Weak negotiation position: Cannot aggregate volume demand.", "Leadership blindness: Reporting is manual and retrospective."], opp: "Implement a lightweight, cloud-native PLM backbone." },
+             { id: 3, title: "3. Disconnected Product Creation", desc: "The Design, Technical, and Sourcing functions operate as islands. Tech packs are thrown 'over the wall', resulting in samples that miss the creative vision or the target price point.", evidence: ["Samples frequently rejected because they miss the design intent.", "Cost engineering occurs too late to influence margin effectively.", "Sourcing changes materials without Design visibility."], why: ["High sample rejection rate (average 3 rounds per style).", "Increased development costs and wasted sampling budget.", "Internal friction slows down decision-making cycles."], opp: "Unify cross-functional teams in a single digital workspace." },
+             { id: 4, title: "4. Retrospective Demand Planning", desc: "Buying decisions rely heavily on 'Hindsight' (last year's sales) rather than 'Foresight' (predictive demand signals). This leads to a systemic bias towards safe, repeating sellers and missed opportunities on trends.", evidence: ["Assortment planning is often 'Last Year + 5%'.", "Missed breakout trends (e.g., Cargo) due to lagging data.", "High markdown spend on core lines that were overbought."], why: ["Working capital is trapped in slow-moving 'safe' inventory.", "Revenue loss from under-buying high-velocity trends.", "Brand perception suffers from a lack of newness."], opp: "Deploy AI demand sensing to predict SKU performance pre-buy." },
+             { id: 5, title: "5. Supply Chain Opacity", desc: "Visibility ends once a PO is placed. The business manages vendor performance via reactive email chasing rather than real-time data, creating a 'Black Box' until the shipping notice arrives.", evidence: ["No real-time confirmation of fabric cutting dates.", "Delays are communicated 2 weeks before ex-factory, too late to react.", "Vendor scorecards are subjective and difficult to maintain."], why: ["Inability to mitigate production delays proactively.", "Reactive culture dominates the production team.", "Factory relationships remain transactional rather than strategic."], opp: "Create a vendor portal for real-time WIP tracking." },
+             { id: 6, title: "6. Manual Compliance Risk", desc: "Ethical trade and sustainability checks are manual hurdles at the end of the process. Managing certificates via email creates a high risk of non-compliance or last-minute shipment blocks.", evidence: ["Chasing audit certificates is a significant administrative burden.", "Risk of shipping non-compliant goods due to manual checks.", "Sustainability data is trapped in PDFs, limiting marketing claims."], why: ["Unmanaged reputational and legal risk.", "Inability to confidently market sustainability credentials.", "Senior sourcing leads bogged down in paperwork."], opp: "Automate compliance tracking with expiry alerts and digital storage." },
+             { id: 7, title: "7. Administrative Burden on Talent", desc: "Highly skilled, expensive talent (Designers, Technologists) spends disproportionate time on low-value data entry. This 'Talent Drag' risks burnout and reduces the creative output of the firm.", evidence: ["Designers report spending more time in Excel than Illustrator.", "High frustration levels regarding copy-pasting data.", "Risk of burnout and turnover in key product roles."], why: ["Loss of creative competitive advantage.", "High cost of operation for low-value output.", "Lower morale despite brand success."], opp: "Shift the culture from 'Admin-Heavy' to 'Creative-First' via automation." },
+             { id: 8, title: "8. Inventory Inefficiency", desc: "To mitigate the lack of speed and data, the business holds excessive raw material inventory 'just in case'. This defensive strategy ties up free cash flow and increases obsolescence risk.", evidence: ["Fabric booked before styles are confirmed to hedge lead times.", "Warehouse contains significant 'deadstock' trims and fabrics.", "Storage costs for unused materials are hidden but high."], why: ["Reduced free cash flow available for growth initiatives.", "High write-off costs for obsolete raw materials.", "Hidden logistics and storage overheads."], opp: "Move to a 'Just in Time' fabric booking model driven by predictive data." },
+             { id: 9, title: "9. Static Margin Management", desc: "Margins are calculated manually and often finalized only after the buy is placed. There is no ability to 'design to cost' or dynamically model the impact of inflation or currency shifts.", evidence: ["True margin often known only when the final invoice lands.", "Inability to quickly model the impact of raw material price hikes.", "Costing is treated as a post-design administrative task."], why: ["Margin leakage on high-volume lines.", "Inability to protect profitability during inflationary periods.", "Weak negotiation position with factories."], opp: "Implement an algorithmic costing engine for real-time margin visibility." }
+        ];
+
+        const enginesContent = {
+            eng1: {
+                title: "1. Market Intelligence & Demand Sensing",
+                desc: "Gathering insight, predicting trends, and shaping the line plan.",
+                sections: [
+                    { title: "Trend Sensing", cards: [
+                        { title: "Social Scraper", text: "Automated analysis of TikTok/IG for micro-trends.", tags: [{l:"Time Sink", c:"yellow"}] },
+                        { title: "Runway Analysis", text: "AI scanning of runway images for key shapes.", tags: [{l:"Time Sink", c:"yellow"}, {l:"Best in Class", c:"green"}] },
+                        { title: "Competitor Price", text: "Scraping competitor pricing and assortment mix.", tags: [] }
+                    ]},
+                    { title: "Market Analysis", cards: [
+                        { title: "Search Volume", text: "Tracking keyword growth (e.g. 'cargo pants').", tags: [{l:"Time Sink", c:"yellow"}] },
+                        { title: "Attribute Analysis", text: "Tagging bestsellers by fit, fabric, and color.", tags: [{l:"Quality Risk", c:"risk"}] },
+                        { title: "Sentiment Tracking", text: "Monitoring customer reviews for fit issues.", tags: [{l:"Quality Risk", c:"risk"}] },
+                        { title: "Geo-Demand", text: "Mapping demand hotspots to inform allocation.", tags: [{l:"Best in Class", c:"green"}] }
+                    ]},
+                    { title: "Demand Planning", cards: [
+                        { title: "Hindsight Analysis", text: "Reviewing past season sales data manually.", tags: [{l:"Time Sink", c:"yellow"}] },
+                        { title: "Size Curve Opt.", text: "Optimizing size ratios by region manually.", tags: [{l:"Quality Risk", c:"risk"}] }
+                    ]}
+                ]
+            },
+            eng2: {
+                title: "2. Product Creation",
+                desc: "Converting concepts into digital assets and technical specs.",
+                sections: [
+                    { title: "Concept Phase", cards: [
+                        { title: "Gen Sketching", text: "AI-assisted design iteration from moodboards.", tags: [{l:"Best in Class", c:"green"}] },
+                        { title: "Palette Gen", text: "Extracting color palettes from imagery.", tags: [{l:"Time Sink", c:"yellow"}] },
+                        { title: "3D Block Lib", text: "Using standard 3D blocks for new styles.", tags: [] },
+                        { title: "Fabric Assign", text: "Mapping fabric to sketch early.", tags: [{l:"Quality Risk", c:"risk"}] }
+                    ]},
+                    { title: "Design Development", cards: [
+                        { title: "3D Prototyping", text: "Digital sampling to reduce physical waste.", tags: [{l:"Quality Risk", c:"risk"}] },
+                        { title: "Virtual Sampling", text: "Reviewing drape and fit on screen.", tags: [{l:"Quality Risk", c:"risk"}] },
+                        { title: "Trim Selection", text: "Choosing buttons/zips from digital library.", tags: [{l:"Time Sink", c:"yellow"}] }
+                    ]},
+                    { title: "Technical Spec", cards: [
+                        { title: "Tech Pack Gen", text: "Auto-creation of PDF packs from data.", tags: [{l:"Time Sink", c:"yellow"}] },
+                        { title: "BOM Creation", text: "Live linking of components to styles.", tags: [{l:"Quality Risk", c:"risk"}] }
+                    ]}
+                ]
+            },
+            eng3: {
+                title: "3. Sourcing & Costing",
+                desc: "Allocating production and engineering the margin.",
+                sections: [
+                    { title: "Strategic Sourcing", cards: [
+                        { title: "Factory Allocation", text: "Data-driven matching of style to factory.", tags: [{l:"Quality Risk", c:"risk"}] },
+                        { title: "Capacity Planning", text: "Checking factory line availability.", tags: [{l:"Quality Risk", c:"risk"}] },
+                        { title: "Fabric Booking", text: "Aggregated raw material demand.", tags: [{l:"Time Sink", c:"yellow"}] },
+                        { title: "Vendor Scorecard", text: "Tracking on-time performance.", tags: [] }
+                    ]},
+                    { title: "Cost Engineering", cards: [
+                        { title: "Algo-Costing", text: "Predictive manufacturing cost calc.", tags: [{l:"Time Sink", c:"yellow"}] },
+                        { title: "Yield Calc", text: "Estimating fabric consumption per garment.", tags: [{l:"Quality Risk", c:"risk"}] },
+                        { title: "Duty Optimization", text: "Smart selection of origin for tariff benefits.", tags: [{l:"Best in Class", c:"green"}] }
+                    ]},
+                    { title: "Negotiation", cards: [
+                        { title: "Open Book", text: "Breaking down costs transparently.", tags: [{l:"Time Sink", c:"yellow"}] },
+                        { title: "Volume Leverage", text: "Consolidating buys for better price.", tags: [] }
+                    ]}
+                ]
+            },
+            eng4: {
+                title: "4. Compliance & Fit",
+                desc: "Ensuring the product is legal, safe, and fits perfectly.",
+                sections: [
+                    { title: "Fit Consistency", cards: [
+                        { title: "3D Fit Avatar", text: "Digital fit validation on standard avatars.", tags: [{l:"Quality Risk", c:"risk"}] },
+                        { title: "Live Fit Notes", text: "Real-time collaborative fit comments.", tags: [{l:"Time Sink", c:"yellow"}] },
+                        { title: "Pattern Adjust", text: "Tweaking patterns based on fit model.", tags: [{l:"Time Sink", c:"yellow"}] }
+                    ]},
+                    { title: "Quality Assurance", cards: [
+                        { title: "Test Reporting", text: "Logging fabric test results (shrinkage).", tags: [{l:"Quality Risk", c:"risk"}] },
+                        { title: "AQL Inspections", text: "Random sampling of production quality.", tags: [{l:"Quality Risk", c:"risk"}] },
+                        { title: "Shade Bands", text: "Checking color consistency across rolls.", tags: [] },
+                        { title: "Return Analysis", text: "Feeding return data back to QC.", tags: [{l:"Best in Class", c:"green"}] }
+                    ]},
+                    { title: "Compliance", cards: [
+                        { title: "Audit Portal", text: "Auto-collection of factory certs.", tags: [{l:"Time Sink", c:"yellow"}] },
+                        { title: "Label Logic", text: "Automated care label generation.", tags: [{l:"Quality Risk", c:"risk"}] },
+                        { title: "Chem Testing", text: "Tracking RSL (Restricted Substance List).", tags: [{l:"Quality Risk", c:"risk"}] }
+                    ]}
+                ]
+            },
+            eng5: {
+                title: "5. Supply Chain & Sales",
+                desc: "Moving goods and selling through.",
+                sections: [
+                    { title: "Production Tracking", cards: [
+                        { title: "WIP Dashboard", text: "Real-time view of factory status.", tags: [{l:"Time Sink", c:"yellow"}] },
+                        { title: "Delay Alerts", text: "Auto-notifications for missed milestones.", tags: [{l:"Quality Risk", c:"risk"}] },
+                        { title: "Ex-Factory", text: "Confirming goods have left the factory.", tags: [] }
+                    ]},
+                    { title: "Logistics", cards: [
+                        { title: "Freight Booking", text: "Booking sea/air space.", tags: [{l:"Time Sink", c:"yellow"}] },
+                        { title: "Customs Clearance", text: "Managing import documentation.", tags: [{l:"Quality Risk", c:"risk"}] },
+                        { title: "DC Intake", text: "Booking delivery slots at warehouse.", tags: [{l:"Time Sink", c:"yellow"}] },
+                        { title: "Last Mile", text: "Optimizing courier selection.", tags: [{l:"Best in Class", c:"green"}] }
+                    ]},
+                    { title: "Channel Feed", cards: [
+                        { title: "PIM / DAM", text: "Centralized product data & assets.", tags: [{l:"Time Sink", c:"yellow"}] },
+                        { title: "Wholesale Feed", text: "Auto-formatting for retailer portals.", tags: [{l:"Time Sink", c:"yellow"}] }
+                    ]}
+                ]
+            }
+        };
+
+        const problemRows = [
+            { area: "Predictive Intelligence", problem: "Buying decisions are reactive and based on past sales, missing emerging micro-trends.", solution: "B1: AI Demand Signal – Scrapes social/search data to identify rising fabrics/silhouettes before the buy.", impact: "High", icon: "fa-brain" },
+            { area: "Design Velocity", problem: "Physical sampling loops take 6 weeks each, slowing down time-to-market.", solution: "B2: Generative Design Lab – AI-assisted sketching and 3D visualization to replace the first physical sample.", impact: "High", icon: "fa-vr-cardboard" },
+            { area: "Data Integrity", problem: "Tech packs and BOMs live in static Excel files, leading to version control errors.", solution: "A1: Smart PLM Backbone – A cloud-based 'Single Source of Truth' for all product data.", impact: "High", icon: "fa-database" },
+            { area: "Margin Control", problem: "Costs are calculated too late in the process to engineer the product effectively.", solution: "A3: Algorithmic Costing Engine – Real-time margin estimation during the design phase.", impact: "High", icon: "fa-calculator" },
+            { area: "Timeline Management", problem: "Critical Paths are updated manually, leading to missed deadlines and air-freight costs.", solution: "A2: Dynamic Timeline Engine – Dynamic timeline management with auto-alerts for slippage.", impact: "High", icon: "fa-calendar-check" },
+            { area: "Material Re-use", problem: "Designers re-source similar fabrics because they can't search past libraries.", solution: "B3: Smart Fabric Database – Searchable, visual library of pre-approved materials.", impact: "Medium", icon: "fa-swatchbook" },
+            { area: "Inventory Health", problem: "Stock levels are misaligned with demand (overstock/understock).", solution: "C1: Predictive Inventory & Sales – AI forecasting for optimized stock levels.", impact: "Medium", icon: "fa-chart-line" },
+            { area: "Wholesale Admin", problem: "Setting up products in retailer portals is a manual, repetitive data-entry task.", solution: "C2: Automated Retailer Feeds – Bot-driven formatting and upload of product data.", impact: "Medium", icon: "fa-robot" }
+        ];
+
+        // RENDER LOGIC
+        renderEngine('eng1');
+        const treeRoot = document.getElementById('org-tree-root');
+        treeRoot.appendChild(renderTree(orgChartData));
+
+        const themesGrid = document.getElementById('themes-grid');
+        themesData.forEach(t => {
+            let evidenceList = t.evidence.map(e => `<li class="mb-1 italic font-sans text-gray-500 text-[11px] border-l-2 border-gray-200 pl-2">${e}</li>`).join('');
+            let whyList = t.why.map(w => `<li class="mb-1 font-sans text-xs text-charcoal flex items-start gap-2"><span class="text-risk text-[10px] mt-0.5">●</span><span>${w}</span></li>`).join('');
+            
+            themesGrid.innerHTML += `
+                <div class="bg-white rounded-xl shadow-subtle p-6 border border-gray-100 flex flex-col hover:border-mint hover:border-2 transition-all group">
+                    <span class="px-2 py-1 bg-bone text-charcoal text-[10px] font-bold rounded border border-gray-200 w-fit mb-3 font-display uppercase tracking-wider">Theme ${t.id}</span>
+                    <h2 class="text-lg font-bold text-charcoal mb-2 leading-tight group-hover:text-mintHover transition-colors font-display">${t.title}</h2>
+                    <p class="text-warmGrey text-xs mb-4 flex-grow leading-relaxed font-sans border-b border-gray-100 pb-3">${t.desc}</p>
+                    
+                    <div class="mt-auto space-y-2">
+                        <div class="border-t border-gray-100 pt-2">
+                            <button onclick="toggleDropdown('ev-${t.id}', event, this)" class="text-xs font-bold text-charcoal hover:text-mint flex items-center gap-1 w-full justify-between font-sans uppercase tracking-wide">Evidence <span class="text-[10px] transition-transform">▼</span></button>
+                            <div id="ev-${t.id}" class="theme-dropdown-content bg-bone rounded mt-0"><ul class="list-none pl-2 p-3 text-xs text-charcoal font-medium leading-relaxed font-sans">${evidenceList}</ul></div>
+                        </div>
+                        <div class="border-t border-gray-100 pt-2">
+                            <button onclick="toggleDropdown('why-${t.id}', event, this)" class="text-xs font-bold text-charcoal hover:text-mint flex items-center gap-1 w-full justify-between font-sans uppercase tracking-wide">Business Risk <span class="text-[10px] transition-transform">▼</span></button>
+                            <div id="why-${t.id}" class="theme-dropdown-content mt-0"><ul class="list-none pl-2 p-2 text-xs text-warmGrey leading-relaxed font-sans">${whyList}</ul></div>
+                        </div>
+                        <div class="border-t border-gray-100 pt-2">
+                            <button onclick="toggleDropdown('opp-${t.id}', event, this)" class="text-xs font-bold text-charcoal hover:text-mint flex items-center gap-1 w-full justify-between font-sans uppercase tracking-wide">Opportunity <span class="text-[10px] transition-transform">▼</span></button>
+                            <div id="opp-${t.id}" class="theme-dropdown-content mt-0 bg-white border-l-4 border-mint p-3 rounded"><p class="text-xs text-charcoal font-medium leading-snug font-sans">${t.opp}</p></div>
+                        </div>
+                    </div>
+                </div>`;
+        });
+
+        const problemsContainer = document.getElementById('problems-table-body');
+        const priorityClasses = { 'High': 'bg-mint text-white border-mint shadow-sm', 'Medium': 'bg-white text-mintHover border-mint', 'Low': 'bg-white text-gray-400 border-gray-200', 'Low–Medium': 'bg-bone text-gray-500 border-gray-200' };
+        problemRows.forEach((row, i) => {
+            let solutionHTML = row.solution;
+            // Handle bold logic robustly
+            if(row.solution.includes(' – ')) { const parts = row.solution.split(' – '); solutionHTML = `<strong class="font-bold text-charcoal">${parts[0]}</strong> <span class="text-gray-500">– ${parts[1]}</span>`; }
+            else if(row.solution.includes(' - ')) { const parts = row.solution.split(' - '); solutionHTML = `<strong class="font-bold text-charcoal">${parts[0]}</strong> <span class="text-gray-500">- ${parts[1]}</span>`; }
+            
+            problemsContainer.innerHTML += `
+                <tr class="bg-white border-b border-gray-100 hover:bg-gray-50 transition-colors group">
+                    <td class="p-5 text-xs font-bold text-charcoal w-1/6 align-top font-display uppercase tracking-wide text-gray-500 group-hover:text-charcoal transition-colors">${row.area}</td>
+                    <td class="p-5 text-xs text-charcoal font-medium w-1/4 align-top font-sans text-gray-600 leading-relaxed">${row.problem}</td>
+                    <td class="p-5 text-xs text-charcoal w-1/3 align-top font-sans">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-blue/5 text-blue flex-shrink-0 flex items-center justify-center border border-blue/10"><i class="fas ${row.icon} text-sm"></i></div>
+                            <div class="leading-relaxed">${solutionHTML}</div>
+                        </div>
+                    </td>
+                    <td class="p-5 text-center w-1/6 align-top"><button onclick="cyclePriority(this)" class="px-3 py-1 rounded-md text-[10px] font-bold border ${priorityClasses[row.impact]} select-none uppercase tracking-wider cursor-pointer hover:opacity-90 transition-all">${row.impact}</button></td>
+                </tr>`;
+        });
+
+    </script>
+</body>
+</html>

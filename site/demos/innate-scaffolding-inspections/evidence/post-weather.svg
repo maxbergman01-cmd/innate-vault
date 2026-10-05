@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title desc">
+  <title id="title">Synthetic rendered scaffold evidence: post-weather context</title>
+  <desc id="desc">A rendered sheeted scaffold after a high-wind event, with wind lines and an inspection-required marker.</desc>
+  <rect width="800" height="520" fill="#becbd5"/>
+  <rect y="410" width="800" height="110" fill="#85897f"/>
+  <g fill="none" stroke="#f2f5f6" stroke-width="8" stroke-linecap="round" opacity=".86">
+    <path d="M40 86c86-42 128 25 205-8s120-9 157 11"/>
+    <path d="M506 54c72-30 106 10 184-6"/>
+    <path d="M22 152c64-22 113 6 164-18"/>
+  </g>
+  <rect x="182" y="102" width="448" height="308" fill="#ac9f8e"/>
+  <g stroke="#344456" stroke-width="8" stroke-linecap="round">
+    <path d="M110 72v370M252 72v370M394 72v370M536 72v370M678 72v370"/>
+    <path d="M82 132h624M82 224h624M82 316h624M82 408h624M82 442h624"/>
+  </g>
+  <g fill="#5f7f92" opacity=".72">
+    <path d="M115 137h132v82H115zM257 137h132v82H257zM399 137h132v82H399zM541 137h132v82H541z"/>
+    <path d="M115 229h132v82H115zM257 229h132v82H257zM399 229h132v82H399zM541 229h132v82H541z"/>
+  </g>
+  <g stroke="#fff" stroke-width="3" opacity=".7">
+    <path d="m116 137 131 82M247 137l-131 82M257 137l132 82M389 137l-132 82M399 137l132 82M531 137l-132 82M541 137l132 82M673 137l-132 82"/>
+  </g>
+  <circle cx="660" cy="90" r="38" fill="#fff6dc" stroke="#b7791f" stroke-width="5"/>
+  <path d="M660 68v27" stroke="#b7791f" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="660" cy="107" r="4" fill="#b7791f"/>
+  <rect x="22" y="22" width="178" height="34" rx="17" fill="#fff" opacity=".92"/>
+  <text x="111" y="44" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#16265c">SYNTHETIC EVIDENCE</text>
+</svg>
+
