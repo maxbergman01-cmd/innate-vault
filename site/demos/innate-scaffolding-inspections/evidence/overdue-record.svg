@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title desc">
+  <title id="title">Synthetic rendered previous inspection evidence</title>
+  <desc id="desc">A rendered scaffold elevation retained from a previous inspection, stamped with its demonstration date.</desc>
+  <rect width="800" height="520" fill="#e5e1d6"/>
+  <rect y="402" width="800" height="118" fill="#aaa590"/>
+  <rect x="186" y="100" width="430" height="305" fill="#b5a68f"/>
+  <path d="M170 104 400 42l230 62" fill="#80756b"/>
+  <g stroke="#465463" stroke-width="8" stroke-linecap="round">
+    <path d="M100 80v350M250 80v350M400 80v350M550 80v350M700 80v350"/>
+    <path d="M78 136h644M78 240h644M78 344h644M78 430h644"/>
+  </g>
+  <g stroke="#6b7781" stroke-width="5">
+    <path d="M100 136 250 240M250 136 100 240M250 240 400 344M400 240 250 344M550 136 700 240M700 136 550 240"/>
+  </g>
+  <rect x="446" y="152" width="225" height="88" rx="12" fill="#fff" opacity=".94" stroke="#d0cbc0" stroke-width="3"/>
+  <text x="466" y="184" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#16265c">PREVIOUS RECORD</text>
+  <text x="466" y="211" font-family="Arial, sans-serif" font-size="18" fill="#4d5870">31 AUG 2026 · 15:00</text>
+  <rect x="22" y="22" width="178" height="34" rx="17" fill="#fff" opacity=".92"/>
+  <text x="111" y="44" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#16265c">SYNTHETIC EVIDENCE</text>
+</svg>
+

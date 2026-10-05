@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title desc">
+  <title id="title">Synthetic rendered scaffold evidence: tie detail</title>
+  <desc id="desc">A close rendered view of a scaffold standard, ledger and tie fixed to a masonry wall.</desc>
+  <rect width="800" height="520" fill="#d6c5ad"/>
+  <g stroke="#b09d84" stroke-width="3" opacity=".8">
+    <path d="M0 64h800M0 128h800M0 192h800M0 256h800M0 320h800M0 384h800M0 448h800"/>
+    <path d="M100 0v64M300 0v64M500 0v64M700 0v64M0 64h0M200 64v64M400 64v64M600 64v64M100 128v64M300 128v64M500 128v64M700 128v64M200 192v64M400 192v64M600 192v64M100 256v64M300 256v64M500 256v64M700 256v64M200 320v64M400 320v64M600 320v64M100 384v64M300 384v64M500 384v64M700 384v64"/>
+  </g>
+  <g stroke="#344456" stroke-linecap="round">
+    <path d="M214 34v452" stroke-width="42"/>
+    <path d="M52 344h696" stroke-width="34"/>
+    <path d="M218 260h328" stroke-width="24"/>
+  </g>
+  <g fill="#6c7c88" stroke="#263747" stroke-width="5">
+    <ellipse cx="214" cy="344" rx="44" ry="42"/>
+    <ellipse cx="214" cy="260" rx="36" ry="34"/>
+    <circle cx="546" cy="260" r="28"/>
+  </g>
+  <rect x="538" y="224" width="48" height="72" rx="8" fill="#e5e7e3" stroke="#25356f" stroke-width="6"/>
+  <circle cx="562" cy="260" r="8" fill="#25356f"/>
+  <circle cx="626" cy="224" r="31" fill="#dff2e7" stroke="#2d7a51" stroke-width="4"/>
+  <path d="m611 224 11 10 20-23" fill="none" stroke="#2d7a51" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M598 238 558 251" stroke="#2d7a51" stroke-width="4" stroke-dasharray="7 7"/>
+  <rect x="22" y="22" width="178" height="34" rx="17" fill="#fff" opacity=".92"/>
+  <text x="111" y="44" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#16265c">SYNTHETIC EVIDENCE</text>
+</svg>
+
