@@ -61,7 +61,7 @@ const Clock: React.FC<{t: number}> = ({t}) => {
 const Plan: React.FC<{t: number; b: Beats}> = ({t, b}) => {
   const ring = easeOut((t - (b.zoom + 1.6)) / 0.5);
   const diag = easeOut((t - b.diag) / 0.5);
-  const dim = lerp(t, b.loss - 0.2, b.loss + 0.6, 1, 0.04);
+  const dim = lerp(t, b.loss - 0.2, b.loss + 0.7, 1, 0);
   const blur = lerp(t, b.loss - 0.2, b.loss + 0.6, 0, 8);
   const pulse = 1 + Math.sin(t * 6) * 0.04 * ring;
   // Building outline 13,000 x 8,990, internal wall; the 12,170 line is a diagonal check across the left section.
