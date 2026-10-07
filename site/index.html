@@ -288,14 +288,14 @@
     <div class="wrap">
       <p class="eyebrow" id="cs-eyebrow">Case studies</p>
       <h1 id="cs-title">See AI applied to the work your business <em>already does.</em></h1>
-      <p class="lede" id="cs-lede">Twelve systems we have built. Watch them work, then explore each one yourself.</p>
+      <p class="lede" id="cs-lede">Sixteen systems we have built, and the numbers behind them. Watch the films, then try the tools for yourself.</p>
     </div>
   </section>
 
   <section class="cs-picker cream">
     <div class="wrap vault-filters">
-      <nav class="problem-pick" id="problem-pick" aria-label="Business problem"></nav>
-      <div class="vault-refine"><label for="industry-filter">Industry</label><select id="industry-filter"></select><span id="result-count" role="status" aria-live="polite"></span></div>
+      <nav class="ind-pick" id="ind-pick" aria-label="Filter by industry"></nav>
+      <span id="result-count" role="status" aria-live="polite"></span>
     </div>
   </section>
 
@@ -319,20 +319,43 @@
   </section>
 </div>
 
-<!-- ============ FILM ============ -->
-<div class="page" id="page-film">
-  <section class="dark film-stage">
+<!-- ============ CASE STUDY (flagship film pages #film/<id> and written pages #case/<id>) ============ -->
+<div class="page" id="page-case">
+  <section class="dark cp-head">
     <div class="wrap">
-      <a class="film-back" href="#case-studies">&larr; All case studies</a>
-      <p class="eyebrow" id="film-sector"></p>
-      <h1 id="film-title"></h1>
-      <p class="lede" id="film-line"></p>
-      <div class="film-frame"><video id="film-video" controls playsinline preload="metadata"></video></div>
-      <div class="film-actions">
-        <a class="btn btn-mint" id="film-tool" target="_blank" rel="noopener">Explore the example &#8599;</a>
-        <a class="btn btn-ghost" id="film-talk" href="#book">Talk about this workflow</a>
+      <a class="cp-back" href="#case-studies">&larr; All case studies</a>
+      <p class="cp-eyebrow" id="cp-eyebrow"></p>
+      <h1 class="cp-title" id="cp-title"></h1>
+      <p class="cp-client" id="cp-client"></p>
+      <div class="cp-media" id="cp-media"></div>
+    </div>
+  </section>
+  <section class="cp-live" id="cp-live" hidden>
+    <div class="wrap">
+      <div class="cp-embed">
+        <div class="cp-embed-bar"><span class="cp-embed-dot" aria-hidden="true"></span><b>Try it live</b><span id="cp-embed-name"></span><em>Sample data</em></div>
+        <iframe id="cp-frame" title="" loading="lazy"></iframe>
       </div>
-      <p class="film-note" id="film-note"></p>
+    </div>
+  </section>
+  <section class="cp-story light">
+    <div class="wrap cp-grid">
+      <aside class="cp-meta" id="cp-meta"></aside>
+      <article class="cp-body" id="cp-body"></article>
+    </div>
+  </section>
+  <section class="cp-more cream">
+    <div class="wrap">
+      <div class="cp-more-head"><h2>More case studies</h2><a class="ulink" href="#case-studies">See all 16 &rarr;</a></div>
+      <div class="vault-grid cp-more-grid" id="cp-more"></div>
+    </div>
+  </section>
+  <section class="band forest closing" data-bg>
+    <div class="wrap">
+      <p class="eyebrow">Sound like your business?</p>
+      <h2>Tell us how the work runs <em>today.</em></h2>
+      <p class="lede" style="margin:22px auto 0">25 minutes with our team. We will show you where a system like this fits.</p>
+      <div class="btns"><a href="#book" class="btn btn-mint">Book a Call</a></div>
     </div>
   </section>
 </div>
@@ -641,7 +664,6 @@
 </div>
 
 <script src="catalog.js"></script>
-<script src="films/catalog.js"></script>
 <script src="workflows.js"></script>
 <script src="vault.js"></script>
 <script src="app.js"></script>

@@ -14409,7 +14409,7 @@ Error generating stack: ` +
       eyebrow: `Lead operations`,
       title: `Enquiry-to-Viewing Desk`,
       short: `Enquiry Desk`,
-      description: `Demonstrates how an inbound email, call or web form could become a checked brief with a named owner and a clarification ready for approval.`,
+      description: `Turns an inbound email, call or web form into a checked brief with a named owner and a clarification ready for approval.`,
       outcome: `A confirmed brief that opens as the criteria in Property Matcher.`,
       tone: `mint`,
     },
@@ -14418,7 +14418,7 @@ Error generating stack: ` +
       eyebrow: `Property data`,
       title: `Availability & Listing Inbox`,
       short: `Listing Inbox`,
-      description: `Demonstrates how brochures, spreadsheets and update emails could become reviewable property records while exposing stale or conflicting facts.`,
+      description: `Turns brochures, spreadsheets and update emails into reviewable property records while exposing stale or conflicting facts.`,
       outcome: `Reviewed inventory, with every important field tied to a source.`,
       tone: `sand`,
     },
@@ -14427,7 +14427,7 @@ Error generating stack: ` +
       eyebrow: `Client search`,
       title: `Property Matcher & Shortlist Builder`,
       short: `Property Matcher`,
-      description: `Shows a confirmed brief compared with example inventory, with visible trade-offs and an editable client shortlist.`,
+      description: `Shows a confirmed brief compared with available inventory, with visible trade-offs and an editable client shortlist.`,
       outcome: `A broker-approved shortlist and viewing itinerary.`,
       tone: `blue`,
     },
@@ -14445,7 +14445,7 @@ Error generating stack: ` +
       eyebrow: `Conversation intelligence`,
       title: `Call Capture & Broker Coach`,
       short: `Call Coach`,
-      description: `Demonstrates how a property call could become a reviewed record, a clarification follow-up and one precise coaching action.`,
+      description: `Turns a property call into a reviewed record, a clarification follow-up and one precise coaching action.`,
       outcome: `Less administration and a more faithful client record.`,
       tone: `lilac`,
     },
@@ -14454,7 +14454,7 @@ Error generating stack: ` +
       eyebrow: `Management control`,
       title: `Deal & Viewing Control Tower`,
       short: `Deal Control`,
-      description: `Demonstrates a rule-based weekly management view of overdue next steps, owners and viewing gaps.`,
+      description: `A rule-based weekly management view of overdue next steps, owners and viewing gaps.`,
       outcome: `Clear exceptions, owners and deadlines—not an opaque score.`,
       tone: `lime`,
     },
@@ -14463,7 +14463,7 @@ Error generating stack: ` +
     {
       id: `ENQ-1048`,
       name: `Maya Patel`,
-      company: `Example Design Co.`,
+      company: `Northbeam Studio`,
       channel: `Email`,
       time: `09:42`,
       urgency: `High`,
@@ -14482,13 +14482,13 @@ Error generating stack: ` +
       resolvedFields: {
         Budget: `£55 psf headline rent; service charge and rates separate`,
       },
-      resolvedSummary: `The example reply confirms that £55 psf is the headline-rent limit; service charge and rates are separate.`,
+      resolvedSummary: `The client's reply confirms that £55 psf is the headline-rent limit; service charge and rates are separate.`,
       owner: `Alex Morgan`,
     },
     {
       id: `ENQ-1047`,
       name: `Daniel Reed`,
-      company: `Example Capital Co.`,
+      company: `Calder Capital`,
       channel: `Call`,
       time: `09:18`,
       urgency: `Medium`,
@@ -14509,7 +14509,7 @@ Error generating stack: ` +
     {
       id: `ENQ-1046`,
       name: `Elena Rossi`,
-      company: `Example Foods Co.`,
+      company: `Rossi Foods`,
       channel: `Web form`,
       time: `Yesterday`,
       urgency: `Low`,
@@ -14530,8 +14530,8 @@ Error generating stack: ` +
   re = [
     {
       id: `PROP-218`,
-      name: `Example Foundry`,
-      address: `14 Example Street, London EX0 1AA`,
+      name: `Hatton Foundry`,
+      address: `14 Hatton Row, London EC1N 8AA`,
       area: `5,240 sq ft`,
       price: `£52.50 psf`,
       service: `£11.20 psf`,
@@ -14551,8 +14551,8 @@ Error generating stack: ` +
     },
     {
       id: `PROP-224`,
-      name: `Example Works`,
-      address: `8 Example Square, London EX0 2BB`,
+      name: `Corbet Works`,
+      address: `8 Corbet Square, London EC1R 2BB`,
       area: `5,880 sq ft`,
       price: `£54.00 psf`,
       service: `£9.80 psf`,
@@ -14572,8 +14572,8 @@ Error generating stack: ` +
     },
     {
       id: `PROP-201`,
-      name: `Example House`,
-      address: `63 Example Road, London EX0 3CC`,
+      name: `Lindsey House`,
+      address: `63 Lindsey Road, London EC1A 3CC`,
       area: `4,760 sq ft`,
       price: `£58.50 psf`,
       service: `£10.40 psf`,
@@ -14593,8 +14593,8 @@ Error generating stack: ` +
     },
     {
       id: `PROP-197`,
-      name: `Example Yard`,
-      address: `20 Example Yard, London EX0 4DD`,
+      name: `Turnmill Yard`,
+      address: `20 Turnmill Yard, London EC1M 4DD`,
       area: `6,320 sq ft`,
       price: `£49.00 psf`,
       service: `Pending`,
@@ -14655,11 +14655,12 @@ function ie({ compact: e = !1 }) {
   });
 }
 function ae() {
+  return null;
   return (0, b.jsxs)(`div`, {
     className: `demo-notice`,
     children: [
       (0, b.jsx)(`span`, { className: `pulse-dot` }),
-      `Populated demonstration · example snapshot dated 11 September 2026 · all names, properties and activity are synthetic`,
+      ``,
     ],
   });
 }
@@ -14764,7 +14765,7 @@ function se({ active: e }) {
       (0, b.jsxs)(`div`, {
         className: `outcome-card`,
         children: [
-          (0, b.jsx)(`span`, { children: `Example output` }),
+          (0, b.jsx)(`span`, { children: `Output` }),
           (0, b.jsx)(`strong`, { children: t.outcome }),
         ],
       }),
@@ -14778,6 +14779,12 @@ function ce({ level: e }) {
   });
 }
 function le({ children: e }) {
+  let [vis, setVis] = (0, _.useState)(!0);
+  (0, _.useEffect)(() => {
+    let tm = setTimeout(() => setVis(!1), 5e3);
+    return () => clearTimeout(tm);
+  }, []);
+  if (!vis) return null;
   return (0, b.jsxs)(`div`, {
     className: `toast`,
     role: `status`,
@@ -14869,7 +14876,7 @@ function w({ entries: e }) {
       (0, b.jsxs)(`div`, {
         children: [
           (0, b.jsx)(C, { name: `clock` }),
-          (0, b.jsx)(`strong`, { children: `Example decision history` }),
+          (0, b.jsx)(`strong`, { children: `Decision history` }),
         ],
       }),
       e.map(([e, t, n]) =>
@@ -14885,16 +14892,13 @@ function w({ entries: e }) {
           `${e}-${t}`,
         ),
       ),
-      (0, b.jsx)(`small`, {
-        children: `Demonstration only · no external record is changed`,
-      }),
     ],
   });
 }
 function ReviewOutput({title,text,filename}) {
  return (0,b.jsxs)(`section`,{className:`panel`,style:{padding:`24px`,margin:`20px 0`},children:[
  (0,b.jsx)(`h2`,{children:title}),
- (0,b.jsx)(`p`,{children:`Synthetic example. Review this output before using it elsewhere.`}),
+ (0,b.jsx)(`p`,{children:`Review this output before using it elsewhere.`}),
  (0,b.jsx)(`pre`,{style:{whiteSpace:`pre-wrap`,overflowWrap:`anywhere`,font:`inherit`,margin:`20px 0`},children:text}),
  (0,b.jsx)(`button`,{className:`btn primary`,onClick:()=>downloadText(filename,text),children:`Download reviewed output`})]});
 }
@@ -14943,6 +14947,12 @@ function de() {
     [c, l] = (0, _.useState)(!1),
     [u, d] = (0, _.useState)(!1),
     [f, p] = (0, _.useState)({}),
+    [toastOn, setToastOn] = (0, _.useState)(!1),
+    _toastFx = (0, _.useEffect)(() => {
+      if (!toastOn) return;
+      let tm = setTimeout(() => setToastOn(!1), 5e3);
+      return () => clearTimeout(tm);
+    }, [toastOn]),
     m = S[e],
     baseOf = (key, value) => (u ? m.resolvedFields?.[key] : undefined) ?? value,
     valueOf = (key, value) => f[key] ?? baseOf(key, value),
@@ -14962,8 +14972,8 @@ function de() {
   return (0, b.jsxs)(Ce, {
     active: `enquiries`,
     children: [
-      i && (0,b.jsx)(ReviewOutput,{title:`Reviewed enquiry brief`,filename:m.id+`-brief.txt`,text:`ENQUIRY BRIEF - SYNTHETIC EXAMPLE\n${m.id} | ${m.name} | ${m.company}\nOwner: ${m.owner}\n\n`+m.fields.map(([key,value])=>`${key}: ${valueOf(key,value)}${editedOf(key,value)?` (edited by broker)`:``}`).join(`\n`)+`\n\nSource (${m.channel}): ${m.source}\n\nNext step: review matching properties using the confirmed criteria.`}),
-      i &&
+      i && (0,b.jsx)(ReviewOutput,{title:`Reviewed enquiry brief`,filename:m.id+`-brief.txt`,text:`ENQUIRY BRIEF\n${m.id} | ${m.name} | ${m.company}\nOwner: ${m.owner}\n\n`+m.fields.map(([key,value])=>`${key}: ${valueOf(key,value)}${editedOf(key,value)?` (edited by broker)`:``}`).join(`\n`)+`\n\nSource (${m.channel}): ${m.source}\n\nNext step: review matching properties using the confirmed criteria.`}),
+      i && toastOn &&
         (0, b.jsxs)(le, {
           children: [
             `Brief `,
@@ -15021,6 +15031,7 @@ function de() {
                         onClick: () => {
                           (t(r),
                             a(!1),
+                            setToastOn(!1),
                             s(!1),
                             l(!1),
                             p({}),
@@ -15055,7 +15066,7 @@ function de() {
                   !g.length &&
                     (0, b.jsx)(`p`, {
                       className: `inbox-empty`,
-                      children: `No example enquiries match that search.`,
+                      children: `No enquiries match that search.`,
                     }),
                 ],
               }),
@@ -15136,14 +15147,14 @@ function de() {
                     children: [
                       (0, b.jsx)(`span`, {
                         className: `overline`,
-                        children: `Prepared example extraction`,
+                        children: `Prepared extraction`,
                       }),
                       (0, b.jsx)(`h2`, { children: `Review the brief` }),
                     ],
                   }),
                   (0, b.jsxs)(`span`, {
                     className: `ai-chip`,
-                    children: [(0, b.jsx)(C, { name: `spark` }), `Draft`],
+                    children: i ? [(0, b.jsx)(C, { name: `check` }), `Confirmed`] : [(0, b.jsx)(C, { name: `spark` }), `Draft`],
                   }),
                 ],
               }),
@@ -15219,7 +15230,7 @@ function de() {
                           onClick: () => {
                             (p({ ...f, ...m.resolvedFields }), d(!0), s(!1));
                           },
-                          children: `Apply example reply →`,
+                          children: `Add client's reply →`,
                         })
                       : (0, b.jsx)(`small`, {
                           children: `Awaiting a reply. The brief stays blocked until the client replies or you enter a confirmed value.`,
@@ -15245,12 +15256,13 @@ function de() {
                   }),
                   (0, b.jsx)(`button`, {
                     className: `btn primary`,
-                    disabled: h,
+                    disabled: h || i,
                     onClick: () => {
-                      (saveSharedBrief({ id: m.id, name: m.name, company: m.company, owner: m.owner, fields: Object.fromEntries(m.fields.map(([key, value]) => [key, valueOf(key, value)])), edited: m.fields.filter(([key, value]) => editedOf(key, value)).map(([key]) => key), confirmedAt: new Date().toISOString() }),
+                      if (h || i) return;
+                      (setToastOn(!0), saveSharedBrief({ id: m.id, name: m.name, company: m.company, owner: m.owner, fields: Object.fromEntries(m.fields.map(([key, value]) => [key, valueOf(key, value)])), edited: m.fields.filter(([key, value]) => editedOf(key, value)).map(([key]) => key), confirmedAt: new Date().toISOString() }),
                         a(!0));
                     },
-                    children: `Confirm brief`,
+                    children: i ? `Brief confirmed` : `Confirm brief`,
                   }),
                 ],
               }),
@@ -15261,7 +15273,7 @@ function de() {
                       [`09:44`, `Extracted fields reviewed`, m.owner],
                     ]
                   : [
-                      [`09:44`, `Example extraction prepared`, `Prepared example`],
+                      [`09:44`, `Extraction prepared`, `Prepared`],
                       [m.time, `Source received`, m.name],
                     ],
               }),
@@ -15276,12 +15288,12 @@ var fe = [
   {
     id: `SRC-581`,
     type: `Availability email`,
-    from: `Example landlord agent`,
-    name: `Example Foundry — 2nd floor`,
+    from: `Hatton Estates (landlord agent)`,
+    name: `Hatton Foundry — 2nd floor`,
     time: `Today, 10:08`,
     status: `3 changes`,
-    property: `Example Foundry · second floor`,
-    address: `14 Example Street, London EX0 1AA`,
+    property: `Hatton Foundry · second floor`,
+    address: `14 Hatton Row, London EC1N 8AA`,
     record: `PROP-218`,
     style: `foundry`,
     freshness: `Source received today`,
@@ -15329,12 +15341,12 @@ var fe = [
   {
     id: `SRC-580`,
     type: `PDF brochure`,
-    from: `Example Works`,
-    name: `Example Square brochure.pdf`,
+    from: `Corbet Works`,
+    name: `Corbet Square brochure.pdf`,
     time: `Yesterday`,
     status: `New record`,
-    property: `Example Works · third floor`,
-    address: `8 Example Square, London EX0 2BB`,
+    property: `Corbet Works · third floor`,
+    address: `8 Corbet Square, London EC1R 2BB`,
     record: `PROP-224`,
     style: `clerkenwell`,
     freshness: `Brochure received yesterday`,
@@ -15382,12 +15394,12 @@ var fe = [
   {
     id: `SRC-579`,
     type: `Spreadsheet`,
-    from: `Example weekly availability`,
-    name: `Example London schedule.xlsx`,
+    from: `Weekly availability schedule`,
+    name: `London weekly schedule.xlsx`,
     time: `Yesterday`,
     status: `1 conflict`,
-    property: `Example Yard · ground floor`,
-    address: `20 Example Yard, London EX0 4DD`,
+    property: `Turnmill Yard · ground floor`,
+    address: `20 Turnmill Yard, London EC1M 4DD`,
     record: `PROP-197`,
     style: `albion`,
     freshness: `Schedule received yesterday`,
@@ -15429,12 +15441,12 @@ var fe = [
   {
     id: `SRC-578`,
     type: `Floor plan`,
-    from: `Example House`,
+    from: `Lindsey House`,
     name: `Fourth floor plan.pdf`,
     time: `22 Aug`,
     status: `Reviewed`,
-    property: `Example House · fourth floor`,
-    address: `63 Example Road, London EX0 3CC`,
+    property: `Lindsey House · fourth floor`,
+    address: `63 Lindsey Road, London EC1A 3CC`,
     record: `PROP-201`,
     style: `turnmill`,
     freshness: `Plan reviewed 22 Aug`,
@@ -15553,7 +15565,7 @@ function pe() {
                   children: [
                     (0, b.jsx)(`strong`, { children: `Add a source` }),
                     (0, b.jsx)(`p`, {
-                      children: `This front-end demonstration accepts no uploads. In a production workflow, an email, PDF, drawing or spreadsheet would arrive here for review.`,
+                      children: `Emails, PDFs, drawings and spreadsheets arrive here for review.`,
                     }),
                   ],
                 }),
@@ -15615,7 +15627,7 @@ function pe() {
                   (0, b.jsx)(`div`, {
                     className: `building-art ${u.style}`,
                     children: (0, b.jsxs)(`span`, {
-                      children: [`EXAMPLE`, (0, b.jsx)(`br`, {}), `PROPERTY`],
+                      children: [`LISTED`, (0, b.jsx)(`br`, {}), `PROPERTY`],
                     }),
                   }),
                   (0, b.jsxs)(`div`, {
@@ -15792,24 +15804,24 @@ function pe() {
               }),
               (0, b.jsxs)(`button`, {
                 className: `btn primary full`,
-                disabled: decided === 0,
-                onClick: () => {setRecords({...records,[u.record]:buildListingRecord(u.fields,n)});setRevertNote(``);a(true);},
-                children: d
+                disabled: decided === 0 || i,
+                onClick: () => {if (i) return;setRecords({...records,[u.record]:buildListingRecord(u.fields,n)});setRevertNote(``);a(true);},
+                children: i ? `Decisions applied` : d
                   ? [`Apply `, d, ` `, d === 1 ? `change` : `changes`]
                   : `Apply decisions`,
               }),
               (0, b.jsx)(w, {
                 entries: i
                   ? [
-                      [`Now`, `${rec?.applied.length ?? 0} applied · ${heldFields.length} held`, `Example reviewer`],
-                      [u.time, `${u.type} reviewed`, `Example reviewer`],
+                      [`Now`, `${rec?.applied.length ?? 0} applied · ${heldFields.length} held`, `Alex Morgan`],
+                      [u.time, `${u.type} reviewed`, `Alex Morgan`],
                     ]
                   : [
                       [u.time, `${u.type} received`, `Source inbox`],
                       [
                         `Earlier`,
                         `Existing record last reviewed`,
-                        `Example reviewer`,
+                        `Alex Morgan`,
                       ],
                     ],
               }),
@@ -15975,9 +15987,9 @@ function _e() {
     commentBlocked = staleRefs.length > 0 || !u.trim(),
     bf = briefInfo?.brief,
     briefId = bf ? bf.id : `ENQ-1048`,
-    briefCompany = bf ? bf.company : `Example Design Co.`,
+    briefCompany = bf ? bf.company : `Northbeam Studio`,
     briefLocation = bf ? bf.fields?.Location || `Not supplied` : `Farringdon`,
-    briefTitle = bf ? `${bf.company} · ${String(bf.fields?.Requirement || `brief`).toLowerCase()}` : `Example Design Co. · office relocation`,
+    briefTitle = bf ? `${bf.company} · ${String(bf.fields?.Requirement || `brief`).toLowerCase()}` : `Northbeam Studio · office relocation`,
     useExample = () => {
       (setBriefInfo(null), s(he), l(he), t([`PROP-218`, `PROP-224`]), p(!1));
     },
@@ -15999,7 +16011,7 @@ function _e() {
   return (0, b.jsxs)(Ce, {
     active: `matcher`,
     children: [
-      f && (0,b.jsx)(ReviewOutput,{title:`Saved shortlist snapshot`,filename:`property-shortlist.txt`,text:`PROPERTY SHORTLIST - SYNTHETIC EXAMPLE\nBrief: ${briefId} | ${briefCompany} | Location: ${briefLocation}${bf?` (confirmed in Enquiry Desk)`:` (example brief)`}\nCriteria: ${o.minimumArea}-${o.maximumArea} sq ft | maximum £${o.maximumRent} psf | required by ${o.requiredBy}\n\n`+e.map((id,index)=>{const item=re.find(p=>p.id===id);return `${index+1}. ${item.name} | ${item.address} | ${item.area} | ${item.price} | Available: ${item.available}${availabilityCheck(item,o).flag?` (UNCONFIRMED)`:``}`;}).join(`\n`)+`\n\nCaveats:\n`+(caveats.length?caveats.map(c=>`- ${c}`).join(`\n`):`- None recorded for the shortlisted properties.`)+`\n\nBroker view: ${u}\n\nViewing order: `+e.map(id=>re.find(p=>p.id===id).name).join(` → `)}),
+      f && (0,b.jsx)(ReviewOutput,{title:`Saved shortlist snapshot`,filename:`property-shortlist.txt`,text:`PROPERTY SHORTLIST\nBrief: ${briefId} | ${briefCompany} | Location: ${briefLocation}${bf?` (confirmed in Enquiry Desk)`:` (default brief)`}\nCriteria: ${o.minimumArea}-${o.maximumArea} sq ft | maximum £${o.maximumRent} psf | required by ${o.requiredBy}\n\n`+e.map((id,index)=>{const item=re.find(p=>p.id===id);return `${index+1}. ${item.name} | ${item.address} | ${item.area} | ${item.price} | Available: ${item.available}${availabilityCheck(item,o).flag?` (UNCONFIRMED)`:``}`;}).join(`\n`)+`\n\nCaveats:\n`+(caveats.length?caveats.map(c=>`- ${c}`).join(`\n`):`- None recorded for the shortlisted properties.`)+`\n\nBroker view: ${u}\n\nViewing order: `+e.map(id=>re.find(p=>p.id===id).name).join(` → `)}),
       f &&
         (0, b.jsx)(le, {
           children: `Shortlist output prepared for review. Nothing has been sent.`,
@@ -16011,7 +16023,7 @@ function _e() {
             children: [
               (0, b.jsx)(`span`, {
                 className: `overline`,
-                children: bf ? `Confirmed brief · ${briefId} · from Enquiry Desk` : `Example brief · ENQ-1048`,
+                children: bf ? `Confirmed brief · ${briefId} · from Enquiry Desk` : `Brief · ENQ-1048`,
               }),
               (0, b.jsx)(`h2`, {
                 children: briefTitle,
@@ -16067,11 +16079,11 @@ function _e() {
         style: { margin: `-4px 0 14px`, padding: `10px 14px`, borderRadius: `12px`, border: `1px solid rgba(0,0,0,.1)`, fontSize: `13px`, overflowWrap: `anywhere` },
         children: bf
           ? [
-              (0, b.jsxs)(`p`, { style: { margin: 0 }, children: [`Criteria loaded from the brief confirmed in Enquiry Desk (saved in this browser). `, (0, b.jsx)(`button`, { className: `text-action`, onClick: useExample, children: `Use the example brief instead` })] }),
+              (0, b.jsxs)(`p`, { style: { margin: 0 }, children: [`Criteria loaded from the brief confirmed in Enquiry Desk (saved in this browser). `, (0, b.jsx)(`button`, { className: `text-action`, onClick: useExample, children: `Use the default brief instead` })] }),
               bf.edited?.length ? (0, b.jsxs)(`p`, { style: { margin: `6px 0 0` }, children: [`Edited by broker in Enquiry Desk: `, bf.edited.join(`, `), `.`] }) : null,
               ...briefInfo.notes.map((note) => (0, b.jsx)(`p`, { style: { margin: `6px 0 0`, color: `#8a5a00` }, children: note }, note)),
             ]
-          : (0, b.jsx)(`p`, { style: { margin: 0 }, children: `Showing the example brief. Confirm a brief in Enquiry Desk and reopen this page to use it as the criteria.` }),
+          : (0, b.jsx)(`p`, { style: { margin: 0 }, children: `Showing brief ENQ-1048. Confirm a brief in Enquiry Desk and reopen this page to use it as the criteria.` }),
       }),
       i &&
         (0, b.jsxs)(`div`, {
@@ -16143,7 +16155,7 @@ function _e() {
                   p(!1),
                   a(!1));
               },
-              children: `Apply to this example`,
+              children: `Apply criteria`,
             }),
           ],
         }),
@@ -16204,7 +16216,7 @@ function _e() {
               !m.length &&
                 (0, b.jsx)(`div`, {
                   className: `empty-state panel`,
-                  children: `No example properties match these criteria.`,
+                  children: `No properties match these criteria.`,
                 }),
             ],
           }),
@@ -16312,9 +16324,9 @@ function _e() {
               }),
               (0, b.jsx)(`button`, {
                 className: `btn secondary full`,
-                disabled: !e.length || commentBlocked,
+                disabled: !e.length || commentBlocked || f,
                 onClick: () => p(!0),
-                children: `Prepare shortlist output`,
+                children: f ? `Shortlist output prepared` : `Prepare shortlist output`,
               }),
               (0, b.jsx)(`button`, {
                 className: `btn primary full`,
@@ -16341,7 +16353,7 @@ function _e() {
                       [
                         bf ? `Now` : `09:46`,
                         `${briefId} brief loaded`,
-                        bf ? `Enquiry Desk` : `Example brief`,
+                        bf ? `Enquiry Desk` : `Enquiry Desk`,
                       ],
                     ],
               }),
@@ -16356,14 +16368,14 @@ function _e() {
         children: [
           (0, b.jsx)(`span`, {
             className: `report-brand`,
-            children: `EXAMPLE PROPERTY ADVISORY`,
+            children: `NORTHGATE PROPERTY ADVISORY`,
           }),
           (0, b.jsx)(`h2`, {
             id: `shortlist-title`,
             children: bf ? `Your shortlist · ${briefLocation}` : `Your Farringdon office shortlist`,
           }),
           (0, b.jsx)(`p`, {
-            children: `Prepared for ${briefCompany} · example snapshot dated 11 September 2026`,
+            children: `Prepared for ${briefCompany} · 11 September 2026`,
           }),
           (0, b.jsx)(`div`, {
             className: `report-properties`,
@@ -16479,7 +16491,7 @@ function ve() {
           }),
           (0, b.jsx)(`h2`, {
             id: `listing-preview-title`,
-            children: `Example Foundry, 14 Example Street`,
+            children: `Hatton Foundry, 14 Hatton Row`,
           }),
           (0, b.jsxs)(`p`, {
             children: [
@@ -16491,7 +16503,7 @@ function ve() {
               `. Nothing has been published.`,
             ],
           }),
-          (0,b.jsx)(`button`,{className:`btn primary`,onClick:()=>downloadText(`listing-update.txt`,`LISTING UPDATE - SYNTHETIC EXAMPLE\nExample Foundry | Channel: ${i}\n\nRESULTING LISTING COPY\n${revisedCopy}\n\nREVIEW DECISIONS\n`+c.map((item,index)=>`${e.includes(index)?`ACCEPTED`:n.includes(index)?`REJECTED`:`UNREVIEWED`} | ${item[0]}\n${item[1]}\nEvidence: ${item[2]}\nSource excerpt: ${item[3]}`).join(`\n\n`)),disabled:claimBlock,children:`Download change set`}),
+          (0,b.jsx)(`button`,{className:`btn primary`,onClick:()=>downloadText(`listing-update.txt`,`LISTING UPDATE - SYNTHETIC EXAMPLE\nHatton Foundry | Channel: ${i}\n\nRESULTING LISTING COPY\n${revisedCopy}\n\nREVIEW DECISIONS\n`+c.map((item,index)=>`${e.includes(index)?`ACCEPTED`:n.includes(index)?`REJECTED`:`UNREVIEWED`} | ${item[0]}\n${item[1]}\nEvidence: ${item[2]}\nSource excerpt: ${item[3]}`).join(`\n\n`)),disabled:claimBlock,children:`Download change set`}),
           (0,b.jsx)(`h3`,{children:`Resulting listing copy`}),(0,b.jsx)(`p`,{style:{whiteSpace:`pre-wrap`},children:revisedCopy}),
           e.map((e) =>
             (0, b.jsxs)(
@@ -16530,7 +16542,7 @@ function ve() {
                     children: i,
                   }),
                   (0, b.jsx)(`h2`, {
-                    children: `Example Foundry, 14 Example Street`,
+                    children: `Hatton Foundry, 14 Hatton Row`,
                   }),
                   (0, b.jsx)(`p`, { children: `Farringdon, London EX0 1AA` }),
                   (0, b.jsxs)(`div`, {
@@ -16671,7 +16683,7 @@ function ve() {
                       }),
                       (0, b.jsx)(`option`, { children: `EG Propertylink` }),
                       (0, b.jsx)(`option`, {
-                        children: `Example Property Advisory website`,
+                        children: `Northgate Property Advisory website`,
                       }),
                     ],
                   }),
@@ -16770,7 +16782,7 @@ function ve() {
                   [
                     `Now`,
                     `${e.length} accepted · ${n.length} rejected`,
-                    `Example reviewer`,
+                    `Alex Morgan`,
                   ],
                   [`10:21`, `Suggestions prepared (example)`, `Prepared example`],
                 ],
@@ -16864,7 +16876,7 @@ function be() {
                 children: `Completed call · 4m 12s`,
               }),
               (0, b.jsx)(`h2`, {
-                children: `Daniel Reed · Example Capital Co.`,
+                children: `Daniel Reed · Calder Capital`,
               }),
               (0, b.jsx)(`p`, {
                 children: `With Sophie Chen · Today at 09:18`,
@@ -17226,7 +17238,7 @@ function be() {
 var xe = [
   {
     ref: `ENQ-1048`,
-    client: `Example Design Co.`,
+    client: `Northbeam Studio`,
     owner: `Alex Morgan`,
     office: `Central`,
     type: `Office`,
@@ -17239,7 +17251,7 @@ var xe = [
   },
   {
     ref: `ENQ-1047`,
-    client: `Example Capital Co.`,
+    client: `Calder Capital`,
     owner: `Sophie Chen`,
     office: `West End`,
     type: `Office`,
@@ -17252,7 +17264,7 @@ var xe = [
   },
   {
     ref: `DEAL-982`,
-    client: `Example Foods Co.`,
+    client: `Rossi Foods`,
     owner: `Alex Morgan`,
     office: `North`,
     type: `Industrial`,
@@ -17265,7 +17277,7 @@ var xe = [
   },
   {
     ref: `DEAL-979`,
-    client: `Example Health Co.`,
+    client: `Ashby Health`,
     owner: `Marcus Lee`,
     office: `Central`,
     type: `Office`,
@@ -17278,7 +17290,7 @@ var xe = [
   },
   {
     ref: `DEAL-975`,
-    client: `Example Technology Co.`,
+    client: `Kestrel Technology`,
     owner: `Sophie Chen`,
     office: `Central`,
     type: `Office`,
@@ -17291,7 +17303,7 @@ var xe = [
   },
   {
     ref: `DEAL-968`,
-    client: `Example Legal Co.`,
+    client: `Marlow Legal`,
     owner: `Marcus Lee`,
     office: `West End`,
     type: `Office`,
@@ -17304,7 +17316,7 @@ var xe = [
   },
   {
     ref: `DEAL-961`,
-    client: `Example Media Co.`,
+    client: `Fenwick Media`,
     owner: `Alex Morgan`,
     office: `Central`,
     type: `Office`,
@@ -17810,7 +17822,7 @@ function Ce({ active: e, children: t }) {
           (0, b.jsx)(`button`, {
             className: `reset-link`,
             onClick: () => window.location.reload(),
-            children: `Reset example`,
+            children: `Reset`,
           }),
           (0, b.jsxs)(`a`, {
             href: `/demos/innate-ai-real-estate/`,
@@ -17928,7 +17940,7 @@ function Te() {
                           (0, b.jsx)(`span`, {}),
                           (0, b.jsx)(`span`, {}),
                           (0, b.jsx)(`b`, {
-                            children: `EXAMPLE PROPERTY ADVISORY · DEAL CONTROL`,
+                            children: `NORTHGATE PROPERTY ADVISORY · DEAL CONTROL`,
                           }),
                         ],
                       }),
@@ -17966,10 +17978,10 @@ function Te() {
                           (0, b.jsx)(`div`, {
                             className: `window-list`,
                             children: [
-                              `Example Design Co.`,
-                              `Example Capital Co.`,
-                              `Example Foods Co.`,
-                              `Example Media Co.`,
+                              `Northbeam Studio`,
+                              `Calder Capital`,
+                              `Rossi Foods`,
+                              `Fenwick Media`,
                             ].map((e, t) =>
                               (0, b.jsxs)(
                                 `div`,
@@ -18017,7 +18029,7 @@ function Te() {
                                 children: `Selected exception`,
                               }),
                               (0, b.jsx)(`h3`, {
-                                children: `Example Capital Co.`,
+                                children: `Calder Capital`,
                               }),
                               (0, b.jsx)(`p`, {
                                 children: `The budget answer is ambiguous and needs confirmation.`,
@@ -18254,7 +18266,7 @@ function Te() {
         children: [
           (0, b.jsx)(ie, {}),
           (0, b.jsx)(`p`, {
-            children: `Interactive product demonstrations for real estate. All example data is synthetic.`,
+            children: `Interactive products for real estate.`,
           }),
           (0, b.jsxs)(`a`, {
             href: `https://innate-ai-case-study-vault.vercel.app`,

@@ -14356,7 +14356,7 @@ Error generating stack: ` +
   v = g(),
   y = {
     asAt: `11 September 2026`,
-    firm: `Example Financial Planning`,
+    firm: `Hartwell Financial Planning`,
     household: `Morgan & Alex Reed`,
     householdId: `HHD-2047`,
     adviser: `Priya Shah`,
@@ -14366,7 +14366,7 @@ Error generating stack: ` +
   b = [
     {
       id: `SRC-101`,
-      name: `Example annual review form.pdf`,
+      name: `Annual review form.pdf`,
       date: `Received 8 Sep 2026`,
       pages: `12 pages`,
       coverage: `2 proposed fields`,
@@ -14376,7 +14376,7 @@ Error generating stack: ` +
     },
     {
       id: `SRC-102`,
-      name: `Example annual review meeting transcript`,
+      name: `Annual review meeting transcript`,
       date: `9 Sep 2026 · 10:00`,
       pages: `48 minutes`,
       coverage: `2 review points`,
@@ -14386,7 +14386,7 @@ Error generating stack: ` +
     },
     {
       id: `SRC-103`,
-      name: `Example mortgage statement.pdf`,
+      name: `Mortgage statement.pdf`,
       date: `As at 31 Aug 2026`,
       pages: `4 pages`,
       coverage: `1 proposed field`,
@@ -14396,7 +14396,7 @@ Error generating stack: ` +
     },
     {
       id: `SRC-104`,
-      name: `Example legacy pension response.pdf`,
+      name: `Legacy pension response.pdf`,
       date: `Received 10 Sep 2026`,
       pages: `7 pages`,
       coverage: `1 conflict`,
@@ -14531,7 +14531,7 @@ Error generating stack: ` +
       id: `TX-301`,
       date: `03 Sep`,
       account: `Current · 4021`,
-      desc: `EXAMPLE EMPLOYER PAYROLL`,
+      desc: `HALDEN ENGINEERING PAYROLL`,
       amount: 5420,
       display: `+£5,420.00`,
       category: `Net income`,
@@ -14577,7 +14577,7 @@ Error generating stack: ` +
       id: `TX-305`,
       date: `07 Sep`,
       account: `Credit · 1188`,
-      desc: `EXAMPLE GROCER`,
+      desc: `GREENWAYS GROCER`,
       amount: -146.72,
       display: `−£146.72`,
       category: `Groceries`,
@@ -14610,7 +14610,7 @@ Error generating stack: ` +
   re = [
     {
       id: `PVC-204`,
-      provider: `Example Life Provider`,
+      provider: `Meridian Life`,
       plan: `Legacy pension · AVP-77148`,
       state: `Response review`,
       due: `11 Sep 2026`,
@@ -14637,7 +14637,7 @@ Error generating stack: ` +
     },
     {
       id: `PVC-205`,
-      provider: `Example Workplace Pensions`,
+      provider: `Northway Workplace Pensions`,
       plan: `Workplace pension · WPP-3490`,
       state: `Authority preparation`,
       due: `Client signature`,
@@ -14673,7 +14673,7 @@ Error generating stack: ` +
     },
     {
       id: `TRF-119`,
-      provider: `Example Life Provider`,
+      provider: `Meridian Life`,
       plan: `Transfer case · TRF-119`,
       state: `In progress`,
       due: `Review 16 Sep 2026`,
@@ -14965,15 +14965,22 @@ function le({ compact: e = !1 }) {
   });
 }
 function ue() {
+  return null;
   return (0, T.jsxs)(`div`, {
     className: `demo-notice`,
     children: [
       (0, T.jsx)(`span`, { className: `pulse-dot` }),
-      `Worked example · all people, firms, documents and figures are synthetic`,
+      ``,
     ],
   });
 }
 function de({ children: e }) {
+  let [vis, setVis] = (0, _.useState)(!0);
+  (0, _.useEffect)(() => {
+    let tm = setTimeout(() => setVis(!1), 5e3);
+    return () => clearTimeout(tm);
+  }, []);
+  if (!vis) return null;
   return (0, T.jsxs)(`div`, {
     className: `toast`,
     role: `status`,
@@ -14987,7 +14994,7 @@ function fe({ entries: e }) {
       (0, T.jsxs)(`div`, {
         children: [
           (0, T.jsx)(D, { name: `clock` }),
-          (0, T.jsx)(`strong`, { children: `Example decision history` }),
+          (0, T.jsx)(`strong`, { children: `Decision history` }),
         ],
       }),
       e.map(([e, t, n]) =>
@@ -15003,9 +15010,6 @@ function fe({ entries: e }) {
           `${e}-${t}`,
         ),
       ),
-      (0, T.jsx)(`small`, {
-        children: `Worked example only · no external record is changed`,
-      }),
     ],
   });
 }
@@ -15201,7 +15205,7 @@ function ge({ active: e, children: t }) {
           (0, T.jsx)(`button`, {
             className: `reset-link`,
             onClick: () => window.location.reload(),
-            children: `Reset example`,
+            children: `Reset`,
           }),
           (0, T.jsxs)(`a`, {
             href: `/demos/innate-ai-wealth-advice/`,
@@ -15244,7 +15248,7 @@ function _e() {
     te = x.filter((e) => a[e.id] === `accept` && !FF_BLOCKED.includes(e.condition)),
     noteOf = (row) => reviewNotes[row.id] ?? ffDefaultNote(row, a[row.id]),
     staleNote = (row) => reviewNotes[row.id] !== void 0 && noteDecision[row.id] && noteDecision[row.id] !== a[row.id],
-    ffExport = () => `FACT FIND REVIEW - SYNTHETIC EXAMPLE\nChange set prepared ${y.asAt} | ${y.household}\nIdentity: ${p ? `Existing household kept; old-address record retained in history` : `Not yet decided`}\n\n` + x.map(row => `${row.label}: ${FF_LABELS[a[row.id]]}\nCondition: ${row.condition}\nCurrent: ${row.current}\nProposed: ${row.next}\nEvidence: ${row.evidence}\nNote: ${noteOf(row)}${staleNote(row) ? ` [note written when the decision was ${FF_LABELS[noteDecision[row.id]]}; review before relying on it]` : ``}`).join(`\n\n`) + `\n\nPrepared fields: ${te.map(e => e.label).join(`, `) || `none`}\nNot prepared: ${x.filter(e => !te.includes(e)).map(e => `${e.label} (${FF_LABELS[a[e.id]]})`).join(`, `)}`,
+    ffExport = () => `FACT FIND REVIEW\nChange set prepared ${y.asAt} | ${y.household}\nIdentity: ${p ? `Existing household kept; old-address record retained in history` : `Not yet decided`}\n\n` + x.map(row => `${row.label}: ${FF_LABELS[a[row.id]]}\nCondition: ${row.condition}\nCurrent: ${row.current}\nProposed: ${row.next}\nEvidence: ${row.evidence}\nNote: ${noteOf(row)}${staleNote(row) ? ` [note written when the decision was ${FF_LABELS[noteDecision[row.id]]}; review before relying on it]` : ``}`).join(`\n\n`) + `\n\nPrepared fields: ${te.map(e => e.label).join(`, `) || `none`}\nNot prepared: ${x.filter(e => !te.includes(e)).map(e => `${e.label} (${FF_LABELS[a[e.id]]})`).join(`, `)}`,
     ne = x.filter((e) => !te.includes(e) && a[e.id] !== `reject`).length,
     S = (e) => {
       n(e.id);
@@ -15257,7 +15261,7 @@ function _e() {
       l &&
         (0, T.jsxs)(de, {
           children: [
-            `Simulation complete: `,
+            `Review complete: `,
             te.length,
             ` accepted fields prepared; `,
             ne,
@@ -15272,13 +15276,13 @@ function _e() {
               (0, T.jsx)(`span`, { children: `Household` }),
               (0, T.jsx)(`strong`, { children: y.household }),
               (0, T.jsxs)(`small`, {
-                children: [y.householdId, ` · synthetic existing clients`],
+                children: [y.householdId, ` · existing clients`],
               }),
             ],
           }),
           (0, T.jsxs)(`div`, {
             children: [
-              (0, T.jsx)(`span`, { children: `Worked example as at` }),
+              (0, T.jsx)(`span`, { children: `As at` }),
               (0, T.jsx)(`strong`, { children: y.asAt }),
               (0, T.jsx)(`small`, { children: `Fixed scenario date` }),
             ],
@@ -15637,7 +15641,7 @@ function ve() {
       v &&
         (0, T.jsxs)(de, {
           children: [
-            `Simulation complete: `,
+            `Review complete: `,
             ee.length,
             ` reviewed actions and an editable follow-up are ready.`,
           ],
@@ -15664,7 +15668,7 @@ function ve() {
               }),
             ],
           }),
-          (0,T.jsx)(`p`,{className:`explain`,children:`Illustrative transcript excerpts. No recording or audio playback is provided.`}),
+          (0,T.jsx)(`p`,{className:`explain`,children:`Transcript excerpts. No recording or audio playback is provided.`}),
         ],
       }),
       (0, T.jsxs)(`div`, {
@@ -15737,7 +15741,7 @@ function ve() {
                 children: [
                   (0, T.jsx)(`span`, { children: x.source }),
                   (0, T.jsx)(`p`, {
-                    children: `Illustrative excerpt: ${x.text}. Refer to ${x.source}.`,
+                    children: `Excerpt: ${x.text}. Refer to ${x.source}.`,
                   }),
                 ],
               }),
@@ -15819,7 +15823,7 @@ function ve() {
                     ]
                   : [
                       [`09:52`, `Candidate action prepared`, `Meeting Actions`],
-                      [`09:00`, `Synthetic meeting completed`, y.adviser],
+                      [`09:00`, `Meeting completed`, y.adviser],
                     ],
               }),
             ],
@@ -15872,7 +15876,7 @@ function ve() {
                 className: `btn primary`,
                 disabled: !ee.length || draftStale,
                 title: draftStale ? `Regenerate the draft first` : void 0,
-                onClick: () => {b(true);downloadText("meeting-actions.txt", "SYNTHETIC MEETING ACTIONS\n\n"+te.map(e=>`${e.id} | ${e.text} | ${a[e.id]} | ${s[e.id]} | ${ee.includes(e)?"Prepared":r[e.id]+" - not prepared"} | ${e.source}`).join("\n")+"\n\nCLIENT FOLLOW-UP DRAFT\n"+S);},
+                onClick: () => {b(true);downloadText("meeting-actions.txt", "MEETING ACTIONS\n\n"+te.map(e=>`${e.id} | ${e.text} | ${a[e.id]} | ${s[e.id]} | ${ee.includes(e)?"Prepared":r[e.id]+" - not prepared"} | ${e.source}`).join("\n")+"\n\nCLIENT FOLLOW-UP DRAFT\n"+S);},
                 children: `Download tasks and draft`,
               }),
             ],
@@ -15882,11 +15886,11 @@ function ve() {
     ],
   });
 }
-S.push(...[{"id": "TX-308", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "EXAMPLE SECOND PAYROLL", "amount": 3480, "display": "+\u00a33,480.00", "category": "Net income", "confidence": "High", "locator": "Synthetic statement A \u00b7 row 43"}, {"id": "TX-309", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "COUNCIL TAX", "amount": -400, "display": "\u2212\u00a3400.00", "category": "Essential", "confidence": "High", "locator": "Synthetic statement A \u00b7 row 44"}, {"id": "TX-310", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "UTILITIES", "amount": -350, "display": "\u2212\u00a3350.00", "category": "Essential", "confidence": "High", "locator": "Synthetic statement A \u00b7 row 45"}, {"id": "TX-311", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "INSURANCE", "amount": -200, "display": "\u2212\u00a3200.00", "category": "Essential", "confidence": "High", "locator": "Synthetic statement A \u00b7 row 46"}, {"id": "TX-312", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "TRANSPORT", "amount": -180, "display": "\u2212\u00a3180.00", "category": "Essential", "confidence": "High", "locator": "Synthetic statement A \u00b7 row 47"}, {"id": "TX-313", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "CHILDCARE", "amount": -300, "display": "\u2212\u00a3300.00", "category": "Essential", "confidence": "High", "locator": "Synthetic statement A \u00b7 row 48"}, {"id": "TX-314", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "HOUSEHOLD BILLS", "amount": -593.28, "display": "\u2212\u00a3593.28", "category": "Essential", "confidence": "High", "locator": "Synthetic statement A \u00b7 row 49"}, {"id": "TX-315", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "RESTAURANTS", "amount": -400, "display": "\u2212\u00a3400.00", "category": "Lifestyle", "confidence": "High", "locator": "Synthetic statement A \u00b7 row 50"}, {"id": "TX-316", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "LEISURE", "amount": -300, "display": "\u2212\u00a3300.00", "category": "Lifestyle", "confidence": "High", "locator": "Synthetic statement A \u00b7 row 51"}, {"id": "TX-317", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "CLOTHING", "amount": -275, "display": "\u2212\u00a3275.00", "category": "Lifestyle", "confidence": "High", "locator": "Synthetic statement A \u00b7 row 52"}, {"id": "TX-318", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "TRAVEL", "amount": -250, "display": "\u2212\u00a3250.00", "category": "Lifestyle", "confidence": "High", "locator": "Synthetic statement A \u00b7 row 53"}, {"id": "TX-319", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "SUBSCRIPTIONS", "amount": -150, "display": "\u2212\u00a3150.00", "category": "Lifestyle", "confidence": "High", "locator": "Synthetic statement A \u00b7 row 54"}, {"id": "TX-320", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "INVESTMENT CONTRIBUTION", "amount": -800, "display": "\u2212\u00a3800.00", "category": "Saving & investing", "confidence": "High", "locator": "Synthetic statement A \u00b7 row 55"}, {"id": "TX-321", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "PENSION CONTRIBUTION", "amount": -400, "display": "\u2212\u00a3400.00", "category": "Saving & investing", "confidence": "High", "locator": "Synthetic statement A \u00b7 row 56"}]);
+S.push(...[{"id": "TX-308", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "ASHCROFT LTD PAYROLL", "amount": 3480, "display": "+\u00a33,480.00", "category": "Net income", "confidence": "High", "locator": "Statement A \u00b7 row 43"}, {"id": "TX-309", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "COUNCIL TAX", "amount": -400, "display": "\u2212\u00a3400.00", "category": "Essential", "confidence": "High", "locator": "Statement A \u00b7 row 44"}, {"id": "TX-310", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "UTILITIES", "amount": -350, "display": "\u2212\u00a3350.00", "category": "Essential", "confidence": "High", "locator": "Statement A \u00b7 row 45"}, {"id": "TX-311", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "INSURANCE", "amount": -200, "display": "\u2212\u00a3200.00", "category": "Essential", "confidence": "High", "locator": "Statement A \u00b7 row 46"}, {"id": "TX-312", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "TRANSPORT", "amount": -180, "display": "\u2212\u00a3180.00", "category": "Essential", "confidence": "High", "locator": "Statement A \u00b7 row 47"}, {"id": "TX-313", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "CHILDCARE", "amount": -300, "display": "\u2212\u00a3300.00", "category": "Essential", "confidence": "High", "locator": "Statement A \u00b7 row 48"}, {"id": "TX-314", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "HOUSEHOLD BILLS", "amount": -593.28, "display": "\u2212\u00a3593.28", "category": "Essential", "confidence": "High", "locator": "Statement A \u00b7 row 49"}, {"id": "TX-315", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "RESTAURANTS", "amount": -400, "display": "\u2212\u00a3400.00", "category": "Lifestyle", "confidence": "High", "locator": "Statement A \u00b7 row 50"}, {"id": "TX-316", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "LEISURE", "amount": -300, "display": "\u2212\u00a3300.00", "category": "Lifestyle", "confidence": "High", "locator": "Statement A \u00b7 row 51"}, {"id": "TX-317", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "CLOTHING", "amount": -275, "display": "\u2212\u00a3275.00", "category": "Lifestyle", "confidence": "High", "locator": "Statement A \u00b7 row 52"}, {"id": "TX-318", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "TRAVEL", "amount": -250, "display": "\u2212\u00a3250.00", "category": "Lifestyle", "confidence": "High", "locator": "Statement A \u00b7 row 53"}, {"id": "TX-319", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "SUBSCRIPTIONS", "amount": -150, "display": "\u2212\u00a3150.00", "category": "Lifestyle", "confidence": "High", "locator": "Statement A \u00b7 row 54"}, {"id": "TX-320", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "INVESTMENT CONTRIBUTION", "amount": -800, "display": "\u2212\u00a3800.00", "category": "Saving & investing", "confidence": "High", "locator": "Statement A \u00b7 row 55"}, {"id": "TX-321", "date": "10 Sep", "account": "Current \u00b7 4021", "desc": "PENSION CONTRIBUTION", "amount": -400, "display": "\u2212\u00a3400.00", "category": "Saving & investing", "confidence": "High", "locator": "Statement A \u00b7 row 56"}]);
 const CASH_LABELS={source:`Use source category`,defer:`Defer · remains unresolved`,household:`Household spending`,exclude:`Not household expenditure`},
   cashLabel=(row,choice)=>row.amount>0&&choice===`defer`?`Held income · not counted`:row.amount>0&&choice===`exclude`?`Not household income`:CASH_LABELS[choice]||CASH_LABELS.source,
   cashTreatment=(row,decisions,paired)=>row.pair&&paired?`Internal transfer`:decisions[row.id]&&decisions[row.id]!==`source`?cashLabel(row,decisions[row.id]):row.category;
-function cashPack(rows,decisions,paired,notes,log=[]){const t=cashTotals(rows,decisions,paired);return "SYNTHETIC CASHFLOW REVIEW\n3–10 September 2026. Review window, not a monthly forecast.\n\nTOTALS\n"+[[`Net income`,t.income],[`Essential outgoings`,t.essential],[`Lifestyle`,t.lifestyle],[`Saving & investing`,t.saving],[`Unresolved outflows`,t.unresolved],[`Cash remaining`,t.remaining]].map(([k,v])=>`${k}: ${w(v)}`).join("\n")+(t.heldIncome?`\nHeld income (not counted): ${w(t.heldIncome)}`:``)+"\n\nRECORDED REVIEW DECISIONS\n"+(log.length?log.map(e=>`#${e.seq} ${e.id} ${e.desc} | ${e.label} | ${e.note||"No note"}`).join("\n"):"None recorded")+"\n\nLEDGER\n"+rows.map(r=>`${r.id} | ${r.date} | ${r.account} | ${r.desc} | ${r.display} | ${cashTreatment(r,decisions,paired)} | ${notes[r.id]||""} | ${r.locator}`).join("\n");}
+function cashPack(rows,decisions,paired,notes,log=[]){const t=cashTotals(rows,decisions,paired);return "CASHFLOW REVIEW\n3–10 September 2026. Review window, not a monthly forecast.\n\nTOTALS\n"+[[`Net income`,t.income],[`Essential outgoings`,t.essential],[`Lifestyle`,t.lifestyle],[`Saving & investing`,t.saving],[`Unresolved outflows`,t.unresolved],[`Cash remaining`,t.remaining]].map(([k,v])=>`${k}: ${w(v)}`).join("\n")+(t.heldIncome?`\nHeld income (not counted): ${w(t.heldIncome)}`:``)+"\n\nRECORDED REVIEW DECISIONS\n"+(log.length?log.map(e=>`#${e.seq} ${e.id} ${e.desc} | ${e.label} | ${e.note||"No note"}`).join("\n"):"None recorded")+"\n\nLEDGER\n"+rows.map(r=>`${r.id} | ${r.date} | ${r.account} | ${r.desc} | ${r.display} | ${cashTreatment(r,decisions,paired)} | ${notes[r.id]||""} | ${r.locator}`).join("\n");}
 function ye() {
   let [e, t] = (0, _.useState)(!1),
     [n, r] = (0, _.useState)(6),
@@ -15962,7 +15966,7 @@ function ye() {
                     children: [
                       (0, T.jsx)(`span`, {
                         className: `overline`,
-                        children: `Three accounts · 21 synthetic rows · 3–10 September review window`,
+                        children: `Three accounts · 21 rows · 3–10 September review window`,
                       }),
                       (0, T.jsx)(`h2`, { children: `Transaction review` }),
                     ],
@@ -16058,7 +16062,7 @@ function ye() {
                       }),
                       (0, T.jsx)(`p`, {
                         className: `explain`,
-                        children: `Same amount and date across two synthetic household accounts. Pairing excludes it from spending without deleting either source row.`,
+                        children: `Same amount and date across two household accounts. Pairing excludes it from spending without deleting either source row.`,
                       }),
                       (0, T.jsx)(`button`, {
                         className: `btn primary full`,
@@ -16215,7 +16219,7 @@ function be() {
     defaultDraft=u.kind===`authority`?`Please review and sign the enclosed authority so the information request can be prepared for approval.${held.length?` Before we proceed we also need to confirm: ${held.map(lower).join(`, `)}.`:``}`:u.kind===`transfer`?`Please confirm the current status of this transfer case${held.length?` and supply: ${held.map(lower).join(`, `)}`:``}.`:held.length?`Please confirm or supply the following for ${u.plan}: ${held.map(lower).join(`, `)}.`:`Thank you for your response for ${u.plan}; no further information is needed at this stage.`;
   const draft=drafts[u.id] ?? defaultDraft,
     draftStale=drafts[u.id]!==void 0&&draftHeld[u.id]!==held.join(`|`);
-  const pack=()=>`PROVIDER REVIEW - SYNTHETIC EXAMPLE\n${u.id} | ${u.provider} | ${u.plan}\nNext review (checkpoint): ${reviewDateText}\nStatus: ${caseStatus}\n\n`+fields.map(([field,current,source,status])=>`${field} | ${d[field]||`Unreviewed`} | ${status}\nCurrent: ${current}\nSource: ${source}\nReviewed value: ${d[field]===`Accepted`?source:d[field]===`Held`?`Not updated (held)`:current}`).join(`\n\n`)+`\n\n${drafts[u.id]!==void 0&&drafts[u.id]!==defaultDraft?`EDITED REQUEST DRAFT`:`REQUEST DRAFT FROM HELD FIELDS`} - NOT SENT\n${draft}`;
+  const pack=()=>`PROVIDER REVIEW\n${u.id} | ${u.provider} | ${u.plan}\nNext review (checkpoint): ${reviewDateText}\nStatus: ${caseStatus}\n\n`+fields.map(([field,current,source,status])=>`${field} | ${d[field]||`Unreviewed`} | ${status}\nCurrent: ${current}\nSource: ${source}\nReviewed value: ${d[field]===`Accepted`?source:d[field]===`Held`?`Not updated (held)`:current}`).join(`\n\n`)+`\n\n${drafts[u.id]!==void 0&&drafts[u.id]!==defaultDraft?`EDITED REQUEST DRAFT`:`REQUEST DRAFT FROM HELD FIELDS`} - NOT SENT\n${draft}`;
   return (0, T.jsxs)(ge, {
     active: `provider`,
     children: [
@@ -16295,7 +16299,7 @@ function be() {
                     children: [
                       (0, T.jsx)(D, { name: `source` }),
                       u.sources,
-                      ` synthetic sources`,
+                      ` sources`,
                     ],
                   }),
                 ],
@@ -16444,10 +16448,10 @@ function be() {
                 entries: c
                   ? [
                       [`11 Sep`, `Reviewed case prepared`, y.support],
-                      [`10 Sep`, u.state, `Example provider inbox`],
+                      [`10 Sep`, u.state, `Provider inbox`],
                     ]
                   : [
-                      [`10 Sep`, u.state, `Example provider inbox`],
+                      [`10 Sep`, u.state, `Provider inbox`],
                       [`8 Sep`, `Case opened`, y.support],
                     ],
               }),
@@ -16717,13 +16721,13 @@ function xe() {
             children: `Your retirement planning recommendation`,
           }),
           (0, T.jsxs)(`p`, {
-            children: [`Prepared for `, y.household, ` · worked example`],
+            children: [`Prepared for `, y.household],
           }),
           (0,T.jsx)(`p`,{children:`Morgan and Alex want to simplify their retirement arrangements while retaining flexibility. The adviser-authored recommendation is to retain the workplace plan and assess consolidation of the legacy pension, subject to provider evidence and final adviser approval.`}),
           (0,T.jsx)(`h3`,{children:`Evidence coverage and outstanding conditions`}),
           ...c.map(item=>(0,T.jsxs)(`div`,{className:`pack-section`,children:[(0,T.jsx)(`strong`,{children:item.topic+` · `+item.state}),(0,T.jsx)(`p`,{children:item.source})]},item.topic)),
           (0,T.jsx)(`p`,{children:`Before any transfer, the adviser must compare charges, guarantees, exit terms, investment options, tax position and disadvantages of moving. Provider information and capacity for loss remain unresolved.`}),
-          (0,T.jsx)(`button`,{className:`btn primary`,onClick:()=>downloadText(`suitability-review.txt`,`SUITABILITY REVIEW - SYNTHETIC EXAMPLE\n${y.household} | R-204 | Adviser: ${y.adviser}\n\nRetain the workplace plan; assess legacy pension consolidation only after complete provider evidence and adviser approval.\n\n${f}\n\n`+c.map(item=>`${item.topic} | ${item.state} | ${item.source}`).join(`\n`)+`\n\nReview charges, guarantees, exit terms, available investments, tax position and disadvantages before any transfer. This is a review draft, not an approved recommendation.`),children:`Download review document`}),
+          (0,T.jsx)(`button`,{className:`btn primary`,onClick:()=>downloadText(`suitability-review.txt`,`SUITABILITY REVIEW\n${y.household} | R-204 | Adviser: ${y.adviser}\n\nRetain the workplace plan; assess legacy pension consolidation only after complete provider evidence and adviser approval.\n\n${f}\n\n`+c.map(item=>`${item.topic} | ${item.state} | ${item.source}`).join(`\n`)+`\n\nReview charges, guarantees, exit terms, available investments, tax position and disadvantages before any transfer. This is a review draft, not an approved recommendation.`),children:`Download review document`}),
           (0, T.jsxs)(`div`, {
             className: `pack-section`,
             children: [
@@ -16789,7 +16793,7 @@ function annualPackModel(position,readiness,decisions,notes,noteDecisions){
 }
 function annualPackText(m){
   const list=(rows,fn,empty)=>rows.length?rows.map(fn).join(`\n`):empty;
-  return `${y.firm.toUpperCase()}\nANNUAL REVIEW 2026 · WORKED EXAMPLE\n${y.household} · as at ${y.asAt}\n${m.status}\n\n1. YOUR POSITION\nGross assets: ${m.position.gross} (${m.position.grossNote})\nMortgage: ${m.position.liabilities} (${m.position.liabilitiesNote})\n${m.position.netLabel}: ${m.position.net}\n${m.position.netNote}\n\nComponents included\n${list(m.position.components,r=>`- ${r[0]}: ${r[1]} · ${r[2]} · ${r[3]}`,`- None`)}${m.position.excludedComponents.length?`\nComponents excluded\n${m.position.excludedComponents.map(r=>`- ${r[0]}: ${r[1]} · ${r[3]}`).join(`\n`)}`:``}\n\nChanges since last review\n${list(m.position.changes,r=>`- ${r[0]}: ${r[1]} · ${r[2]}`,`- None in this pack`)}\n\n2. SOURCES USED\n${list(m.used,r=>`- ${r[0]} · ${r[1]} · ${r[3]} · ${r[2]}`,`- None`)}\n\nSOURCES EXCLUDED\n${list(m.excluded,r=>`- ${r[0]} · ${r[1]} · ${r[2]} · Reason: ${r[3]}`,`- None`)}\n\n3. OUTSTANDING QUESTIONS\n${list(m.questions,r=>`- ${r[0]} (${r[1]}): ${r[2]}`,`- None`)}\n\n4. ADVISER NOTES\n${list(m.notes,r=>`- ${r[0]} [${r[1]}]: ${r[2]}${r[3]?` (${r[3]})`:``}`,`- No adviser notes recorded`)}\n\n5. NEXT ACTIONS\n${list(m.actions,r=>`- ${r[2]}`,`- No follow-up actions recorded`)}\n\nPrepared for adviser review. Not financial advice; nothing has been sent.`;
+  return `${y.firm.toUpperCase()}\nANNUAL REVIEW 2026\n${y.household} · as at ${y.asAt}\n${m.status}\n\n1. YOUR POSITION\nGross assets: ${m.position.gross} (${m.position.grossNote})\nMortgage: ${m.position.liabilities} (${m.position.liabilitiesNote})\n${m.position.netLabel}: ${m.position.net}\n${m.position.netNote}\n\nComponents included\n${list(m.position.components,r=>`- ${r[0]}: ${r[1]} · ${r[2]} · ${r[3]}`,`- None`)}${m.position.excludedComponents.length?`\nComponents excluded\n${m.position.excludedComponents.map(r=>`- ${r[0]}: ${r[1]} · ${r[3]}`).join(`\n`)}`:``}\n\nChanges since last review\n${list(m.position.changes,r=>`- ${r[0]}: ${r[1]} · ${r[2]}`,`- None in this pack`)}\n\n2. SOURCES USED\n${list(m.used,r=>`- ${r[0]} · ${r[1]} · ${r[3]} · ${r[2]}`,`- None`)}\n\nSOURCES EXCLUDED\n${list(m.excluded,r=>`- ${r[0]} · ${r[1]} · ${r[2]} · Reason: ${r[3]}`,`- None`)}\n\n3. OUTSTANDING QUESTIONS\n${list(m.questions,r=>`- ${r[0]} (${r[1]}): ${r[2]}`,`- None`)}\n\n4. ADVISER NOTES\n${list(m.notes,r=>`- ${r[0]} [${r[1]}]: ${r[2]}${r[3]?` (${r[3]})`:``}`,`- No adviser notes recorded`)}\n\n5. NEXT ACTIONS\n${list(m.actions,r=>`- ${r[2]}`,`- No follow-up actions recorded`)}\n\nPrepared for adviser review. Not financial advice; nothing has been sent.`;
 }
 function Se() {
   let [e, t] = (0, _.useState)(5),
@@ -16826,7 +16830,7 @@ function Se() {
             children: [
               (0, T.jsxs)(`span`, {
                 className: `overline`,
-                children: [`Worked example as at `, y.asAt],
+                children: [`As at `, y.asAt],
               }),
               (0, T.jsxs)(`h2`, {
                 children: [f, ` sources current · `, m, ` need attention`],
@@ -16907,7 +16911,7 @@ function Se() {
                 children: [
                   (0, T.jsx)(`span`, { children: y.firm.toUpperCase() }),
                   (0, T.jsx)(`small`, {
-                    children: `ANNUAL REVIEW · 2026 · SYNTHETIC`,
+                    children: `ANNUAL REVIEW · 2026`,
                   }),
                   (0, T.jsx)(`h2`, { children: y.household }),
                   (0, T.jsx)(`p`, {
@@ -17020,7 +17024,7 @@ function Se() {
                       ? `This is a client estimate, not an independent valuation.`
                       : c.state === `Stale`
                         ? `The 2024 valuation is historical evidence and must not be presented as current.`
-                        : `The source is current for this fixed worked example and appears in the numbered register.`,
+                        : `The source is current and appears in the numbered register.`,
               }),
               (0, T.jsxs)(`label`, {
                 children: [
@@ -17116,7 +17120,7 @@ function Se() {
         children: [
           (0, T.jsx)(`span`, { children: y.firm.toUpperCase() }),
           (0, T.jsx)(`small`, {
-            children: `ANNUAL REVIEW · 2026 · WORKED EXAMPLE`,
+            children: `ANNUAL REVIEW · 2026`,
           }),
           (0, T.jsx)(`h2`, {
             id: `annual-preview-title`,
@@ -17304,7 +17308,7 @@ function k() {
                           (0, T.jsx)(`span`, {}),
                           (0, T.jsx)(`span`, {}),
                           (0, T.jsx)(`b`, {
-                            children: `EXAMPLE FINANCIAL PLANNING · OPERATIONS HOME`,
+                            children: `HARTWELL FINANCIAL PLANNING · OPERATIONS HOME`,
                           }),
                         ],
                       }),

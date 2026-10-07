@@ -1,71 +1,134 @@
-// The featured vault: 12 products, in the recommended order (audit 29 Sept 2026).
-// Products not listed here stay reachable at their existing tool URLs but are not shown on the page.
-// film: 'new' = site-template film page (#film/<id>); otherwise the legacy film id in PRODUCT_FILMS.
-const PROBLEMS=[
-  {id:'all',name:'All'},
-  {id:'win',name:'Win more work'},
-  {id:'admin',name:'Reduce administration'},
-  {id:'costs',name:'Control costs'},
-  {id:'service',name:'Improve client service'},
-];
-const FEATURED_VAULT=[
-  {id:'proposal',title:'Proposal and Quote Agent',sector:'Professional services',ind:['sales','any'],problems:['win'],
-   line:'Keeps scope, discount, margin and approval in step before a proposal goes out.',
-   img:'films/v3/proposal-and-quote-agent-poster.jpg',tool:'demos/proposal-quote-agent/',legacyFilm:'proposal'},
-  {id:'fact-find-writer',title:'Fact Find Writer',sector:'Financial advice',ind:['financial'],problems:['admin','service'],
-   line:'Reads meeting transcripts and fact-find documents, proposes client-record updates with the source behind each one, and writes only what the adviser approves.',
-   img:'films/v3/fact-find-writer-poster.jpg',tool:null},
-  {id:'invoice',title:'Invoice Operations Agent',sector:'Finance',ind:['any','financial'],problems:['costs','admin'],
-   line:'Separates routine invoices from the exceptions that need judgement, such as changed bank details, and records who decided what.',
-   img:'films/v3/invoice-operations-agent-poster.jpg',tool:'demos/invoice-operations-agent/',legacyFilm:'invoice'},
-  {id:'quote',title:'Drawing-to-Quote Engine',sector:'Construction',ind:['construction'],problems:['win'],
-   line:'Turns reviewed drawing measurements into scaffold quantities and a quote you can trace back to the page.',
-   img:'films/v3/drawing-to-quote-engine-poster.jpg',tool:'demos/innate-scaffolding-quote-engine/',legacyFilm:'quote'},
-  {id:'retail',title:'Retail Market Intelligence',sector:'Retail',ind:['retail'],problems:['win'],
-   line:'Compares 1,236 dated product records across retailers to show where a range and its pricing sit in the market.',
-   img:'img/cases/v3/retail.jpg',tool:'demos/innate-retail-intelligence/',legacyFilm:'retail'},
-  {id:'listing-inbox',title:'Availability & Listing Inbox',sector:'Real estate',ind:['real-estate'],problems:['admin'],
-   line:'Applies the listing changes a source supports, holds back what it does not, and prepares the question that resolves it.',
-   img:'img/cases/v3/listing-inbox.jpg',tool:'demos/innate-real-estate-listing-inbox/',legacyFilm:'listing-inbox'},
-  {id:'annual',title:'Annual Review Pack Studio',sector:'Financial advice',ind:['financial'],problems:['service','admin'],
-   line:'Builds the annual review pack from the client’s sources and shows what cannot be relied on yet.',
-   img:'img/cases/v3/annual.jpg',tool:'demos/innate-wealth-annual-review/',legacyFilm:'annual'},
-  {id:'payments',title:'Applications & Payment Control',sector:'Construction',ind:['construction'],problems:['costs'],
-   line:'Tracks every application from work completed to certified to paid, so each gap has a status and an owner.',
-   img:'img/cases/v3/payments.jpg',tool:'demos/innate-scaffolding-payment-control/',legacyFilm:'payments'},
-  {id:'assessment',title:'Strategic AI Assessment',sector:'Any industry',ind:['any'],problems:['win','admin','costs','service'],
-   line:'How we start: evidence from the business, ranked opportunities and a sequenced roadmap.',
-   img:'img/cases/v3/assessment.jpg',tool:'demos/innate-example-audit/',legacyFilm:'assessment'},
-  {id:'matcher',title:'Property Matcher & Shortlist Builder',sector:'Real estate',ind:['real-estate'],problems:['service'],
-   line:'Matches a client brief to available space and builds a shortlist with clear trade-offs and caveats.',
-   img:'img/cases/v3/matcher.jpg',tool:'demos/innate-real-estate-property-matcher/',legacyFilm:'matcher'},
-  {id:'crew',title:'Crew Readiness & Labour Planner',sector:'Construction',ind:['construction'],problems:['costs'],
-   line:'Checks every crew member’s tickets and availability against the job before a gang is allocated.',
-   img:'img/cases/v3/crew.jpg',tool:'demos/innate-scaffolding-crew-profiles/',legacyFilm:'crew'},
-  {id:'variations',title:'Site Request & Variations Agent',sector:'Construction',ind:['construction'],problems:['costs'],
-   line:'Checks a site request against the contract, evidence and rules before it becomes a variation.',
-   img:'img/cases/v3/variations.jpg',tool:'demos/innate-scaffolding-variations-agent/',legacyFilm:'variations'},
-];
-// New films produced to the launch standard. Filled in as each film is approved.
-const NEW_FILMS={
-  'proposal':{src:'films/v3/proposal-and-quote-agent.mp4',vtt:'films/v3/proposal-and-quote-agent.vtt',poster:'films/v3/proposal-and-quote-agent-poster.jpg',duration:131,summary:'Scope, discount, margin and approval stay in step, so a proposal only goes out once the commercial position has been checked.'},
-  'quote':{src:'films/v3/drawing-to-quote-engine.mp4',vtt:'films/v3/drawing-to-quote-engine.vtt',poster:'films/v3/drawing-to-quote-engine-poster.jpg',duration:141,summary:'A full drawing pack becomes reviewed measurements, scaffold quantities and a quote you can trace back to the page.'},
-  'invoice':{src:'films/v3/invoice-operations-agent.mp4',vtt:'films/v3/invoice-operations-agent.vtt',poster:'films/v3/invoice-operations-agent-poster.jpg',duration:102,summary:'Routine supplier invoices are matched and staged; the risky ones, like a changed bank account, come to one queue with the reason, a recommendation and a record of every decision.'},
-  'fact-find-writer':{src:'films/v3/fact-find-writer.mp4',vtt:'films/v3/fact-find-writer.vtt',poster:'films/v3/fact-find-writer-poster.jpg',duration:118,summary:'Everything a client hands over after a review, handwritten fact find, photos of ID and payslips, statements, spreadsheets, the meeting transcript and the adviser\'s voice note, becomes a complete, current client record ready to check, with nobody typing it in.'},
-};
+// Case studies: the approved list of 16 (sign-off pack, Oct 2026), in page order.
+// The 4 flagships (film: true) come first and open at #film/<id>; the rest open at #case/<id>.
+// Titles are the approved stat-first titles, used verbatim. Figures marked "est." keep "est."
+// wherever shown, and the assumption behind each estimate is shown on the case page (note).
+// Systems not listed here stay reachable at their existing tool URLs but are not shown on the page.
 const VAULT_INDUSTRIES=[
-  {id:'all',name:'All industries'},
+  {id:'all',name:'All'},
   {id:'financial',name:'Financial services'},
-  {id:'construction',name:'Construction'},
   {id:'real-estate',name:'Real estate'},
   {id:'retail',name:'Retail'},
+  {id:'construction',name:'Construction'},
   {id:'any',name:'Any industry'},
 ];
+const Q_WATCH={q:'It is not the email being drafted. That is the win. It is the fact that the company just starts remembering all of our customers as individuals.',who:'Operations Director, luxury watch dealer'};
+const Q_BEAUTY={q:'These builds are absolutely game changing. This will help us sell our business and increase our valuation.',who:'Senior Leader, beauty and retail supplier'};
+const FEATURED_VAULT=[
+  {id:'fact-find-writer',film:true,name:'Fact Find Writer',ind:'financial',sector:'Financial services',
+   title:'200+ hours a year of Intelliflo data entry removed for a UK financial advice firm',
+   client:'A UK financial advice firm',tool:null,
+   problem:['Every client meeting, new or review, ends the same way: hours of typing it all into Intelliflo. The handwritten fact find, photos of ID and payslips, pension statements, spreadsheets, the meeting transcript and the adviser’s voice note from the car all have to be keyed in by hand.','Across the year, that is over 200 hours of data entry, time that should go on the work only an adviser can do.'],
+   built:['Fact Find Writer takes in everything from the meeting and, about a minute later, proposes a complete fact find ready to check, with the source behind each change.','It follows the conversation, so a figure corrected mid-meeting is the one it uses. Where the paperwork and the meeting disagree, it shows both. Where a figure was never given, it writes nothing and waits for it. The adviser checks the proposed changes beside the existing record, and only what they approve is written to Intelliflo.'],
+   stats:[['200+ hrs','of Intelliflo data entry removed every year'],['About 1 min','from meeting material to a fact find ready to check'],['Adviser-approved','every change checked before it is written to Intelliflo']],
+   private:'Fact Find Writer runs on client data, so it is demonstrated privately. Book a call for a live walkthrough.'},
+  {id:'client-intelligence',film:true,name:'Client Intelligence System',ind:'retail',sector:'Luxury retail',
+   title:'15+ hours a week of follow-up and CRM entry removed for London’s leading luxury watch dealer',
+   client:'London’s leading luxury watch dealer',tool:'demos/client-intelligence/',
+   problem:['Client knowledge lived in salespeople’s heads. Every client conversation created work: notes to write up, records to update, follow-ups to send. Fifteen hours a week of it.','Follow-ups took days, and most client interactions were never logged at all.'],
+   built:['A client intelligence system that works inside the existing CRM and email. The salesperson writes the note they would write anyway, and it picks out what matters, such as the budget, the dial and the material, as proposed profile updates to accept.','It then finds the right piece in stock and drafts a personal follow-up. Once checked and sent, the follow-up sits on the client’s record for whoever they speak to next.'],
+   stats:[['15+ hrs','of follow-up and CRM entry removed every week'],['Under 5 min','from client conversation to personalised follow-up, down from days'],['5×','more client interactions logged']],
+   quote:Q_WATCH},
+  {id:'enquiry',film:true,name:'Enquiry-to-Viewing Desk',ind:'real-estate',sector:'Real estate',
+   title:'Every enquiry turned into a checked brief and a reply, est. 6 hours a week back per broker',
+   tool:'demos/innate-real-estate-enquiry-desk/',
+   problem:['Every property enquiry, whether an email, a call or a web form, gets retyped into a brief by hand. Then it gets chased for whatever is missing, such as a budget with no clear basis.','That is hours every week for each broker, spent before a single viewing is booked.'],
+   built:['The desk reads the email, the call or the web form and builds a structured brief, with the original message kept beside it. Each field shows how confident it is, and anything unclear is flagged rather than guessed.','It drafts the one clarifying question that matters. When the client replies, the answer goes into the brief for review. Once the broker confirms the brief, the property search starts from it.'],
+   stats:[['Est. 6 hrs','back every week, per broker'],['Every enquiry','turned into a checked brief and a reply'],['1 question','drafted for the gap that matters, not a form to fill in']],
+   note:'Estimate: 20 enquiries a week × 18 minutes of retyping and chasing each.'},
+  {id:'proposal',film:true,name:'Proposal and Quote Agent',ind:'any',sector:'Any industry',
+   title:'Proposals in est. 20 minutes, and none below the 35% margin floor without partner sign-off',
+   tool:'demos/proposal-quote-agent/',
+   problem:['Every proposal takes half a day: rate cards, scope, and chasing approval by text.','And in the rush, margin slips. In the scenario shown, a 12% discount takes the margin from 39% to 30%, below the firm’s 35% floor, without anyone with authority deciding it.'],
+   built:['The agent reads the client brief and pulls out every requirement, with the line it came from. It prices the work from the firm’s rate card in seconds and shows the margin live as the discount moves.','Below the 35% floor, the proposal goes to the partner for sign-off. Above it, it is ready to send. Once it is sent, the price is locked.'],
+   stats:[['Est. 20 min','per proposal, down from est. half a day'],['35% floor','no proposal goes below it without partner sign-off'],['39% → 30%','where a 12% discount would have taken the margin, caught before sending']],
+   note:'Estimate: about half a day per proposal before, about 20 minutes after.'},
+
+  {id:'annual',name:'Annual Review Pack Studio',ind:'financial',sector:'Financial services',
+   title:'Est. 2.5 hours saved on every annual review pack',tool:'demos/innate-wealth-annual-review/',
+   problem:['An annual review starts with information from several places, and not all of it is current. Pulling the pack together by hand, and working out what can be relied on, takes hours for every client.'],
+   built:['Annual Review Pack Studio brings the client’s sources into one review pack and shows which are current, incomplete or stale.','A missing field, such as a pension exit penalty, is recorded with the confirmation needed before that evidence is relied on. The pack previews with its reviewed sources, calculations and notes, and the remaining gaps stay visible alongside the material that is ready for discussion.'],
+   stats:[['Est. 2.5 hrs','saved on every annual review pack'],['Est. 3 hrs → 30 min','to prepare the pack']],
+   note:'Estimate: pack preparation of about 3 hours by hand, about 30 minutes with the studio.'},
+  {id:'meeting',name:'Meeting Actions & Client Follow-up',ind:'financial',sector:'Financial services',
+   title:'Est. 40 minutes of admin removed after every client meeting',tool:'demos/innate-wealth-meeting-actions/',
+   problem:['After every client meeting come the notes, the tasks and the follow-up email. It takes the best part of an hour, and commitments made in the room can slip between meetings.'],
+   built:['Meeting Actions turns the meeting transcript into proposed tasks, each with an owner and the supporting transcript still in view. Anything missing, such as a deadline, is set before a task is accepted.','An editable client follow-up is prepared alongside, so the reviewed actions and outstanding questions go out together and can be tracked beyond the meeting.'],
+   stats:[['Est. 40 min','of admin removed after every client meeting'],['Est. 45 min → 5 min','notes, tasks and follow-up, down to a review']],
+   note:'Estimate: about 45 minutes of notes, tasks and follow-up email per meeting, down to a 5-minute review.'},
+  {id:'listing-inbox',name:'Availability & Listing Inbox',ind:'real-estate',sector:'Real estate',
+   title:'Est. 4 hours a week of listing updates handled, with every conflict held back for a person',tool:'demos/innate-real-estate-listing-inbox/',
+   problem:['Brochures, spreadsheets and availability emails each change part of a property record: the area, the rent, the service charge, the availability date. Keeping listings current by hand takes hours every week, and a change the source does not actually support can slip into the record.'],
+   built:['The inbox shows current and proposed values side by side, against the source. Supported changes are accepted one by one.','Anything the source does not support, such as a business-rates update, is held back for a person, with a confirmation request prepared for the missing information. The record updates only with the decisions the team has made.'],
+   stats:[['Est. 4 hrs','of listing updates handled every week'],['Every conflict','held back for a person, never written automatically']],
+   note:'Estimate: 30 listing updates a week × 8 minutes each.'},
+  {id:'matcher',name:'Property Matcher & Shortlist Builder',ind:'real-estate',sector:'Real estate',
+   title:'Client shortlists in est. 10 minutes instead of an hour',tool:'demos/innate-real-estate-property-matcher/',
+   problem:['A good shortlist explains the trade-offs, and building one by hand, matching the brief against available space and writing up each option, takes around an hour per client.'],
+   built:['Property Matcher brings the client brief and candidate properties together, so the broker can see fit and compromises at a glance.','The broker puts the strongest viewing candidate first, adds commentary on timing, flexibility and open questions, and prepares a shortlist the client can discuss. The order and the recommendation stay the broker’s call.'],
+   stats:[['Est. 10 min','to build a client shortlist'],['Est. 60 min','to build the same shortlist by hand']],
+   note:'Estimate: a manual shortlist takes about 60 minutes.'},
+  {id:'trends',name:'Trend Intelligence Platform',ind:'retail',sector:'Beauty & retail',
+   title:'Weeks of trend research cut to under 4 hours for a £50m beauty supplier',
+   client:'A £50m beauty supplier to M&S, Tesco and Next',tool:'demos/trend-intelligence/',
+   problem:['Each trend cycle took the senior team 2 to 3 weeks of manual research across around 20 sources, time taken away from strategy and clients.'],
+   built:['A platform that monitors over 1,000 sources and drafts trend reports for the team to refine.','The team opens a trend, inspects the evidence behind it and shortlists the ideas worth pursuing. Selected signals become an opportunity brief with product concepts and practical questions for buyer conversations and sample development.'],
+   stats:[['Under 4 hrs','per trend cycle, down from 2 to 3 weeks'],['20 → 1,000+','sources monitored'],['Senior time','redirected to strategy and client relationships']],
+   quote:Q_BEAUTY},
+  {id:'plm',name:'Product Operating Backbone',ind:'retail',sector:'Beauty & retail',
+   title:'200+ hours a month of product admin removed, with an est. £250k in reorder savings',
+   client:'The same £50m beauty supplier',tool:'demos/product-backbone/',
+   problem:['Product data was spread across Excel files and email threads, and supplier errors were driving costly reorders.'],
+   built:['A single source of truth for product data, with direct supplier portal access: specifications, suppliers, order quantities and testing in one working record.','Change an order quantity and the purchase cost and retail value recalculate before the specification is saved. A missing test report stays a release blocker, and supplier packs go out with quantities, costs, lead times and outstanding tests. One of 10 builds across a 12-month engagement.'],
+   stats:[['200+ hrs','of product admin removed every month'],['Est. £250k','in annual reorder savings'],['10 builds','across a 12-month engagement']],
+   quote:Q_BEAUTY},
+  {id:'quote',name:'Drawing-to-Quote Engine',ind:'construction',sector:'Construction',
+   title:'£6,294 kept on every 40-plot phase, with every quote traced back to the drawing',tool:'demos/innate-scaffolding-quote-engine/',
+   problem:['One house type from one housebuilder can be a 27-page drawing pack. The estimator finds the few pages that matter for scaffold, hunts for the right dimension, works it out in pencil and types it again into the estimating system.','Misread one line, such as a diagonal check taken as a wall length, and the quote is short on every plot. Across a 40-plot phase, that is £6,294 given away before the first tube goes up.'],
+   built:['Drawing-to-Quote Engine takes the whole pack, finds the pages that matter and proposes every scaffold measurement beside the line on the page it came from, so the estimator can see what each number is.','Quantities and price follow from the reviewed measurements. Where the drawing does not say, it leaves the field empty and will not price until someone fills it. The rate band stays a commercial call for the estimator, and every line of the summary carries its quantity, unit and source.'],
+   stats:[['£6,294','kept on every 40-plot phase'],['Every figure','traced back to the drawing it came from']]},
+  {id:'payments',name:'Applications & Payment Control',ind:'construction',sector:'Construction',
+   title:'Every application tracked from completed to paid, est. 1 day a month of chasing removed',tool:'demos/innate-scaffolding-payment-control/',
+   problem:['Completed work does not always move smoothly into payment. Following each application through certificates to cash, and chasing the gaps, is a day a month of manual checking.'],
+   built:['Applications & Payment Control connects completed, approved, applied, certified and paid values for every application.','An under-certified application shows exactly where the value stopped progressing, with the evidence comparison needed before challenging the certificate. The next action is approved internally and recorded in an audit trail, so every gap has a status and an owner.'],
+   stats:[['Est. 1 day','of chasing removed every month'],['Every application','tracked from completed to paid']],
+   note:'Estimate: about 8 hours a month spent chasing certificates and payments by hand.'},
+  {id:'crew',name:'Crew Readiness & Labour Planner',ind:'construction',sector:'Construction',
+   title:'Est. 3 hours a week of crew checks removed, with every ticket checked before a gang goes out',tool:'demos/innate-scaffolding-crew-profiles/',
+   problem:['Choosing a crew means checking more than who is free. Cards, certificates and availability were checked by hand against each job, every week.'],
+   built:['Crew Readiness brings worker availability, certificates and site requirements into one planning view.','Change the requirement, for example two scaffolders with first-aid cover, and the gang comparison responds. The reasons behind each ranking, from travel and availability to required tickets, stay visible, so the manager allocates with readiness in view.'],
+   stats:[['Est. 3 hrs','of crew checks removed every week'],['Every ticket','checked before a gang goes out']],
+   note:'Estimate: about 3 hours a week checking cards and availability by hand.'},
+  {id:'variations',name:'Site Request & Variations Agent',ind:'construction',sector:'Construction',
+   title:'Every WhatsApp site request checked against the contract before it becomes a variation',tool:'demos/innate-scaffolding-variations-agent/',
+   problem:['A request from site, such as moving an access tower, arrives on WhatsApp and can affect design, scope and programme. Without a check, an unreviewed price or requested date can turn into an agreed variation.'],
+   built:['The agent keeps the original conversation and attachments together and compares the request with the issued drawing, design note and priced scope.','The checks show where a technical or commercial decision is needed. The prepared record carries the proposed questions, impacts and review routing, so the team gets a structured variation pack.'],
+   stats:[['Every request','checked against the contract before it becomes a variation']]},
+  {id:'invoice',name:'Invoice Operations Agent',ind:'any',sector:'Any industry',
+   title:'£14,820 lookalike-domain payment stopped before it left the account',tool:'demos/invoice-operations-agent/',
+   problem:['Most supplier invoices are routine, and the risky one usually looks routine too. In the case shown, a £14,820 invoice came from a known supplier with the same layout, but the bank details had changed, following an email from a lookalike domain three days earlier.'],
+   built:['Invoice Operations Agent checks every invoice against the order and what was delivered, and gets the routine ones ready to pay.','Anything it will not pay without a person comes to one queue, with the reason and a recommendation. For a changed bank account, nobody can approve the payment until a callback on the number already held is recorded, and every decision stays on the record.'],
+   stats:[['£14,820','lookalike-domain payment stopped before it left the account'],['One queue','for the invoices that need a person, with the reason and a recommendation']]},
+  {id:'sales',name:'Sales Performance Dashboard',ind:'any',sector:'Sales & coaching',
+   title:'Every sales call analysed, with an est. 15-20% lift in conversion',
+   client:'A sales coaching platform',tool:'demos/sales-performance/',
+   problem:['Managers could only review an estimated 10 to 15% of sales calls, so coaching ran on instinct, and prep took around 2 hours per manager every week.'],
+   built:['Call analysis that reviews every conversation and shows each manager where deals are being lost.','Each assessment, from discovery to objections and agreed next steps, points back to the words that support it. The manager picks one behaviour to practise, gives it an owner and a review date, and saves it with the evidence.'],
+   stats:[['100%','of calls analysed, up from an est. 10 to 15%'],['Est. 15–20%','conversion lift within 3 months'],['2 hrs → 20 min','coaching prep per manager, per week']]},
+];
+// Flagship films (launch standard, v4). duration is a placeholder until each render is final.
+const NEW_FILMS={
+  'fact-find-writer':{src:'films/v4/fact-find-writer.mp4',vtt:'films/v4/fact-find-writer.vtt',poster:'films/v4/fact-find-writer-poster.jpg',duration:75},
+  'client-intelligence':{src:'films/v4/client-intelligence.mp4',vtt:'films/v4/client-intelligence.vtt',poster:'films/v4/client-intelligence-poster.jpg',duration:75},
+  'enquiry':{src:'films/v4/enquiry.mp4',vtt:'films/v4/enquiry.vtt',poster:'films/v4/enquiry-poster.jpg',duration:75},
+  'proposal':{src:'films/v4/proposal.mp4',vtt:'films/v4/proposal.vtt',poster:'films/v4/proposal-poster.jpg',duration:75},
+};
+FEATURED_VAULT.forEach(v=>{v.img='img/cases/v4/'+v.id+'.jpg';});
 function vaultFilm(v){
-  if(NEW_FILMS[v.id])return {kind:'new',href:'#film/'+v.id,duration:NEW_FILMS[v.id].duration};
+  if(v.film&&NEW_FILMS[v.id])return {href:'#film/'+v.id,duration:NEW_FILMS[v.id].duration};
   return null;
 }
+function caseHref(v){return vaultFilm(v)?'#film/'+v.id:'#case/'+v.id}
 function fmtDur(s){if(!s)return '';s=Math.round(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
-function vaultList(problem,industry){
-  return FEATURED_VAULT.filter(v=>(problem==='all'||v.problems.includes(problem))&&(industry==='all'||v.ind.includes(industry)));
+function vaultList(industry){
+  return FEATURED_VAULT.filter(v=>industry==='all'||v.ind===industry);
 }

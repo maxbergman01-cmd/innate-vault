@@ -66,5 +66,4 @@ function filteredCases(workflow='all', industry='all') {
 function vaultHash(workflow, industry) {
   return '#case-studies/workflow/' + workflow + '/' + industry;
 }
-function productFilm(c) { return typeof PRODUCT_FILMS === 'undefined' ? null : PRODUCT_FILMS.find(f=>f.id===c.tourId); }
-function demoPath(c) { const film=productFilm(c); return film?.ready ? film.page : c.tourId === 'client' ? 'films/client-intelligence.html' : c.tourId ? 'experiences/player.html?demo='+c.tourId : c.localDemo || 'demos/' + new URL(c.demo).hostname.split('.')[0] + '/'; }
+function demoPath(c) { return c.localDemo || (c.tourId ? 'experiences/player.html?demo='+c.tourId : 'demos/' + new URL(c.demo).hostname.split('.')[0] + '/'); }

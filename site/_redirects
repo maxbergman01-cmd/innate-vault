@@ -1,0 +1,9 @@
+# SPA fallbacks for demo apps that use client-side (React Router) routes.
+# Netlify serves any existing file (assets, audio, index.html) before these
+# rules apply, so the 200 rewrites only catch deep links such as
+# /demos/proposal-quote-agent/opportunities/IN-2114 on reload.
+/demos/proposal-quote-agent/*        /demos/proposal-quote-agent/index.html        200
+/demos/invoice-operations-agent/*    /demos/invoice-operations-agent/index.html    200
+/demos/outbound-email-agent-sigma/*  /demos/outbound-email-agent-sigma/index.html  200
+/demos/reporting-recon-agent/*       /demos/reporting-recon-agent/index.html       200
+/demos/voice-sales-agent-five/*      /demos/voice-sales-agent-five/index.html      200

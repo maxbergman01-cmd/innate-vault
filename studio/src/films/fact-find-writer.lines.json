@@ -1,0 +1,58 @@
+[
+ {
+  "file": "line01.mp3",
+  "start": 3,
+  "dur": 5.67,
+  "text": "Every client meeting ends the same way. Hours of typing it all into Intelliflo. Over two hundred hours a year.",
+  "placed": 3
+ },
+ {
+  "file": "line02.mp3",
+  "start": 10,
+  "dur": 1.52,
+  "text": "So we built Fact Find Writer.",
+  "placed": 10
+ },
+ {
+  "file": "line03.mp3",
+  "start": 13,
+  "dur": 6.09,
+  "text": "Put in everything from the meeting. The transcript, the handwritten fact find, the photos, even the voice note from the car.",
+  "placed": 13
+ },
+ {
+  "file": "line04.mp3",
+  "start": 24,
+  "dur": 2.74,
+  "text": "About a minute later, the whole fact find is ready to check.",
+  "placed": 24
+ },
+ {
+  "file": "line05.mp3",
+  "start": 30,
+  "dur": 6.35,
+  "text": "It follows the conversation. Where the paperwork and the meeting disagree, it shows you both. And if a figure was never given, it waits for it.",
+  "placed": 30
+ },
+ {
+  "file": "line06.mp3",
+  "start": 42,
+  "dur": 3.16,
+  "text": "Check it, approve it, and it's written straight into Intelliflo.",
+  "placed": 42
+ },
+ {
+  "file": "line07.mp3",
+  "start": 55,
+  "dur": 4.18,
+  "text": "That's over two hundred hours a year back, for the work only an adviser can do.",
+  "placed": 55
+ },
+ {
+  "file": "line08.mp3",
+  "start": 68,
+  "dur": 2.04,
+  "text": "The meeting ends. The typing doesn't start.",
+  "placed": 68
+ }
+]

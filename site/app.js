@@ -18,94 +18,89 @@ const ADVISORS=[{"id": "uri", "name": "Uri Meirovich", "role": "Partner · Go-to
 const $=s=>document.querySelector(s);
 const photo=m=>m.img?`<img src="img/team/${m.img.replace('.png','-sq.png')}" alt="${m.name}" loading="lazy" width="520" height="520">`:`<span class="mono">${m.mono}</span>`;
 
-// ---- featured case studies: one consistent format (context, challenge, delivered, outcome, CTA) ----
-const FEATURED=[
-  {title:'Client Intelligence System',sector:'Luxury retail',client:'A leading London luxury watch dealer',img:'call-profiler.jpg',
-   challenge:'Client knowledge lived in salespeople\'s heads. Follow-ups took days and most interactions were never logged.',
-   built:'A client intelligence system that turns every interaction into a profile and a personalised follow-up draft, inside the existing CRM and email.',
-   results:[['15+ hrs','saved every week (est.)'],['Days → 5 min','to personalised follow-up'],['5×','more interactions logged']],
-   quote:'The company just starts remembering all of our customers as individuals.',who:'Operations Director'},
-  {title:'Product Operating Backbone',sector:'Beauty & retail',client:'A £50m beauty supplier to M&S, Tesco and Next',img:'plm.jpg',
-   challenge:'Product data was spread across Excel and email threads, and supplier errors were driving costly reorders.',
-   built:'A single source of truth for product data with a direct supplier portal. One of 10 builds in a 12-month engagement.',
-   results:[['200+ hrs','saved per month (est.)'],['£250k','annual reorder savings (est.)'],['10 builds','in 12 months']],
-   quote:'This will help us sell our business and increase our valuation.',who:'Senior Leader'},
-  {title:'Trend Intelligence Platform',sector:'Beauty & retail',client:'The same £50m beauty supplier',img:'trend-scraper.jpg',
-   challenge:'Each trend cycle took the senior team 2 to 3 weeks of manual research across around 20 sources.',
-   built:'A platform that monitors over 1,000 sources and drafts trend reports for the team to refine.',
-   results:[['Weeks → 4 hrs','per trend cycle'],['1,000+','sources monitored'],['80%','less research time (est.)']],
-   quote:'These builds are absolutely game changing.',who:'Senior Leader'},
-  {title:'Sales Performance Dashboard',sector:'Coaching & sales tech',client:'A sales coaching platform',img:'call-coach.jpg',
-   challenge:'Managers could only review 10 to 15% of sales calls, so coaching ran on instinct.',
-   built:'Call analysis that reviews every conversation and shows each manager where deals are being lost.',
-   results:[['100%','of calls reviewed'],['15–20%','conversion lift (est.)'],['2 hrs → 20 min','weekly coaching prep']],
-   quote:'',who:''}
-];
-const FEATURED_TITLES=FEATURED.map(f=>f.title);
-const featCard=(f,big)=>`<article class="fc${big?' fc-big':''}">
-  <div class="fc-body">
-    <p class="fc-kicker"><span class="fc-tag">Case study</span>${f.sector}</p>
-    <h3>${f.title}</h3>
-    <p class="fc-client">${f.client}</p>
-    <dl class="fc-steps"><div><dt>Challenge</dt><dd>${f.challenge}</dd></div><div><dt>What we built</dt><dd>${f.built}</dd></div></dl>
-    <div class="fc-results">${f.results.map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('')}</div>
-    ${f.quote?`<blockquote class="fc-quote">“${f.quote}”<cite>${f.who}</cite></blockquote>`:''}
-    <a href="${demoPath(CASES.find(c=>c.title===f.title))}" target="_blank" rel="noopener" class="btn btn-mint fc-cta">${productFilm(CASES.find(c=>c.title===f.title))?.ready?'Watch product film':'Watch & try demo'}</a>
-  </div>
-  <div class="fc-shot"><img src="img/cases/${f.img}" alt="${f.title} screenshot" loading="lazy"></div>
-</article>`;
-(function(){
-  const grid=document.getElementById('feat-grid');if(grid)grid.innerHTML=FEATURED.map(f=>featCard(f,false)).join('');
-  const home=document.getElementById('feat-home');if(!home)return;
-  let i=0;
-  const draw=()=>{home.innerHTML=featCard(FEATURED[i],true)+`<div class="fc-nav"><button class="round-btn" data-d="-1" aria-label="Previous case">‹</button><span class="fc-count">${i+1} / ${FEATURED.length}</span><button class="round-btn" data-d="1" aria-label="Next case">›</button></div>`;
-    home.querySelectorAll('[data-d]').forEach(b=>b.addEventListener('click',()=>{i=(i+ +b.dataset.d+FEATURED.length)%FEATURED.length;draw()}))};
-  draw();
-})();
-
-// Vault: 12 featured products, filtered by business problem and industry.
-let csProblem='all', csInd='all';
-function vaultHashFor(problem,industry){return '#case-studies'+(problem!=='all'||industry!=='all'?'/'+problem+'/'+industry:'')}
-function vaultCard(v,i){
+// ---- case studies: grid (#case-studies) and case pages (#film/<id> flagships, #case/<id> written) ----
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let csInd='all';
+// Client line only where it adds to the title (some approved titles already name the client).
+const clientLine=v=>v.client&&!v.title.toLowerCase().includes(v.client.toLowerCase().replace(/^(a|the) /,''))?v.client:'';
+function vaultHashFor(industry){return '#case-studies'+(industry!=='all'?'/'+industry:'')}
+function vaultCard(v,lead){
   const film=vaultFilm(v);
-  const media=v.img?`<img src="${v.img}" alt="" loading="lazy">`:`<div class="vc-plate"><span>${v.title}</span></div>`;
-  const badge=film?`<span class="vc-badge">&#9654; Film${film.duration?' &middot; '+fmtDur(film.duration):''}</span>`:'';
-  const toolLink=v.tool?`<a class="${film?'vc-link':'vc-cta'}" href="${v.tool}" target="_blank" rel="noopener">Explore the example${film?' &#8599;':''}</a>`:`<a class="vc-link" href="#book">Private demonstration on request</a>`;
-  const primary=film?`<a class="vc-cta" href="${film.href}">Watch the film</a>`:'';
-  const cover=film?film.href:(v.tool||'#book');
-  const ext=!film&&v.tool?'target="_blank" rel="noopener"':'';
-  return `<article class="vc${i<4?' vc-lead':''}">
-    <a class="vc-shot" href="${cover}" ${ext} aria-label="${v.title}">${media}${badge}</a>
-    <div class="vc-body"><p class="sector">${v.sector}</p><h3>${v.title}</h3><p class="vc-line">${v.line}</p>
-    <div class="vc-foot">${primary}${toolLink}</div></div></article>`;
+  const badge=film?`<span class="vc-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg>Film${film.duration?' &middot; '+fmtDur(film.duration):''}</span>`:'';
+  return `<article class="vc${lead?' vc-lead':''}">
+    <a class="vc-link-wrap" href="${caseHref(v)}">
+      <span class="vc-shot"><img src="${v.img}" alt="" loading="lazy" width="1600" height="1000">${badge}</span>
+      <span class="vc-body"><span class="sector">${esc(v.sector)}<i aria-hidden="true">&middot;</i>${esc(v.name)}</span>
+      <span class="vc-title">${esc(v.title)}</span>
+      ${clientLine(v)?`<span class="vc-client">${esc(clientLine(v))}</span>`:''}
+      <span class="vc-more">${film?'Watch the film':'Read the case study'} <span aria-hidden="true">&rarr;</span></span></span>
+    </a></article>`;
 }
 function renderCases(){
-  $('#problem-pick').innerHTML=PROBLEMS.map(p=>`<a class="problem-option ${p.id===csProblem?'on':''}" href="${vaultHashFor(p.id,csInd)}" ${p.id===csProblem?'aria-current="true"':''}>${p.name}<b>${vaultList(p.id,csInd).length}</b></a>`).join('');
-  $('#industry-filter').innerHTML=VAULT_INDUSTRIES.map(i=>`<option value="${i.id}" ${i.id===csInd?'selected':''}>${i.name} (${vaultList(csProblem,i.id).length})</option>`).join('');
-  const list=vaultList(csProblem,csInd);
-  $('#result-count').textContent=list.length+(list.length===1?' system':' systems');
-  $('#vault-grid').innerHTML=list.map((v,i)=>vaultCard(v,(csProblem==='all'&&csInd==='all')?i:99)).join('');
+  $('#ind-pick').innerHTML=VAULT_INDUSTRIES.map(i=>`<a class="problem-option ${i.id===csInd?'on':''}" href="${vaultHashFor(i.id)}" ${i.id===csInd?'aria-current="true"':''}>${i.name}<b>${vaultList(i.id).length}</b></a>`).join('');
+  const list=vaultList(csInd);
+  $('#result-count').textContent=list.length+(list.length===1?' case study':' case studies');
+  $('#vault-grid').innerHTML=list.map(v=>vaultCard(v,!!vaultFilm(v))).join('');
   $('#cs-empty').hidden=list.length>0;
 }
-$('#industry-filter').addEventListener('change',e=>location.hash=vaultHashFor(csProblem,e.target.value));
-function renderFilm(id){
-  const v=FEATURED_VAULT.find(x=>x.id===id), f=NEW_FILMS[id];
-  if(!v||!f){location.hash='#case-studies';return;}
-  $('#film-sector').textContent=v.sector;
-  $('#film-title').textContent=v.title;
-  $('#film-line').textContent=f.summary||v.line;
-  const vid=$('#film-video');
-  if(vid.dataset.id!==id){
-    vid.dataset.id=id;vid.poster=f.poster||'';
-    vid.innerHTML=`<source src="${f.src}" type="video/mp4">${f.vtt?`<track kind="captions" src="${f.vtt}" srclang="en" label="English" default>`:''}`;
-    vid.load();vid.setAttribute('aria-label',v.title+' film');
-  }
-  const tool=$('#film-tool');
-  if(v.tool){tool.hidden=false;tool.href=v.tool}else{tool.hidden=true}
-  $('#film-note').textContent=v.tool?'':'Fact Find Writer runs on client data, so it is shown privately. Book a call for a live demonstration.';
-  document.title=v.title+' | Innate AI';
+function caseMedia(v){
+  const f=vaultFilm(v)?NEW_FILMS[v.id]:null;
+  if(!f)return `<figure class="cp-cover"><img src="${v.img}" alt="" width="1600" height="1000"></figure>`;
+  // Film first; the cover photo is the poster until the film's own poster exists, and the fallback if the film is missing.
+  return `<div class="cp-film" id="cp-film"><video id="cp-video" controls playsinline preload="metadata" poster="${v.img}" aria-label="${esc(v.name)} film">
+      <source src="${f.src}" type="video/mp4">${f.vtt?`<track kind="captions" src="${f.vtt}" srclang="en" label="English">`:''}</video>
+    <div class="cp-film-soon" hidden><span class="vc-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg>Film${f.duration?' &middot; '+fmtDur(f.duration):''}</span><p>The film is on its way. Try the tool below in the meantime.</p></div></div>`;
 }
-
+function wireFilm(v){
+  const f=NEW_FILMS[v.id],vid=$('#cp-video');if(!vid)return;
+  if(f.poster){const im=new Image();im.onload=()=>{vid.poster=f.poster};im.src=f.poster;}
+  const fail=()=>{const box=$('#cp-film');if(!box||box.classList.contains('is-missing'))return;box.classList.add('is-missing');vid.removeAttribute('controls');
+    const soon=box.querySelector('.cp-film-soon');soon.hidden=false;
+    if(!v.tool)soon.querySelector('p').textContent='The film is on its way.';};
+  const src=vid.querySelector('source');if(src)src.addEventListener('error',fail);
+  vid.addEventListener('error',fail);
+}
+function renderCase(id,asFilm){
+  const v=FEATURED_VAULT.find(x=>x.id===id);
+  if(!v){location.replace('#case-studies');return false;}
+  const film=vaultFilm(v);
+  if(asFilm&&!film){location.replace('#case/'+id);return false;}
+  if(!asFilm&&film){location.replace('#film/'+id);return false;}
+  const page=$('#page-case');
+  if(page.dataset.id!==id){
+    page.dataset.id=id;
+    $('#cp-eyebrow').innerHTML=`${esc(v.sector)}<i aria-hidden="true">&middot;</i>${esc(v.name)}`;
+    $('#cp-title').textContent=v.title;
+    const cl=$('#cp-client');cl.textContent=clientLine(v);cl.hidden=!clientLine(v);
+    $('#cp-media').innerHTML=caseMedia(v);
+    if(film)wireFilm(v);
+    const live=$('#cp-live'),frame=$('#cp-frame');
+    if(v.tool){live.hidden=false;$('#cp-embed-name').textContent=v.name;frame.title=v.name+', live example';frame.src=v.tool;}
+    else{live.hidden=true;frame.removeAttribute('src');}
+    const stats=v.stats.map(([n,l])=>`<div class="cp-stat"><b>${esc(n)}</b><span>${esc(l)}</span></div>`).join('');
+    $('#cp-body').innerHTML=`
+      <section><h2 class="cp-h">The problem</h2>${v.problem.map(p=>`<p>${esc(p)}</p>`).join('')}</section>
+      <section><h2 class="cp-h">What we built</h2>${v.built.map(p=>`<p>${esc(p)}</p>`).join('')}</section>
+      <section><h2 class="cp-h">The impact</h2><div class="cp-stats">${stats}</div>
+        ${v.note?`<p class="cp-note">${esc(v.note)} Figures marked est. are worked estimates.</p>`:''}
+        ${v.quote?`<blockquote class="cp-quote"><p>“${esc(v.quote.q)}”</p><cite>${esc(v.quote.who)}</cite></blockquote>`:''}
+        ${v.private?`<p class="cp-private">${esc(v.private)} <a class="ulink" href="#book">Book a call &rarr;</a></p>`:''}
+      </section>`;
+    const ind=VAULT_INDUSTRIES.find(i=>i.id===v.ind);
+    $('#cp-meta').innerHTML=`<dl>
+      <div><dt>Industry</dt><dd><a class="ulink" href="${vaultHashFor(v.ind)}">${esc(ind?ind.name:v.sector)}</a></dd></div>
+      ${v.client?`<div><dt>Client</dt><dd>${esc(v.client)}</dd></div>`:''}
+      <div><dt>System</dt><dd>${esc(v.name)}</dd></div>
+      <div><dt>Format</dt><dd>${film?'Film'+(v.tool?' and live tool':''):(v.tool?'Written case study and live tool':'Written case study')}</dd></div>
+    </dl><a class="btn btn-dark cp-cta" href="#book">Talk about this workflow</a>`;
+    const others=FEATURED_VAULT.filter(x=>x.id!==id);
+    const same=others.filter(x=>x.ind===v.ind),rest=others.filter(x=>x.ind!==v.ind);
+    $('#cp-more').innerHTML=same.concat(rest).slice(0,3).map(x=>vaultCard(x,false)).join('');
+  }
+  document.title=v.name+' case study | Innate AI';
+  const d=document.querySelector('meta[name="description"]');if(d)d.setAttribute('content',v.title+'.');
+  return true;
+}
 // Team & Partners: headshot, one professional description (no years), education last
 function renderPeople(sel,list){
   document.querySelector(sel).innerHTML=list.map(m=>`
@@ -632,31 +627,32 @@ document.getElementById('tTrack')&&endlessScroller(document.getElementById('tTra
 })();
 
 // tab routing
-const PAGES=['home','case-studies','film','team','media','hire','join','book'];
+const PAGES=['home','case-studies','case','team','media','hire','join','book'];
 let currentPage=null;
 function route(){
   let [pg,sub]=location.hash.slice(1).split('/');
   if(pg==='advisors')pg='team';
-  const id=PAGES.includes(pg)?pg:'home';
+  const isCase=pg==='film'||pg==='case';
+  const id=isCase?'case':PAGES.includes(pg)?pg:'home';
+  if(isCase&&!renderCase(sub,pg==='film'))return;
   document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+id));
-  document.querySelectorAll('header a[data-link]').forEach(a=>a.classList.toggle('active',a.dataset.link===id));
+  document.querySelectorAll('header a[data-link]').forEach(a=>a.classList.toggle('active',a.dataset.link===(isCase?'case-studies':id)));
   closeModal();
   if(id==='case-studies'){
+    // #case-studies/<industry>; legacy #case-studies/<problem>/<industry> and #case-studies/workflow/... fall back gracefully.
     const parts=location.hash.slice(1).split('/');
-    // Legacy links (#case-studies/<industry>, #case-studies/workflow/...) fall back gracefully.
-    const legacyInd={retail:'retail',construction:'construction','real-estate':'real-estate',financial:'financial',sales:'any',any:'any'};
-    if(PROBLEMS.some(p=>p.id===parts[1])){csProblem=parts[1];csInd=VAULT_INDUSTRIES.some(i=>i.id===parts[2])?parts[2]:'all'}
-    else{csProblem='all';csInd=legacyInd[parts[1]]||'all'}
+    const legacyInd={sales:'any'};
+    const pick=parts.slice(1).map(x=>legacyInd[x]||x).reverse().find(x=>VAULT_INDUSTRIES.some(i=>i.id===x));
+    csInd=pick||'all';
     renderCases();
   }
-  setMeta(id);
-  if(id==='film'){renderFilm(location.hash.slice(1).split('/')[1]);document.querySelector('header a[data-link="case-studies"]')?.classList.add('active')}
-  if(currentPage!==id)window.scrollTo(0,0);
-  currentPage=id;
+  if(!isCase)setMeta(id);
+  const key=isCase?location.hash:id;
+  if(currentPage!==key)window.scrollTo(0,0);
+  currentPage=key;
 }
 const META={
   home:['Innate AI | AI that actually changes your business','London AI consultancy. We find where AI pays back in your business, then build it into the tools your team already uses.'],
-  film:['Product film | Innate AI','See an Innate AI system at work.'],
   'case-studies':['Case studies | Innate AI','Real AI systems built for luxury retail, beauty, construction, real estate and financial services, with the results each one delivered.'],
   team:['Team and partners | Innate AI','Strategy, delivery and engineering from McKinsey, Deloitte, Capgemini Invent, Imperial and Siemens, plus our own AI development team.'],
   media:['Podcast and video | Innate AI','The Innate AI podcast and one-minute clips on where AI actually pays back inside real businesses.'],
