@@ -48,12 +48,12 @@ export const Stat: React.FC<{at?: number; eyebrow: string; big: React.ReactNode;
 };
 
 // "So we built ..." lockup over defocused footage.
-export const Lockup: React.FC<{name: string; sub: string}> = ({name, sub}) => {
+export const Lockup: React.FC<{name: string; sub: string; size?: number}> = ({name, sub, size = 132}) => {
   const w = useP(0.35, 0.9);
   return (
     <AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', textAlign: 'center'}}>
       <Rise at={0.05}><div style={{fontFamily: F.eyebrow, fontWeight: 600, fontSize: 22, letterSpacing: '.3em', color: C.mint}}>{sub.toUpperCase()}</div></Rise>
-      <Rise at={0.15} y={36}><div style={{fontFamily: F.display, fontWeight: 600, fontSize: 132, letterSpacing: '-0.05em', color: C.white, marginTop: 18, lineHeight: 1}}>{name}</div></Rise>
+      <Rise at={0.15} y={36}><div style={{fontFamily: F.display, fontWeight: 600, fontSize: size, letterSpacing: '-0.05em', color: C.white, marginTop: 18, lineHeight: 1}}>{name}</div></Rise>
       <div style={{width: 340 * w, height: 4, borderRadius: 2, background: C.mint, marginTop: 34}} />
     </AbsoluteFill>
   );

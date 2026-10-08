@@ -1,58 +1,50 @@
 [
  {
-  "file": "line01.mp3",
   "start": 3,
-  "dur": 8.62,
-  "text": "Every proposal takes half a day. Rate cards, scope, chasing approval by text. And in the rush, a twelve percent discount takes the margin from thirty-nine to thirty.",
-  "placed": 3
+  "placed": 3,
+  "dur": 8.12,
+  "text": "Every proposal takes half a day. Rate cards, scope, chasing approval by text. And in the rush, a twelve percent discount takes the margin from thirty-nine to thirty."
  },
  {
-  "file": "line02.mp3",
   "start": 11,
+  "placed": 11.57,
   "dur": 1.99,
-  "text": "So we built Proposal and Quote Agent.",
-  "placed": 12.02
+  "text": "So we built Proposal and Quote Agent."
  },
  {
-  "file": "line03.mp3",
   "start": 14,
-  "dur": 4.13,
-  "text": "It reads the brief and pulls out every requirement, with the line it came from.",
-  "placed": 14.41
+  "placed": 14.01,
+  "dur": 3.58,
+  "text": "It reads the brief and pulls out every requirement, with the line it came from."
  },
  {
-  "file": "line04.mp3",
   "start": 24,
-  "dur": 2.53,
-  "text": "It prices the work from your rate card in seconds.",
-  "placed": 24
+  "placed": 24,
+  "dur": 2.4,
+  "text": "It prices the work from your rate card in seconds."
  },
  {
-  "file": "line05.mp3",
   "start": 31,
-  "dur": 5.46,
-  "text": "Move the discount, and the margin moves with it. Below the floor, it goes to the partner. Above it, it's ready to send.",
-  "placed": 31
+  "placed": 31,
+  "dur": 5.8,
+  "text": "Move the discount, and the margin moves with it. Below the floor, it goes to the partner. Above it, it's ready to send."
  },
  {
-  "file": "line06.mp3",
   "start": 48,
-  "dur": 2.04,
-  "text": "And once it's sent, the price is locked.",
-  "placed": 48
+  "placed": 48,
+  "dur": 2.09,
+  "text": "And once it's sent, the price is locked."
  },
  {
-  "file": "line07.mp3",
   "start": 55,
-  "dur": 4.0,
-  "text": "Proposals out in minutes, at a price someone with authority chose.",
-  "placed": 55
+  "placed": 55,
+  "dur": 3.34,
+  "text": "Proposals out in minutes, at a price someone with authority chose."
  },
  {
-  "file": "line08.mp3",
   "start": 68,
-  "dur": 2.12,
-  "text": "The discount is a decision. Never a slip.",
-  "placed": 68
+  "placed": 68,
+  "dur": 2.22,
+  "text": "The discount is a decision. Never a slip."
  }
 ]

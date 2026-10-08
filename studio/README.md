@@ -10,7 +10,7 @@ Source for the four 75s flagship films in `site/films/v4/`.
 ## Stock footage
 Clips are free Mixkit stock (not the client). They are not committed. Download into `public/clips/<id>.mp4`:
 `https://assets.mixkit.co/videos/<id>/<id>-1080.mp4` (use `-720.mp4` if 1080 is unavailable).
-IDs: 241 3653 4547 4872 4876 5434 5595 6241 13126 23718 24217 24344 34213 39838 39839 39841 42653 42656 42664 45923 46755 48503
+IDs: 42643 42666 4700 45160 46682 49381 241 3653 4547 4872 4876 5434 5595 6241 13126 23718 24217 24344 34213 39838 39839 39841 42653 42656 42664 45923 46755 48503
 
 ## Regenerate voice and mix
 ```
@@ -26,4 +26,4 @@ npm ci
 npx remotion render src/index.ts film-fact-find-writer out/fact-find-writer.mp4 --concurrency=4 --crf=20
 ```
 `remotion.config.ts` points at a sandbox Chromium path; delete that line to use Remotion's own browser.
-Compositions: film-fact-find-writer, film-client-intelligence, film-enquiry, film-proposal.
+Compositions: film-fact-find-writer, film-trend-intelligence, film-client-intelligence, film-enquiry, film-proposal.

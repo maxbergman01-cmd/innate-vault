@@ -1,51 +1,44 @@
 [
  {
-  "file": "line01.mp3",
   "start": 3,
-  "dur": 5.8,
-  "text": "Every enquiry gets retyped into a brief by hand. Then chased for whatever's missing. That's hours, every week.",
-  "placed": 3
+  "placed": 3,
+  "dur": 5.28,
+  "text": "Every enquiry gets retyped into a brief by hand. Then chased for whatever's missing. That's hours, every week."
  },
  {
-  "file": "line02.mp3",
   "start": 10,
-  "dur": 1.99,
-  "text": "So we built the Enquiry-to-Viewing Desk.",
-  "placed": 10
+  "placed": 10,
+  "dur": 1.7,
+  "text": "So we built the Enquiry-to-Viewing Desk."
  },
  {
-  "file": "line03.mp3",
   "start": 13,
-  "dur": 4.96,
-  "text": "It reads the email, the call or the web form, and builds the brief. And where something's unclear, it says so.",
-  "placed": 13
+  "placed": 13,
+  "dur": 5.69,
+  "text": "It reads the email, the call or the web form, and builds the brief. And where something's unclear, it says so."
  },
  {
-  "file": "line04.mp3",
   "start": 27,
-  "dur": 4.83,
-  "text": "It drafts the one question that matters, and when she replies, the answer goes straight into the brief.",
-  "placed": 27
+  "placed": 27,
+  "dur": 4.68,
+  "text": "It drafts the one question that matters, and when she replies, the answer goes straight into the brief."
  },
  {
-  "file": "line05.mp3",
   "start": 40,
-  "dur": 2.77,
-  "text": "Confirm it, and the search starts from the right brief.",
-  "placed": 40
+  "placed": 40,
+  "dur": 2.59,
+  "text": "Confirm it, and the search starts from the right brief."
  },
  {
-  "file": "line06.mp3",
   "start": 52,
-  "dur": 3.71,
-  "text": "That's around six hours a week back for every broker, spent on viewings instead.",
-  "placed": 52
+  "placed": 52,
+  "dur": 3.79,
+  "text": "That's around six hours a week back for every broker, spent on viewings instead."
  },
  {
-  "file": "line07.mp3",
   "start": 65,
-  "dur": 1.62,
-  "text": "Every enquiry. Ready to view.",
-  "placed": 65
+  "placed": 65,
+  "dur": 1.85,
+  "text": "Every enquiry. Ready to view."
  }
 ]

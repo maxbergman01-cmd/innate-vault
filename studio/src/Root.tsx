@@ -4,6 +4,7 @@ import {FactFindWriterFilm} from './films/FactFindWriter';
 import {ClientIntelligenceFilm} from './films/ClientIntelligence';
 import {EnquiryFilm} from './films/Enquiry';
 import {ProposalFilm} from './films/Proposal';
+import {TrendIntelligenceFilm} from './films/TrendIntelligence';
 import {FFW1, FFW2, FFW3, FFW4, FFW5} from './frames/FactFindFrames';
 import {CI1, CI2, CI3, CI4} from './frames/ClientFrames';
 import {EQ1, EQ2, EQ3, EQ4} from './frames/EnquiryFrames';
@@ -24,5 +25,6 @@ export const Root: React.FC = () => <>
   <Composition id="film-client-intelligence" component={ClientIntelligenceFilm} durationInFrames={2250} fps={30} width={1920} height={1080} />
   <Composition id="film-enquiry" component={EnquiryFilm} durationInFrames={2250} fps={30} width={1920} height={1080} />
   <Composition id="film-proposal" component={ProposalFilm} durationInFrames={2250} fps={30} width={1920} height={1080} />
+  <Composition id="film-trend-intelligence" component={TrendIntelligenceFilm} durationInFrames={2250} fps={30} width={1920} height={1080} />
   <Composition id="film-fact-find-writer" component={FactFindWriterFilm} durationInFrames={2250} fps={30} width={1920} height={1080} />
 </>;

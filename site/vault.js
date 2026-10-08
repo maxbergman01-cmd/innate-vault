@@ -1,5 +1,5 @@
 // Case studies: the approved list of 16 (sign-off pack, Oct 2026), in page order.
-// The 4 flagships (film: true) come first and open at #film/<id>; the rest open at #case/<id>.
+// The 5 flagships (film: true) come first and open at #film/<id>; the rest open at #case/<id>.
 // Titles are the approved stat-first titles, used verbatim. Figures marked "est." keep "est."
 // wherever shown, and the assumption behind each estimate is shown on the case page (note).
 // Systems not listed here stay reachable at their existing tool URLs but are not shown on the page.
@@ -28,6 +28,13 @@ const FEATURED_VAULT=[
    built:['A client intelligence system that works inside the existing CRM and email. The salesperson writes the note they would write anyway, and it picks out what matters, such as the budget, the dial and the material, as proposed profile updates to accept.','It then finds the right piece in stock and drafts a personal follow-up. Once checked and sent, the follow-up sits on the client’s record for whoever they speak to next.'],
    stats:[['15+ hrs','of follow-up and CRM entry removed every week'],['Under 5 min','from client conversation to personalised follow-up, down from days'],['5×','more client interactions logged']],
    quote:Q_WATCH},
+  {id:'trends',film:true,name:'Trend Intelligence Platform',ind:'retail',sector:'Beauty & retail',
+   title:'Weeks of trend research cut to under 4 hours for a £50m beauty supplier',
+   client:'A £50m beauty supplier to M&S, Tesco and Next',tool:'demos/trend-intelligence/',
+   problem:['Each trend cycle took the senior team 2 to 3 weeks of manual research across around 20 sources, time taken away from strategy and clients.'],
+   built:['A platform that monitors over 1,000 sources and drafts trend reports for the team to refine.','The team opens a trend, inspects the evidence behind it and shortlists the ideas worth pursuing. Selected signals become an opportunity brief with product concepts and practical questions for buyer conversations and sample development.'],
+   stats:[['Under 4 hrs','per trend cycle, down from 2 to 3 weeks'],['20 → 1,000+','sources monitored'],['Senior time','redirected to strategy and client relationships']],
+   quote:Q_BEAUTY},
   {id:'enquiry',film:true,name:'Enquiry-to-Viewing Desk',ind:'real-estate',sector:'Real estate',
    title:'Every enquiry turned into a checked brief and a reply, est. 6 hours a week back per broker',
    tool:'demos/innate-real-estate-enquiry-desk/',
@@ -67,13 +74,6 @@ const FEATURED_VAULT=[
    built:['Property Matcher brings the client brief and candidate properties together, so the broker can see fit and compromises at a glance.','The broker puts the strongest viewing candidate first, adds commentary on timing, flexibility and open questions, and prepares a shortlist the client can discuss. The order and the recommendation stay the broker’s call.'],
    stats:[['Est. 10 min','to build a client shortlist'],['Est. 60 min','to build the same shortlist by hand']],
    note:'Estimate: a manual shortlist takes about 60 minutes.'},
-  {id:'trends',name:'Trend Intelligence Platform',ind:'retail',sector:'Beauty & retail',
-   title:'Weeks of trend research cut to under 4 hours for a £50m beauty supplier',
-   client:'A £50m beauty supplier to M&S, Tesco and Next',tool:'demos/trend-intelligence/',
-   problem:['Each trend cycle took the senior team 2 to 3 weeks of manual research across around 20 sources, time taken away from strategy and clients.'],
-   built:['A platform that monitors over 1,000 sources and drafts trend reports for the team to refine.','The team opens a trend, inspects the evidence behind it and shortlists the ideas worth pursuing. Selected signals become an opportunity brief with product concepts and practical questions for buyer conversations and sample development.'],
-   stats:[['Under 4 hrs','per trend cycle, down from 2 to 3 weeks'],['20 → 1,000+','sources monitored'],['Senior time','redirected to strategy and client relationships']],
-   quote:Q_BEAUTY},
   {id:'plm',name:'Product Operating Backbone',ind:'retail',sector:'Beauty & retail',
    title:'200+ hours a month of product admin removed, with an est. £250k in reorder savings',
    client:'The same £50m beauty supplier',tool:'demos/product-backbone/',
@@ -120,6 +120,7 @@ const NEW_FILMS={
   'fact-find-writer':{src:'films/v4/fact-find-writer.mp4',vtt:'films/v4/fact-find-writer.vtt',poster:'films/v4/fact-find-writer-poster.jpg',duration:75},
   'client-intelligence':{src:'films/v4/client-intelligence.mp4',vtt:'films/v4/client-intelligence.vtt',poster:'films/v4/client-intelligence-poster.jpg',duration:75},
   'enquiry':{src:'films/v4/enquiry.mp4',vtt:'films/v4/enquiry.vtt',poster:'films/v4/enquiry-poster.jpg',duration:75},
+  'trends':{src:'films/v4/trend-intelligence.mp4',vtt:'films/v4/trend-intelligence.vtt',poster:'films/v4/trend-intelligence-poster.jpg',duration:75},
   'proposal':{src:'films/v4/proposal.mp4',vtt:'films/v4/proposal.vtt',poster:'films/v4/proposal-poster.jpg',duration:75},
 };
 FEATURED_VAULT.forEach(v=>{v.img='img/cases/v4/'+v.id+'.jpg';});

@@ -1,51 +1,44 @@
 [
  {
-  "file": "line01.mp3",
   "start": 3,
-  "dur": 6.03,
-  "text": "Every client conversation creates work. Notes to write up, records to update, follow-ups to send. Fifteen hours a week of it.",
-  "placed": 3
+  "placed": 3,
+  "dur": 6.64,
+  "text": "Every client conversation creates work. Notes to write up, records to update, follow-ups to send. Fifteen hours a week of it."
  },
  {
-  "file": "line02.mp3",
   "start": 10,
-  "dur": 1.75,
-  "text": "So we built Client Intelligence.",
-  "placed": 10
+  "placed": 10.09,
+  "dur": 1.52,
+  "text": "So we built Client Intelligence."
  },
  {
-  "file": "line03.mp3",
   "start": 13,
-  "dur": 6.82,
-  "text": "Write the note you'd write anyway. It picks out what matters: the budget, the dial, the material. Accept it, and her profile's up to date.",
-  "placed": 13
+  "placed": 13,
+  "dur": 6.22,
+  "text": "Write the note you'd write anyway. It picks out what matters: the budget, the dial, the material. Accept it, and her profile's up to date."
  },
  {
-  "file": "line04.mp3",
   "start": 27,
-  "dur": 1.62,
-  "text": "It finds the right piece in stock.",
-  "placed": 27
- },
- {
-  "file": "line05.mp3",
-  "start": 40,
-  "dur": 4.44,
-  "text": "And drafts a personal follow-up. Check it, send it, and it's on her record for whoever she speaks to next.",
-  "placed": 40
- },
- {
-  "file": "line06.mp3",
-  "start": 55,
-  "dur": 3.47,
-  "text": "Fifteen hours a week back, and every follow-up out in under five minutes.",
-  "placed": 55
- },
- {
-  "file": "line07.mp3",
-  "start": 68,
+  "placed": 27,
   "dur": 1.57,
-  "text": "Every client. Remembered.",
-  "placed": 68
+  "text": "It finds the right piece in stock."
+ },
+ {
+  "start": 40,
+  "placed": 40,
+  "dur": 5.15,
+  "text": "And drafts a personal follow-up. Check it, send it, and it's on her record for whoever she speaks to next."
+ },
+ {
+  "start": 55,
+  "placed": 55,
+  "dur": 3.37,
+  "text": "Fifteen hours a week back, and every follow-up out in under five minutes."
+ },
+ {
+  "start": 68,
+  "placed": 68,
+  "dur": 1.7,
+  "text": "Every client. Remembered."
  }
 ]
